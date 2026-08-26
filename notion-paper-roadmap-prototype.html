@@ -922,6 +922,9 @@
       const NODE_DRAG_THRESHOLD = 6;
       const WORLD_W = 6720;
       const WORLD_H = 3600;
+      const CANVAS_LAYOUT_VERSION = 2;
+      const AUTO_LAYOUT_PADDING_X = 480;
+      const AUTO_LAYOUT_PADDING_Y = 360;
 
       const NEW_DOMAIN_VALUE = '__new_domain__';
       const DEFAULT_DOMAINS = [
@@ -1052,7 +1055,36 @@
       function cloneSeed() {
         const cloned = JSON.parse(JSON.stringify(seedState()));
         normalizeNodePapers(cloned.nodes);
-        return cloned;
+        return migrateCanvasLayout(cloned);
+      }
+
+      function migrateCanvasLayout(saved) {
+        if ((Number(saved?.canvasLayoutVersion) || 1) >= CANVAS_LAYOUT_VERSION) return saved;
+        const domainIds = new Set();
+        (saved.nodes || []).forEach((node) => Object.keys(node.positions || {}).forEach((domainId) => domainIds.add(domainId)));
+        domainIds.forEach((domainId) => {
+          const positioned = (saved.nodes || []).filter((node) => Number.isFinite(node.positions?.[domainId]?.x) && Number.isFinite(node.positions?.[domainId]?.y));
+          if (!positioned.length) return;
+          const minX = Math.min(...positioned.map((node) => node.positions[domainId].x));
+          const minY = Math.min(...positioned.map((node) => node.positions[domainId].y));
+          const maxX = Math.max(...positioned.map((node) => node.positions[domainId].x + NODE_W));
+          const maxY = Math.max(...positioned.map((node) => node.positions[domainId].y + NODE_H));
+          const dx = WORLD_W / 2 - (minX + maxX) / 2;
+          const dy = WORLD_H / 2 - (minY + maxY) / 2;
+          positioned.forEach((node) => {
+            node.positions[domainId].x = Math.round(node.positions[domainId].x + dx);
+            node.positions[domainId].y = Math.round(node.positions[domainId].y + dy);
+          });
+          (saved.edges || []).forEach((edge) => {
+            const portal = edge.portalPositions?.[domainId];
+            if (!Number.isFinite(portal?.x) || !Number.isFinite(portal?.y)) return;
+            portal.x = Math.round(portal.x + dx);
+            portal.y = Math.round(portal.y + dy);
+          });
+        });
+        saved.canvasLayoutVersion = CANVAS_LAYOUT_VERSION;
+        saved.viewports = {};
+        return saved;
       }
 
       function safeNotionPageUrl(value) {
@@ -1122,7 +1154,7 @@
           normalizeNodePapers(parsed.nodes);
           parsed.domains = normalizeDomains(parsed.domains, parsed.nodes);
           parsed.viewports ||= {};
-          return parsed;
+          return migrateCanvasLayout(parsed);
         } catch (_) {
           return cloneSeed();
         }
@@ -1242,13 +1274,13 @@
         });
 
         const maxLayer = Math.max(0, ...layer.values());
-        const columnStep = maxLayer ? Math.min(355, (WORLD_W - NODE_W - 120) / maxLayer) : 0;
+        const columnStep = maxLayer ? Math.min(355, (WORLD_W - NODE_W - AUTO_LAYOUT_PADDING_X * 2) / maxLayer) : 0;
         const layoutWidth = NODE_W + columnStep * maxLayer;
         const startX = Math.round((WORLD_W - layoutWidth) / 2);
         const laneCount = maxLane + 1;
-        const rowStep = laneCount > 1 ? Math.min(320, (WORLD_H - NODE_H - 150) / (laneCount - 1)) : 0;
+        const rowStep = laneCount > 1 ? Math.min(320, (WORLD_H - NODE_H - AUTO_LAYOUT_PADDING_Y * 2) / (laneCount - 1)) : 0;
         const layoutHeight = NODE_H + rowStep * Math.max(0, laneCount - 1);
-        const startY = laneCount === 1 ? 265 : Math.round((WORLD_H - layoutHeight) / 2);
+        const startY = Math.round((WORLD_H - layoutHeight) / 2);
 
         visible.forEach((node) => {
           node.positions ||= {};
