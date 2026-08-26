@@ -1,0 +1,2581 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>논문 아틀라스 — Notion HTML prototype</title>
+  <style>
+    :root {
+      --paper: #f3efe5;
+      --paper-deep: #eae4d6;
+      --surface: #fffdf7;
+      --ink: #1e2a25;
+      --ink-soft: #59635d;
+      --line: #c9c0ae;
+      --line-strong: #918979;
+      --accent: #b94b37;
+      --deep: #315d80;
+      --rl: #b96d32;
+      --robot: #64724c;
+      --medical: #8d4554;
+      --shadow: 0 12px 35px rgba(48, 42, 30, .11);
+      --node-w: 284px;
+      --node-h: 132px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Avenir Next", "Pretendard", "Apple SD Gothic Neo", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { color: inherit; }
+
+    body {
+      min-width: 320px;
+      background-image:
+        radial-gradient(circle at 12% 14%, rgba(49, 93, 128, .05), transparent 30%),
+        radial-gradient(circle at 88% 82%, rgba(141, 69, 84, .05), transparent 28%),
+        repeating-linear-gradient(0deg, rgba(48, 42, 30, .018) 0 1px, transparent 1px 4px);
+    }
+
+    .app {
+      min-height: 720px;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn {
+      min-height: 32px;
+      padding: 6px 10px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: rgba(255, 253, 247, .76);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: -.01em;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: var(--ink); background: var(--surface); }
+    .btn:focus-visible { outline: 3px solid rgba(49, 93, 128, .22); outline-offset: 2px; }
+    .btn.primary { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+    .btn.danger { color: #8b3029; border-color: rgba(139, 48, 41, .45); }
+    .btn.icon { width: 32px; padding: 0; font-size: 16px; }
+    .btn[disabled] { opacity: .4; cursor: not-allowed; transform: none; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .compact-header {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 46px;
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 247, .92);
+      backdrop-filter: blur(14px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: thin;
+      z-index: 40;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(calc(-100% - 8px));
+      transition: transform .24s cubic-bezier(.2, .8, .2, 1), opacity .16s ease;
+      box-shadow: 0 12px 28px rgba(47, 40, 29, .12);
+    }
+
+    .app.header-visible .compact-header {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .header-reveal-zone {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 41;
+      height: 12px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      opacity: 0;
+      cursor: default;
+    }
+
+    .header-reveal-zone:focus-visible {
+      height: 16px;
+      opacity: 1;
+      outline: 0;
+      background: linear-gradient(180deg, rgba(49, 93, 128, .2), transparent);
+    }
+
+    .app.header-visible .header-reveal-zone { pointer-events: none; }
+
+    .back-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      max-width: 170px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .back-btn.visible { display: inline-flex; }
+
+    .domain-tabs { display: flex; gap: 4px; min-width: max-content; }
+
+    .domain-tab {
+      --domain-color: var(--ink);
+      position: relative;
+      flex: 0 0 auto;
+      padding: 7px 10px 7px 25px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 700;
+      transition: background .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .domain-tab::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--domain-color);
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--domain-color), transparent 84%);
+    }
+
+    .domain-tab.active {
+      color: var(--ink);
+      background: var(--surface);
+      border-color: var(--line);
+      box-shadow: 0 5px 16px rgba(52, 45, 34, .07);
+    }
+
+    .header-actions {
+      margin-left: auto;
+      flex: 0 0 auto;
+      position: sticky;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-left: 8px;
+      background: linear-gradient(90deg, rgba(255, 253, 247, 0), var(--surface) 15%);
+    }
+
+    .review-toggle {
+      min-height: 28px;
+      padding: 4px 8px;
+      border-style: dashed;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+
+    .review-toggle.active {
+      border-style: solid;
+      border-color: #a77c24;
+      background: #fff8df;
+      color: #745817;
+    }
+
+    .workspace {
+      --inspector-width: min(320px, calc(100% - 42px));
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--paper-deep);
+    }
+
+    .canvas-wrap {
+      position: absolute;
+      inset: 0;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      transition: right .22s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .workspace.inspector-open .canvas-wrap { right: var(--inspector-width); }
+
+    .canvas-tools {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 12;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(255, 253, 247, .88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 26px rgba(47, 40, 29, .1);
+      transition: top .24s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .app.header-visible .canvas-tools { top: 56px; }
+
+    .canvas-tools .btn {
+      min-height: 25px;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    .canvas-tools .btn.icon { width: 25px; font-size: 13px; }
+
+    .zoom-readout {
+      min-width: 32px;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 9px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .legend {
+      position: absolute;
+      left: 16px;
+      bottom: 38px;
+      z-index: 12;
+      display: flex;
+      gap: 13px;
+      align-items: center;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 247, .86);
+      color: var(--ink-soft);
+      font-size: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-line { width: 25px; height: 0; border-top: 2px solid var(--ink-soft); }
+    .legend-line.portal { border-top-style: dashed; border-color: var(--accent); }
+
+    .canvas {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      background-color: var(--paper-deep);
+      background-image:
+        linear-gradient(rgba(95, 87, 70, .075) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(95, 87, 70, .075) 1px, transparent 1px),
+        linear-gradient(rgba(95, 87, 70, .032) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(95, 87, 70, .032) 1px, transparent 1px);
+      background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+    }
+
+    .canvas.panning { cursor: grabbing; }
+
+    .world {
+      position: absolute;
+      width: 6720px;
+      height: 3600px;
+      left: 0;
+      top: 0;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+
+    .edge-layer,
+    .node-layer,
+    .portal-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .edge-layer { overflow: visible; pointer-events: none; }
+    .edge-path { fill: none; stroke: #4f5a54; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: .72; }
+    .edge-path.cross { stroke: var(--accent); stroke-dasharray: 8 7; opacity: .78; }
+    .edge-label {
+      fill: var(--ink-soft);
+      font-size: 10px;
+      font-weight: 700;
+      paint-order: stroke;
+      stroke: var(--paper-deep);
+      stroke-width: 5px;
+      stroke-linejoin: round;
+    }
+
+    .node-layer, .portal-layer { pointer-events: none; }
+
+    .node-card {
+      --domain-color: var(--deep);
+      position: absolute;
+      width: var(--node-w);
+      height: var(--node-h);
+      padding: 15px 18px 13px 21px;
+      border: 1px solid #b9b09f;
+      border-radius: 12px 12px 12px 4px;
+      background: linear-gradient(145deg, #fffef9, #f7f2e8);
+      box-shadow: 0 10px 27px rgba(47, 41, 31, .11), inset 4px 0 0 var(--domain-color);
+      pointer-events: auto;
+      cursor: grab;
+      user-select: none;
+      transition: box-shadow .18s ease, border-color .18s ease, filter .18s ease;
+      animation: node-in .32s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes node-in {
+      from { opacity: 0; transform: translateY(7px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .node-card:hover { border-color: var(--domain-color); box-shadow: 0 16px 34px rgba(47, 41, 31, .15), inset 4px 0 0 var(--domain-color); }
+    .node-card.selected { border-color: var(--domain-color); box-shadow: 0 0 0 3px color-mix(in srgb, var(--domain-color), transparent 78%), 0 18px 40px rgba(47, 41, 31, .16), inset 4px 0 0 var(--domain-color); }
+    .node-card.dragging { cursor: grabbing; filter: saturate(1.08); box-shadow: 0 23px 48px rgba(47, 41, 31, .2), inset 4px 0 0 var(--domain-color); }
+    .node-card.candidate { opacity: .72; border-style: dashed; }
+    .node-card:focus-visible { outline: 3px solid color-mix(in srgb, var(--domain-color), transparent 65%); outline-offset: 3px; }
+
+    .domain-rail {
+      position: absolute;
+      top: -1px;
+      left: 17px;
+      width: 48px;
+      height: 4px;
+      display: flex;
+      gap: 2px;
+      overflow: hidden;
+      border-radius: 999px;
+    }
+
+    .domain-rail i { flex: 1; min-width: 5px; border-radius: 999px; }
+
+    .candidate-badge {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      padding: 3px 6px;
+      border: 1px solid #c89d38;
+      border-radius: 999px;
+      background: #fff8df;
+      color: #745817;
+      font-size: 8px;
+      font-weight: 850;
+      letter-spacing: .06em;
+    }
+
+    .edge-path.candidate { opacity: .42; stroke-dasharray: 4 5; }
+    .portal-pill.candidate { opacity: .68; }
+
+    .node-title {
+      margin: 0 0 5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-family: "Iowan Old Style", "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+      font-size: 22px;
+      line-height: 1.06;
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+
+    .node-summary {
+      min-height: 37px;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .paper-chip {
+      position: absolute;
+      left: 21px;
+      right: 16px;
+      bottom: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      color: #625c50;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 11.5px;
+    }
+
+    .paper-chip::before {
+      content: "논문";
+      flex: 0 0 auto;
+      color: var(--domain-color);
+      font-size: 8.5px;
+      font-weight: 850;
+      letter-spacing: .06em;
+      white-space: nowrap;
+      word-break: keep-all;
+      writing-mode: horizontal-tb;
+    }
+    .paper-chip span { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+    .portal-pill {
+      --portal-color: var(--accent);
+      position: absolute;
+      width: 230px;
+      max-width: 230px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px dashed var(--portal-color);
+      border-radius: 999px;
+      background: rgba(255, 253, 247, .96);
+      box-shadow: 0 7px 20px rgba(50, 42, 30, .1);
+      color: var(--ink);
+      pointer-events: auto;
+      cursor: grab;
+      touch-action: none;
+      font-size: 10px;
+      font-weight: 750;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+      animation: portal-in .38s ease both;
+    }
+
+    .portal-label {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    @keyframes portal-in {
+      from { opacity: 0; transform: translateX(-5px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .portal-pill.no-entry { animation: none; }
+    .portal-pill:hover { transform: translateY(-1px); box-shadow: 0 11px 24px rgba(50, 42, 30, .14); }
+    .portal-pill.dragging { cursor: grabbing; animation: none; transform: scale(1.015); box-shadow: 0 15px 32px rgba(50, 42, 30, .18); }
+    .portal-pill:focus-visible { outline: 3px solid color-mix(in srgb, var(--portal-color), transparent 70%); outline-offset: 2px; }
+    .portal-pill .portal-domain { color: var(--portal-color); }
+
+    .portal-tooltip {
+      position: absolute;
+      z-index: 30;
+      left: 0;
+      top: 0;
+      max-width: min(360px, calc(100% - 24px));
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 253, 247, .18);
+      border-radius: 8px;
+      background: #27302b;
+      box-shadow: 0 10px 28px rgba(31, 35, 32, .24);
+      color: #fffdf7;
+      font-size: 11px;
+      font-weight: 650;
+      line-height: 1.42;
+      letter-spacing: -.01em;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transform: translate(-50%, 4px);
+      transition: opacity .14s ease, transform .14s ease, visibility 0s linear .14s;
+    }
+
+    .portal-tooltip::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      border: 6px solid transparent;
+      border-top-color: #27302b;
+      transform: translateX(-50%);
+    }
+
+    .portal-tooltip.below::after {
+      top: auto;
+      bottom: 100%;
+      border-top-color: transparent;
+      border-bottom-color: #27302b;
+    }
+
+    .portal-tooltip.visible {
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-50%, 0);
+      transition-delay: 0s;
+    }
+
+    .inspector {
+      position: absolute;
+      inset: 0 0 0 auto;
+      z-index: 26;
+      width: var(--inspector-width);
+      overflow-y: auto;
+      padding: 18px 17px 28px;
+      border-left: 1px solid var(--line);
+      background: rgba(255, 253, 247, .96);
+      box-shadow: -18px 0 44px rgba(47, 41, 31, .14);
+      opacity: 0;
+      transform: translateX(104%);
+      pointer-events: none;
+      transition: transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s ease;
+    }
+
+    .workspace.inspector-open .inspector {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .inspector-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .inspector-close {
+      flex: 0 0 auto;
+      margin-top: -4px;
+      border-color: transparent;
+      background: transparent;
+      font-size: 20px;
+    }
+
+    .inspector-peek {
+      position: absolute;
+      top: 14px;
+      right: 12px;
+      z-index: 18;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 24px rgba(47, 41, 31, .11);
+      background: rgba(255, 253, 247, .92);
+      backdrop-filter: blur(10px);
+      transition: top .24s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .app.header-visible .inspector-peek { top: 60px; }
+
+    .workspace.has-selection:not(.inspector-open) .inspector-peek { display: inline-flex; }
+
+    .inspector-kicker {
+      margin-bottom: 9px;
+      color: var(--selected-color, var(--deep));
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .inspector h2 {
+      margin: 0;
+      font-family: "Iowan Old Style", "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+      font-size: 25px;
+      line-height: 1.14;
+      letter-spacing: -.04em;
+    }
+
+    .inspector-summary {
+      margin: 11px 0 18px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .section-label {
+      margin: 18px 0 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { padding: 5px 7px; border-radius: 999px; background: var(--paper); font-size: 10px; border: 1px solid var(--line); }
+
+    .paper-list { display: grid; gap: 8px; }
+    .paper-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .paper-item-title {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-family: "Iowan Old Style", Georgia, serif;
+      overflow-wrap: anywhere;
+    }
+
+    .paper-shortcut {
+      flex: 0 0 auto;
+      min-height: 27px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border: 1px solid color-mix(in srgb, var(--selected-color, var(--deep)), transparent 55%);
+      border-radius: 7px;
+      background: color-mix(in srgb, var(--selected-color, var(--deep)), transparent 92%);
+      color: var(--selected-color, var(--deep));
+      font-family: inherit;
+      font-size: 9.5px;
+      font-weight: 800;
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+
+    .paper-shortcut:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--selected-color, var(--deep)), transparent 86%); }
+    .paper-shortcut:focus-visible { outline: 3px solid color-mix(in srgb, var(--selected-color, var(--deep)), transparent 76%); outline-offset: 2px; }
+    .paper-shortcut[disabled] { opacity: .42; cursor: not-allowed; transform: none; }
+
+    .relation-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .stat { padding: 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    .stat strong { display: block; font-size: 17px; }
+    .stat span { color: var(--ink-soft); font-size: 9px; }
+
+    .inspector-actions { display: flex; gap: 7px; margin-top: 20px; }
+
+    .footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 15;
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 12px;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 253, 247, .82);
+      color: var(--ink-soft);
+      font-size: 9px;
+      letter-spacing: .01em;
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .save-state { display: flex; align-items: center; gap: 6px; }
+    .save-dot { width: 6px; height: 6px; border-radius: 50%; background: #54865c; box-shadow: 0 0 0 3px rgba(84, 134, 92, .13); }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(25, 31, 27, .45);
+      backdrop-filter: blur(7px);
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      width: min(480px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 22px;
+      border: 1px solid #a99f8c;
+      border-radius: 15px;
+      background: var(--surface);
+      box-shadow: 0 28px 80px rgba(25, 31, 27, .3);
+      animation: modal-in .2s ease both;
+    }
+
+    @keyframes modal-in { from { opacity: 0; transform: translateY(8px) scale(.985); } }
+
+    .modal h3 {
+      margin: 0 0 4px;
+      font-family: "Iowan Old Style", "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+      font-size: 22px;
+    }
+
+    .modal-intro { margin: 0 0 18px; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+    .field { display: grid; gap: 6px; margin: 12px 0; }
+    .field label { font-size: 10px; font-weight: 800; letter-spacing: .04em; }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 10px 11px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: #fffefa;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .field textarea { min-height: 74px; resize: vertical; }
+    .field select[multiple] { min-height: 92px; }
+    .match-preview {
+      display: none;
+      padding: 9px 10px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--ink-soft);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .match-preview.visible { display: block; }
+    .field input[type="color"] { height: 42px; padding: 4px; cursor: pointer; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--deep); box-shadow: 0 0 0 3px rgba(49, 93, 128, .12); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 45px;
+      z-index: 150;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--surface);
+      font-size: 11px;
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 980px) {
+      .back-btn { max-width: 120px; }
+    }
+
+    @media (max-width: 760px) {
+      .app { min-height: 700px; }
+      .btn { padding: 6px 8px; }
+      .compact-header { padding: 5px 8px; }
+      .back-btn span { display: none; }
+      .back-btn { width: 32px; padding: 0; justify-content: center; }
+      .inspector { width: min(310px, calc(100% - 34px)); }
+      .legend { right: 14px; left: auto; }
+      .footer > :last-child { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <button class="header-reveal-zone" id="headerRevealZone" type="button" aria-label="상단 메뉴 열기" aria-controls="compactHeader" aria-expanded="false"></button>
+    <header class="compact-header" id="compactHeader" aria-hidden="true">
+      <button class="btn back-btn" id="backBtn" aria-label="이전 로드맵으로 돌아가기">← <span id="backLabel">이전 위치</span></button>
+      <nav class="domain-tabs" id="domainTabs" aria-label="분야 로드맵"></nav>
+      <div class="header-actions" aria-label="그래프 편집 도구">
+        <button class="btn review-toggle" id="candidateToggleBtn" type="button" aria-pressed="false" title="관리자용 후보 데이터 보기">후보 포함</button>
+        <button class="btn icon primary" id="addNodeBtn" aria-label="개념 추가" title="개념 추가"><span aria-hidden="true">＋</span><span class="sr-only">개념 추가</span></button>
+        <button class="btn icon" id="addEdgeBtn" aria-label="관계 추가" title="관계 추가"><span aria-hidden="true">↗</span><span class="sr-only">관계 추가</span></button>
+        <button class="btn icon" id="exportBtn" aria-label="JSON 백업" title="JSON 백업"><span aria-hidden="true">↓</span><span class="sr-only">JSON 백업</span></button>
+        <button class="btn icon" id="resetBtn" aria-label="샘플 초기화" title="샘플 초기화"><span aria-hidden="true">↺</span><span class="sr-only">샘플 초기화</span></button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="canvas-wrap" aria-label="논문 로드맵 캔버스">
+        <div class="canvas-tools" aria-label="확대 축소">
+          <button class="btn icon" id="zoomOutBtn" aria-label="축소">−</button>
+          <span class="zoom-readout" id="zoomReadout">100%</span>
+          <button class="btn icon" id="zoomInBtn" aria-label="확대">＋</button>
+          <button class="btn" id="fitBtn">전체 맞춤</button>
+        </div>
+        <div class="legend" aria-label="범례">
+          <span class="legend-item"><i class="legend-line"></i>분야 내부 관계</span>
+          <span class="legend-item"><i class="legend-line portal"></i>다른 분야 포털</span>
+        </div>
+        <div class="canvas" id="canvas" tabindex="0">
+          <div class="world" id="world">
+            <svg class="edge-layer" id="edgeLayer" viewBox="0 0 6720 3600" aria-hidden="true"></svg>
+            <div class="portal-layer" id="portalLayer"></div>
+            <div class="node-layer" id="nodeLayer"></div>
+          </div>
+        </div>
+        <div class="portal-tooltip" id="portalTooltip" role="tooltip" aria-hidden="true"></div>
+      </section>
+
+      <button class="btn inspector-peek" id="inspectorPeekBtn" aria-label="선택한 노드 정보 열기">노드 정보 <span aria-hidden="true">‹</span></button>
+      <aside class="inspector" id="inspector" aria-live="polite" aria-hidden="true"></aside>
+    </main>
+
+    <footer class="footer">
+      <div class="save-state"><i class="save-dot"></i><span id="saveText">이 브라우저에 자동 저장됨</span></div>
+      <span>캔버스 드래그 · 휠 확대 · 노드 선택/이동</span>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop" id="nodeModal" role="dialog" aria-modal="true" aria-labelledby="nodeModalTitle">
+    <form class="modal" id="nodeForm">
+      <h3 id="nodeModalTitle">새 개념 노드</h3>
+      <p class="modal-intro">저장 직전에 승인·후보 개념 전체를 다시 검색합니다. 동일하거나 유사한 개념은 새로 만들지 않습니다.</p>
+      <div class="field"><label for="nodeTitle">개념 제목</label><input id="nodeTitle" name="title" required maxlength="80" placeholder="예: Diffusion Model" /></div>
+      <div class="field"><label for="nodeAliases">별칭·약어</label><input id="nodeAliases" name="aliases" maxlength="240" placeholder="쉼표로 구분 · 예: VLP, 시각-언어 사전학습" /></div>
+      <div class="field"><label for="nodeSummary">설명</label><textarea id="nodeSummary" name="summary" required maxlength="260" placeholder="핵심 의미를 두 문장 이내로 적어주세요."></textarea></div>
+      <div class="field"><label for="nodeDomain">주 분야</label><select id="nodeDomain" name="domain"></select></div>
+      <div class="field"><label for="nodeAdditionalDomains">추가 분야</label><select id="nodeAdditionalDomains" name="additionalDomains" multiple aria-describedby="additionalDomainHelp"></select><small id="additionalDomainHelp">여러 분야에서 같은 개념을 쓰면 노드를 복제하지 않고 여기에 분야를 추가합니다.</small></div>
+      <div class="field"><label for="nodePapers">연결 논문</label><select id="nodePapers" name="paperIds" multiple></select></div>
+      <div class="match-preview" id="conceptMatchPreview" role="status"></div>
+      <div class="modal-actions"><button type="button" class="btn" data-close-modal="nodeModal">취소</button><button class="btn primary" type="submit">노드 추가</button></div>
+    </form>
+  </div>
+
+  <div class="modal-backdrop" id="edgeModal" role="dialog" aria-modal="true" aria-labelledby="edgeModalTitle">
+    <form class="modal" id="edgeForm">
+      <h3 id="edgeModalTitle">개념 관계 추가</h3>
+      <p class="modal-intro">서로 다른 분야를 연결하면 각 분야 View에서 클릭 가능한 점선 포털로 표시됩니다.</p>
+      <div class="field"><label for="edgeSource">출발 개념</label><select id="edgeSource" name="source"></select></div>
+      <div class="field"><label for="edgeTarget">도착 개념</label><select id="edgeTarget" name="target"></select></div>
+      <div class="field"><label for="edgeType">관계</label><select id="edgeType" name="type"><option value="prerequisite">선수 개념</option><option value="extends">확장</option><option value="enables">가능하게 함</option><option value="applies_to">다른 분야에 적용</option><option value="contrasts_with">대조</option></select></div>
+      <div class="field"><label for="edgePapers">근거 논문</label><select id="edgePapers" name="evidencePaperIds" multiple required></select></div>
+      <div class="field"><label for="edgeSummary">관계 설명</label><textarea id="edgeSummary" name="summary" required maxlength="600" placeholder="왜 이 방향으로 연결되는지 적어주세요."></textarea></div>
+      <div class="modal-actions"><button type="button" class="btn" data-close-modal="edgeModal">취소</button><button class="btn primary" type="submit">관계 추가</button></div>
+    </form>
+  </div>
+
+  <div class="modal-backdrop" id="domainModal" role="dialog" aria-modal="true" aria-labelledby="domainModalTitle">
+    <form class="modal" id="domainForm">
+      <h3 id="domainModalTitle">새 분야 추가</h3>
+      <p class="modal-intro">추가한 분야는 즉시 상단 로드맵 탭과 개념 노드의 분야 목록에 반영됩니다.</p>
+      <div class="field"><label for="domainName">분야 이름</label><input id="domainName" name="name" required maxlength="40" placeholder="예: 생성형 AI" /></div>
+      <div class="field"><label for="domainColor">분야 색상</label><input id="domainColor" name="color" type="color" value="#6f5b8f" /></div>
+      <div class="modal-actions"><button type="button" class="btn" id="cancelDomainBtn">취소</button><button class="btn primary" type="submit">분야 추가</button></div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const STORAGE_KEY = 'notion-paper-roadmap-prototype-v1';
+      const explicitApiUrl = new URLSearchParams(window.location.search).get('api');
+      const ROADMAP_API_URL = explicitApiUrl || (/^https?:$/.test(window.location.protocol) ? new URL('/api/roadmap', window.location.href).href : '');
+      const siblingApiUrl = (name) => ROADMAP_API_URL ? new URL(ROADMAP_API_URL.replace(/\/roadmap(?:\?.*)?$/, `/${name}`)).href : '';
+      const DOMAIN_API_URL = siblingApiUrl('domains');
+      const PAPER_API_URL = siblingApiUrl('papers');
+      const CONCEPT_API_URL = siblingApiUrl('concepts');
+      const CONCEPT_MATCH_API_URL = siblingApiUrl('concepts/match');
+      const RELATION_API_URL = siblingApiUrl('relations');
+      const LAYOUT_API_URL = siblingApiUrl('layout');
+      const NODE_W = 284;
+      const NODE_H = 132;
+      const PORTAL_W = 230;
+      const PORTAL_H = 36;
+      const PORTAL_AUTO_GAP = 116;
+      const PORT_ROLE_OFFSET = 18;
+      const NODE_DRAG_THRESHOLD = 6;
+      const WORLD_W = 6720;
+      const WORLD_H = 3600;
+
+      const NEW_DOMAIN_VALUE = '__new_domain__';
+      const DEFAULT_DOMAINS = [
+        { id: 'all', name: '전체', color: '#2f3934' },
+        { id: 'deep', name: 'AI 딥러닝', color: '#315d80' },
+        { id: 'rl', name: '강화학습', color: '#b96d32' },
+        { id: 'robot', name: '로봇', color: '#64724c' },
+        { id: 'medical', name: '의료 AI', color: '#8d4554' }
+      ];
+      const DOMAIN_COLOR_PALETTE = ['#6f5b8f', '#3f7d6b', '#a65d42', '#4f6f9a', '#86684b', '#7a5269'];
+
+      const seedState = () => ({
+        domains: DEFAULT_DOMAINS.map((domain) => ({ ...domain })),
+        nodes: [
+          {
+            id: 'transformer', title: 'Transformer', domain: 'deep', domains: ['deep'],
+            summary: 'Attention을 중심으로 순차 의존 없이 토큰 간 관계를 학습하는 기반 구조.',
+            papers: ['Attention Is All You Need'],
+            positions: { deep: { x: 120, y: 235 }, all: { x: 90, y: 115 } }
+          },
+          {
+            id: 'vit', title: 'Vision Transformer', domain: 'deep', domains: ['deep'],
+            summary: '이미지를 패치 시퀀스로 바꾸어 Transformer로 처리하는 비전 모델.',
+            papers: ['An Image is Worth 16×16 Words'],
+            positions: { deep: { x: 475, y: 190 }, all: { x: 395, y: 105 } }
+          },
+          {
+            id: 'multimodal', title: 'Multimodal Foundation Model', domain: 'deep', domains: ['deep'],
+            summary: '언어·이미지 등 서로 다른 모달리티를 하나의 표현 공간에서 결합한다.',
+            papers: ['Flamingo: a Visual Language Model for Few-Shot Learning'],
+            positions: { deep: { x: 830, y: 245 }, all: { x: 700, y: 130 } }
+          },
+          {
+            id: 'mdp', title: 'Markov Decision Process', domain: 'rl', domains: ['rl'],
+            summary: '상태·행동·전이·보상으로 순차적 의사결정 문제를 표현하는 기본 틀.',
+            papers: ['A Survey of Reinforcement Learning'],
+            positions: { rl: { x: 120, y: 235 }, all: { x: 90, y: 545 } }
+          },
+          {
+            id: 'policy-gradient', title: 'Policy Gradient', domain: 'rl', domains: ['rl'],
+            summary: '정책을 직접 매개변수화하고 기대 보상의 기울기를 따라 최적화한다.',
+            papers: ['Policy Gradient Methods for Reinforcement Learning with Function Approximation'],
+            positions: { rl: { x: 475, y: 190 }, all: { x: 395, y: 520 } }
+          },
+          {
+            id: 'actor-critic', title: 'Actor–Critic', domain: 'rl', domains: ['rl'],
+            summary: '정책을 갱신하는 Actor와 가치를 추정하는 Critic을 함께 학습한다.',
+            papers: ['Asynchronous Methods for Deep Reinforcement Learning'],
+            positions: { rl: { x: 830, y: 245 }, all: { x: 700, y: 545 } }
+          },
+          {
+            id: 'robot-policy', title: 'Robot Policy Learning', domain: 'robot', domains: ['robot'],
+            summary: '감각 입력에서 로봇 행동 정책을 학습해 실제 환경의 조작을 수행한다.',
+            papers: ['Learning Hand-Eye Coordination for Robotic Grasping with Deep Learning and Large-Scale Data Collection'],
+            positions: { robot: { x: 330, y: 210 }, all: { x: 1030, y: 500 } }
+          },
+          {
+            id: 'sim2real', title: 'Sim-to-Real Transfer', domain: 'robot', domains: ['robot'],
+            summary: '시뮬레이션에서 배운 정책을 현실의 차이와 불확실성에 견디게 이전한다.',
+            papers: ['Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World'],
+            positions: { robot: { x: 720, y: 245 }, all: { x: 1335, y: 545 } }
+          },
+          {
+            id: 'medical-vlm', title: 'Medical Vision–Language Model', domain: 'medical', domains: ['medical'],
+            summary: '의료 이미지와 임상 언어를 함께 이해해 일반화된 의료 AI 과제를 다룬다.',
+            papers: ['Towards Generalist Biomedical AI'],
+            positions: { medical: { x: 390, y: 205 }, all: { x: 1030, y: 115 } }
+          },
+          {
+            id: 'clinical-llm', title: 'Clinical Decision Support', domain: 'medical', domains: ['medical'],
+            summary: '근거와 한계를 드러내며 의료진의 판단을 보조하는 임상 언어 모델 활용.',
+            papers: ['Large Language Models Encode Clinical Knowledge'],
+            positions: { medical: { x: 785, y: 245 }, all: { x: 1335, y: 145 } }
+          }
+        ],
+        edges: [
+          { id: 'e1', source: 'transformer', target: 'vit', type: 'extends', paper: 'An Image is Worth 16×16 Words' },
+          { id: 'e2', source: 'vit', target: 'multimodal', type: 'enables', paper: 'Flamingo' },
+          { id: 'e3', source: 'multimodal', target: 'medical-vlm', type: 'applies_to', paper: 'Towards Generalist Biomedical AI' },
+          { id: 'e4', source: 'medical-vlm', target: 'clinical-llm', type: 'enables', paper: 'Large Language Models Encode Clinical Knowledge' },
+          { id: 'e5', source: 'mdp', target: 'policy-gradient', type: 'prerequisite', paper: 'A Survey of Reinforcement Learning' },
+          { id: 'e6', source: 'policy-gradient', target: 'actor-critic', type: 'extends', paper: 'Asynchronous Methods for Deep Reinforcement Learning' },
+          { id: 'e7', source: 'actor-critic', target: 'robot-policy', type: 'applies_to', paper: 'Learning Hand-Eye Coordination for Robotic Grasping' },
+          { id: 'e8', source: 'robot-policy', target: 'sim2real', type: 'enables', paper: 'Domain Randomization' },
+          { id: 'e9', source: 'multimodal', target: 'robot-policy', type: 'applies_to', paper: 'PaLM-E: An Embodied Multimodal Language Model' }
+        ],
+        viewports: {},
+        currentDomain: 'deep'
+      });
+
+      const $ = (id) => document.getElementById(id);
+      const canvas = $('canvas');
+      const world = $('world');
+      const edgeLayer = $('edgeLayer');
+      const nodeLayer = $('nodeLayer');
+      const portalLayer = $('portalLayer');
+      const portalTooltip = $('portalTooltip');
+      const canvasWrap = document.querySelector('.canvas-wrap');
+      const workspace = document.querySelector('.workspace');
+      const app = document.querySelector('.app');
+      const compactHeader = $('compactHeader');
+      const headerRevealZone = $('headerRevealZone');
+      const inspector = $('inspector');
+      const inspectorPeek = $('inspectorPeekBtn');
+      const toast = $('toast');
+
+      let state = loadState();
+      let currentDomain = state.domains.some((domain) => domain.id === state.currentDomain) ? state.currentDomain : 'deep';
+      let selectedId = null;
+      let inspectorOpen = false;
+      let viewport = state.viewports[currentDomain] || { x: 60, y: 20, scale: .86 };
+      let navigationStack = [];
+      let dragInfo = null;
+      let portalDragInfo = null;
+      let portalTooltipOwner = null;
+      let panInfo = null;
+      let headerHideTimer = null;
+      let headerKeyboardNavigation = false;
+      let toastTimer = null;
+      let pendingDomainFallback = 'deep';
+      let notionSyncEnabled = false;
+      let notionDatabaseUrl = '';
+      let notionSyncInFlight = null;
+      let showCandidates = false;
+      let availablePapers = [];
+      const edgeAxisCache = new Map();
+
+      function cloneSeed() {
+        const cloned = JSON.parse(JSON.stringify(seedState()));
+        normalizeNodePapers(cloned.nodes);
+        return cloned;
+      }
+
+      function safeNotionPageUrl(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+        try {
+          const url = new URL(raw);
+          const host = url.hostname.toLowerCase();
+          const isNotionHost = host === 'notion.so' || host.endsWith('.notion.so') || host === 'notion.site' || host.endsWith('.notion.site') || host === 'app.notion.com';
+          return url.protocol === 'https:' && isNotionHost ? url.href : '';
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function normalizePaperRecord(paper) {
+        if (typeof paper === 'string') return { title: paper.trim(), notionUrl: '', notionPageId: '' };
+        return {
+          title: String(paper?.title || '').trim(),
+          notionUrl: safeNotionPageUrl(paper?.notionUrl || paper?.url),
+          notionPageId: String(paper?.notionPageId || paper?.pageId || '').trim()
+        };
+      }
+
+      function normalizeNodePapers(nodes = []) {
+        nodes.forEach((node) => {
+          node.papers = (Array.isArray(node.papers) ? node.papers : []).map(normalizePaperRecord).filter((paper) => paper.title);
+        });
+        return nodes;
+      }
+
+      function paperTitle(paper) { return normalizePaperRecord(paper).title; }
+      function paperNotionUrl(paper) { return normalizePaperRecord(paper).notionUrl; }
+
+      function renderPaperItem(paper) {
+        const title = paperTitle(paper);
+        const notionUrl = paperNotionUrl(paper);
+        const shortcut = notionUrl
+          ? `<a class="paper-shortcut" href="${escapeHtml(notionUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(title)} 노션 페이지 바로가기">바로가기</a>`
+          : `<button class="paper-shortcut" type="button" disabled title="노션 DB 페이지가 연결되면 활성화됩니다">바로가기</button>`;
+        return `<div class="paper-item"><span class="paper-item-title">${escapeHtml(title)}</span>${shortcut}</div>`;
+      }
+
+      function normalizeDomains(savedDomains, nodes = [], includeDefaults = true) {
+        const merged = new Map(includeDefaults ? DEFAULT_DOMAINS.map((domain) => [domain.id, { ...domain }]) : []);
+        if (Array.isArray(savedDomains)) {
+          savedDomains.forEach((domain) => {
+            if (!domain?.id || !domain?.name) return;
+            merged.set(domain.id, { id: domain.id, name: domain.name, color: domain.color || DOMAIN_COLOR_PALETTE[merged.size % DOMAIN_COLOR_PALETTE.length] });
+          });
+        }
+        nodes.forEach((node) => {
+          const ids = Array.isArray(node.domains) ? node.domains : [node.domain];
+          ids.filter(Boolean).forEach((id) => {
+            if (!merged.has(id)) merged.set(id, { id, name: id, color: DOMAIN_COLOR_PALETTE[merged.size % DOMAIN_COLOR_PALETTE.length] });
+          });
+        });
+        return Array.from(merged.values());
+      }
+
+      function loadState() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (!stored) return cloneSeed();
+          const parsed = JSON.parse(stored);
+          if (!Array.isArray(parsed.nodes) || !Array.isArray(parsed.edges)) return cloneSeed();
+          normalizeNodePapers(parsed.nodes);
+          parsed.domains = normalizeDomains(parsed.domains, parsed.nodes);
+          parsed.viewports ||= {};
+          return parsed;
+        } catch (_) {
+          return cloneSeed();
+        }
+      }
+
+      function saveState(message = '변경사항 저장됨') {
+        state.currentDomain = currentDomain;
+        state.viewports[currentDomain] = { ...viewport };
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          $('saveText').textContent = message;
+        } catch (_) {
+          $('saveText').textContent = '저장 공간을 사용할 수 없음';
+        }
+      }
+
+      function setRemoteModeUi() {
+        if (!notionSyncEnabled) return;
+        $('addNodeBtn').setAttribute('aria-label', 'Notion에 후보 개념 추가');
+        $('addNodeBtn').title = 'Notion에 후보 개념 추가';
+        $('addEdgeBtn').setAttribute('aria-label', 'Notion에서 관계 편집');
+        $('addEdgeBtn').title = 'Notion에서 관계 편집';
+        $('resetBtn').setAttribute('aria-label', 'Notion 지금 동기화');
+        $('resetBtn').title = 'Notion 지금 동기화';
+      }
+
+      function setHeaderVisible(visible) {
+        clearTimeout(headerHideTimer);
+        headerHideTimer = null;
+        app.classList.toggle('header-visible', visible);
+        compactHeader.setAttribute('aria-hidden', String(!visible));
+        headerRevealZone.setAttribute('aria-expanded', String(visible));
+      }
+
+      function showHeader() {
+        setHeaderVisible(true);
+      }
+
+      function scheduleHeaderHide() {
+        if (headerHideTimer) return;
+        headerHideTimer = setTimeout(() => {
+          headerHideTimer = null;
+          const focused = document.activeElement;
+          if (compactHeader.matches(':hover') || (headerKeyboardNavigation && (compactHeader.contains(focused) || focused === headerRevealZone))) return;
+          setHeaderVisible(false);
+        }, 220);
+      }
+
+      function automaticNodeOrder(left, right, domainOrder) {
+        const rank = (node) => Math.min(...(node.domains || []).map((id) => domainOrder.get(id) ?? 999));
+        return rank(left) - rank(right)
+          || String(left.title || '').localeCompare(String(right.title || ''), 'ko')
+          || String(left.id).localeCompare(String(right.id));
+      }
+
+      function applyAutomaticLayout(nodes, edges, domainId, domainOrder) {
+        const visible = nodes.filter((node) => domainId === 'all' || node.domains.includes(domainId));
+        if (!visible.length) return;
+        const nodeById = new Map(visible.map((node) => [node.id, node]));
+        const incoming = new Map(visible.map((node) => [node.id, []]));
+        const outgoing = new Map(visible.map((node) => [node.id, []]));
+        edges
+          .filter((edge) => nodeById.has(edge.source) && nodeById.has(edge.target) && edge.source !== edge.target)
+          .sort((left, right) => String(left.id).localeCompare(String(right.id)))
+          .forEach((edge) => {
+            outgoing.get(edge.source).push(edge.target);
+            incoming.get(edge.target).push(edge.source);
+          });
+
+        const compareIds = (leftId, rightId) => automaticNodeOrder(nodeById.get(leftId), nodeById.get(rightId), domainOrder);
+        const remainingIncoming = new Map([...incoming].map(([id, sources]) => [id, sources.length]));
+        const layer = new Map(visible.map((node) => [node.id, 0]));
+        const queue = visible.filter((node) => remainingIncoming.get(node.id) === 0).map((node) => node.id).sort(compareIds);
+        const ordered = [];
+        while (queue.length) {
+          const id = queue.shift();
+          ordered.push(id);
+          [...outgoing.get(id)].sort(compareIds).forEach((targetId) => {
+            layer.set(targetId, Math.max(layer.get(targetId), layer.get(id) + 1));
+            remainingIncoming.set(targetId, remainingIncoming.get(targetId) - 1);
+            if (remainingIncoming.get(targetId) === 0) {
+              queue.push(targetId);
+              queue.sort(compareIds);
+            }
+          });
+        }
+
+        const unresolved = visible.map((node) => node.id).filter((id) => !ordered.includes(id)).sort(compareIds);
+        unresolved.forEach((id) => {
+          const resolvedPredecessors = incoming.get(id).filter((sourceId) => ordered.includes(sourceId));
+          if (resolvedPredecessors.length) layer.set(id, Math.max(...resolvedPredecessors.map((sourceId) => layer.get(sourceId) + 1)));
+          ordered.push(id);
+        });
+
+        const byLayer = new Map();
+        ordered.forEach((id) => {
+          const value = layer.get(id);
+          if (!byLayer.has(value)) byLayer.set(value, []);
+          byLayer.get(value).push(id);
+        });
+        const lane = new Map();
+        let nextRootLane = 0;
+        let maxLane = 0;
+        [...byLayer.keys()].sort((left, right) => left - right).forEach((layerIndex) => {
+          const records = byLayer.get(layerIndex).map((id) => {
+            const predecessorLanes = incoming.get(id).map((sourceId) => lane.get(sourceId)).filter(Number.isFinite);
+            return { id, desiredLane: predecessorLanes.length ? Math.max(...predecessorLanes) : nextRootLane++ };
+          }).sort((left, right) => left.desiredLane - right.desiredLane || compareIds(left.id, right.id));
+          const used = new Set();
+          records.forEach((record) => {
+            let value = record.desiredLane;
+            while (used.has(value)) value += 1;
+            used.add(value);
+            lane.set(record.id, value);
+            maxLane = Math.max(maxLane, value);
+          });
+        });
+
+        const maxLayer = Math.max(0, ...layer.values());
+        const columnStep = maxLayer ? Math.min(355, (WORLD_W - NODE_W - 120) / maxLayer) : 0;
+        const layoutWidth = NODE_W + columnStep * maxLayer;
+        const startX = Math.round((WORLD_W - layoutWidth) / 2);
+        const laneCount = maxLane + 1;
+        const rowStep = laneCount > 1 ? Math.min(320, (WORLD_H - NODE_H - 150) / (laneCount - 1)) : 0;
+        const layoutHeight = NODE_H + rowStep * Math.max(0, laneCount - 1);
+        const startY = laneCount === 1 ? 265 : Math.round((WORLD_H - layoutHeight) / 2);
+
+        visible.forEach((node) => {
+          node.positions ||= {};
+          if (node.positions[domainId]) return;
+          node.positions[domainId] = {
+            x: Math.round(startX + layer.get(node.id) * columnStep),
+            y: Math.round(startY + lane.get(node.id) * rowStep)
+          };
+        });
+      }
+
+      function applyAutomaticLayouts(nodes, edges, domains) {
+        const domainOrder = new Map(domains.map((domain, index) => [domain.id, index]));
+        domains.forEach((domain) => applyAutomaticLayout(nodes, edges, domain.id, domainOrder));
+      }
+
+      function mergeRemoteSnapshot(snapshot) {
+        if (!Array.isArray(snapshot?.nodes) || !Array.isArray(snapshot?.edges) || !Array.isArray(snapshot?.domains)) {
+          throw new Error('올바르지 않은 로드맵 응답');
+        }
+        const firstRemoteSync = !notionSyncEnabled;
+        const nodes = snapshot.nodes.map((node) => ({
+          ...node,
+          domains: Array.isArray(node.domains) && node.domains.length ? node.domains : [node.domain],
+          positions: node.positions && Object.keys(node.positions).length ? node.positions : {}
+        }));
+        normalizeNodePapers(nodes);
+        const edges = snapshot.edges.map((edge) => ({
+          ...edge,
+          portalPositions: edge.portalPositions && Object.keys(edge.portalPositions).length ? edge.portalPositions : {}
+        }));
+        const domains = normalizeDomains(snapshot.domains, nodes, false);
+        applyAutomaticLayouts(nodes, edges, domains);
+        state = {
+          ...state,
+          domains,
+          nodes,
+          edges,
+          syncedAt: snapshot.updatedAt || new Date().toISOString()
+        };
+        notionDatabaseUrl = safeNotionPageUrl(snapshot.databaseUrl) || notionDatabaseUrl;
+        notionSyncEnabled = true;
+        showCandidates = Boolean(snapshot.includeCandidates);
+        updateCandidateToggle();
+        if (!state.domains.some((domain) => domain.id === currentDomain)) currentDomain = 'all';
+        if (selectedId && !nodes.some((node) => node.id === selectedId)) {
+          selectedId = null;
+          inspectorOpen = false;
+        }
+        saveState(`Notion 동기화됨 · ${new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}`);
+        setRemoteModeUi();
+        populateForms();
+        render();
+        if (firstRemoteSync) requestAnimationFrame(() => fitVisible(false));
+      }
+
+      async function syncFromNotion({ silent = false, force = false } = {}) {
+        if (!ROADMAP_API_URL) return false;
+        if (notionSyncInFlight) return notionSyncInFlight;
+        notionSyncInFlight = (async () => {
+          try {
+            const requestUrl = new URL(ROADMAP_API_URL);
+            const headers = { Accept: 'application/json' };
+            if (showCandidates) {
+              const writeKey = await getWriteKey();
+              if (!writeKey) {
+                showCandidates = false;
+                updateCandidateToggle();
+              } else {
+                requestUrl.searchParams.set('includeCandidates', '1');
+                headers['x-roadmap-write-key'] = writeKey;
+              }
+            }
+            if (force) requestUrl.searchParams.set('_refresh', Date.now());
+            const response = await fetch(requestUrl, { headers, cache: 'no-store' });
+            if (response.status === 401 && showCandidates) {
+              sessionStorage.removeItem('roadmap-write-key');
+              showCandidates = false;
+              updateCandidateToggle();
+            }
+            if (!response.ok) throw new Error(`동기화 응답 ${response.status}`);
+            mergeRemoteSnapshot(await response.json());
+            if (!silent) showToast('Notion의 최신 논문을 불러왔습니다');
+            return true;
+          } catch (error) {
+            $('saveText').textContent = notionSyncEnabled ? '마지막 Notion 데이터 표시 중' : '로컬 데이터 · Notion 연결 대기';
+            if (!silent) showToast('Notion 연결을 확인해주세요');
+            console.warn('Notion roadmap sync unavailable', error);
+            return false;
+          } finally {
+            notionSyncInFlight = null;
+          }
+        })();
+        return notionSyncInFlight;
+      }
+
+      function openNotionLibrary() {
+        if (!notionDatabaseUrl) {
+          showToast('Notion 논문 아틀라스 주소를 서버에 설정해주세요');
+          return;
+        }
+        window.open(notionDatabaseUrl, '_blank', 'noopener,noreferrer');
+        showToast('Notion 논문 아틀라스를 열었습니다');
+      }
+
+      function notionColorName(hex) {
+        return ({
+          '#315d80': 'blue', '#b96d32': 'orange', '#64724c': 'green', '#8d4554': 'red',
+          '#6f5b8f': 'purple', '#3f7d6b': 'green', '#a65d42': 'orange', '#4f6f9a': 'blue',
+          '#86684b': 'brown', '#7a5269': 'pink'
+        })[String(hex || '').toLowerCase()] || 'purple';
+      }
+
+      async function getWriteKey() {
+        let writeKey = sessionStorage.getItem('roadmap-write-key') || '';
+        if (!writeKey) {
+          writeKey = String(prompt('팀에 공유된 로드맵 편집 키를 입력해주세요.') || '').trim();
+          if (!writeKey) return '';
+          sessionStorage.setItem('roadmap-write-key', writeKey);
+        }
+        return writeKey;
+      }
+
+      async function authorizedRequest(url, { method = 'POST', body } = {}, failureMessage) {
+        const writeKey = await getWriteKey();
+        if (!writeKey) return { ok: false, status: 0, data: null };
+        const response = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json', 'x-roadmap-write-key': writeKey },
+          body: body === undefined ? undefined : JSON.stringify(body)
+        });
+        if (response.status === 401) sessionStorage.removeItem('roadmap-write-key');
+        const data = await response.json().catch(() => null);
+        if (!response.ok) {
+          showToast(response.status === 401 ? '편집 키가 맞지 않습니다' : failureMessage);
+          return { ok: false, status: response.status, data };
+        }
+        sessionStorage.setItem('roadmap-write-key', writeKey);
+        return { ok: true, status: response.status, data };
+      }
+
+      async function addRemoteDomain(formData) {
+        const result = await authorizedRequest(DOMAIN_API_URL, { body: {
+          name: String(formData.get('name') || '').trim(),
+          color: notionColorName(formData.get('color'))
+        } }, 'Notion 분야를 추가하지 못했습니다');
+        if (!result.ok) return null;
+        const { domain } = result.data;
+        if (!state.domains.some((item) => item.id === domain.id)) state.domains.push(domain);
+        state.viewports[domain.id] ||= { x: 55, y: 28, scale: .86 };
+        saveState('Notion에 새 분야 저장됨');
+        renderTabs();
+        showToast(`${domain.name} 분야를 Notion에 추가했습니다`);
+        return domain;
+      }
+
+      function selectedValues(select) {
+        return Array.from(select?.selectedOptions || []).map((option) => option.value).filter(Boolean);
+      }
+
+      async function loadPaperOptions() {
+        if (!notionSyncEnabled || !PAPER_API_URL) return availablePapers;
+        const result = await authorizedRequest(PAPER_API_URL, { method: 'GET' }, '논문 목록을 불러오지 못했습니다');
+        if (result.ok) availablePapers = Array.isArray(result.data?.papers) ? result.data.papers : [];
+        populatePaperOptions();
+        return availablePapers;
+      }
+
+      function populatePaperOptions() {
+        const options = availablePapers.map((paper) => `<option value="${escapeHtml(paper.id)}">${escapeHtml(paper.title)}${paper.status === '후보' ? ' · 후보' : ''}</option>`).join('');
+        $('nodePapers').innerHTML = options || '<option value="" disabled>등록된 논문이 없습니다</option>';
+        $('edgePapers').innerHTML = options || '<option value="" disabled>등록된 논문이 없습니다</option>';
+      }
+
+      async function previewConceptMatches() {
+        if (!notionSyncEnabled || !CONCEPT_MATCH_API_URL) return null;
+        const title = $('nodeTitle').value.trim();
+        if (!title) return null;
+        const requestUrl = new URL(CONCEPT_MATCH_API_URL);
+        requestUrl.searchParams.set('title', title);
+        requestUrl.searchParams.set('aliases', $('nodeAliases').value.trim());
+        requestUrl.searchParams.set('summary', $('nodeSummary').value.trim());
+        const result = await authorizedRequest(requestUrl, { method: 'GET' }, '기존 개념 검색에 실패했습니다');
+        const preview = $('conceptMatchPreview');
+        if (!result.ok) {
+          preview.classList.remove('visible');
+          return null;
+        }
+        const matches = result.data?.matches || [];
+        if (!matches.length || matches[0].score < .45) {
+          preview.textContent = '가까운 기존 개념을 찾지 못했습니다. 저장 시 한 번 더 검사합니다.';
+        } else {
+          preview.innerHTML = `<strong>기존 개념 후보</strong><br>${matches.slice(0, 3).map((match) => `${escapeHtml(match.title)} · ${Math.round(match.score * 100)}%${match.exact ? ' · 동일 이름/별칭' : ''}`).join('<br>')}`;
+        }
+        preview.classList.add('visible');
+        return result.data;
+      }
+
+      async function addRemoteNode(formData) {
+        const primaryDomain = domainById(String(formData.get('domain') || ''));
+        const additional = selectedValues($('nodeAdditionalDomains')).map((id) => domainById(id).name);
+        const domains = [...new Set([primaryDomain.name, ...additional])].filter((name) => name && name !== '전체');
+        const title = String(formData.get('title') || '').trim();
+        const aliases = String(formData.get('aliases') || '').split(',').map((value) => value.trim()).filter(Boolean);
+        const result = await authorizedRequest(CONCEPT_API_URL, { body: {
+          title,
+          aliases,
+          domains,
+          summary: String(formData.get('summary') || '').trim(),
+          paperIds: selectedValues($('nodePapers'))
+        } }, 'Notion에 후보 개념을 추가하지 못했습니다');
+        if (!result.ok) {
+          if (result.status === 409) {
+            const closest = result.data?.duplicate || result.data?.matches?.[0];
+            const reason = result.data?.error === 'CONCEPT_DUPLICATE' ? '이미 같은 개념이 있습니다' : '유사 개념을 먼저 확인해주세요';
+            $('conceptMatchPreview').innerHTML = `<strong>${reason}</strong>${closest ? `<br>${escapeHtml(closest.title)} · ${Math.round((closest.score || 1) * 100)}%` : ''}`;
+            $('conceptMatchPreview').classList.add('visible');
+          }
+          return false;
+        }
+        await syncFromNotion({ silent: true, force: true });
+        const created = state.nodes.find((node) => node.id === result.data?.concept?.id);
+        if (created) {
+          selectedId = created.id;
+          inspectorOpen = true;
+          render();
+          focusNode(created.id);
+        }
+        showToast(showCandidates ? '후보 개념을 Notion과 로드맵에 추가했습니다' : '후보 개념을 Notion에 저장했습니다 · 후보 포함에서 확인');
+        return true;
+      }
+
+      async function addRemoteEdge(formData) {
+        const source = nodeById(String(formData.get('source') || ''));
+        const target = nodeById(String(formData.get('target') || ''));
+        if (!source || !target) return false;
+        const result = await authorizedRequest(RELATION_API_URL, { body: {
+          sourceConceptId: source.id,
+          targetConceptId: target.id,
+          type: String(formData.get('type') || ''),
+          evidencePaperIds: selectedValues($('edgePapers')),
+          summary: String(formData.get('summary') || '').trim()
+        } }, 'Notion 관계를 추가하지 못했습니다');
+        if (!result.ok) return false;
+        await syncFromNotion({ silent: true, force: true });
+        showToast(result.data?.relation?.reused ? '기존 관계에 근거 논문을 추가했습니다' : '후보 관계를 Notion에 추가했습니다');
+        return true;
+      }
+
+      async function saveRemoteLayout(kind, pageId, layout) {
+        if (!notionSyncEnabled || !LAYOUT_API_URL) return;
+        const result = await authorizedRequest(LAYOUT_API_URL, { method: 'PATCH', body: { kind, pageId, layout } }, '공유 위치를 저장하지 못했습니다');
+        if (result.ok) $('saveText').textContent = 'Notion에 공유 위치 저장됨';
+      }
+
+      function updateCandidateToggle() {
+        const button = $('candidateToggleBtn');
+        button.textContent = showCandidates ? '후보 표시 중' : '후보 포함';
+        button.classList.toggle('active', showCandidates);
+        button.setAttribute('aria-pressed', String(showCandidates));
+      }
+
+      function domainById(id) { return state.domains.find((d) => d.id === id) || state.domains[0]; }
+      function nodeById(id) { return state.nodes.find((n) => n.id === id); }
+      function domainColor(id) { return domainById(id).color; }
+      function nodeDisplayDomain(node) {
+        if (currentDomain !== 'all' && node?.domains?.includes(currentDomain)) return currentDomain;
+        return node?.domain || node?.domains?.[0] || 'all';
+      }
+      function sharesDomain(left, right) {
+        return (left?.domains || [left?.domain]).some((id) => (right?.domains || [right?.domain]).includes(id));
+      }
+      function isVisible(node) { return currentDomain === 'all' || node.domains.includes(currentDomain); }
+      function visibleNodes() { return state.nodes.filter(isVisible); }
+
+      function ensurePosition(node, domain = currentDomain) {
+        node.positions ||= {};
+        const key = domain === 'all' ? 'all' : domain;
+        if (!node.positions[key]) {
+          const candidates = domain === 'all' ? state.nodes : state.nodes.filter((n) => n.domains.includes(domain));
+          const index = candidates.indexOf(node);
+          node.positions[key] = {
+            x: 170 + (Math.max(index, 0) % 3) * 355,
+            y: 170 + Math.floor(Math.max(index, 0) / 3) * 210
+          };
+        }
+        return node.positions[key];
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+      }
+
+      function typeLabel(type) {
+        return ({ prerequisite: '선수', extends: '확장', enables: '가능하게 함', applies_to: '응용', contrasts_with: '대조' })[type] || type;
+      }
+
+      function hidePortalTooltip(owner) {
+        if (owner && portalTooltipOwner !== owner) return;
+        portalTooltipOwner = null;
+        portalTooltip.classList.remove('visible', 'below');
+        portalTooltip.setAttribute('aria-hidden', 'true');
+      }
+
+      function showPortalTooltip(button) {
+        const text = button.dataset.tooltip;
+        if (!text) return;
+        portalTooltipOwner = button;
+        portalTooltip.textContent = text;
+        portalTooltip.classList.remove('visible', 'below');
+
+        const hostRect = canvasWrap.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+        const tooltipRect = portalTooltip.getBoundingClientRect();
+        const halfWidth = tooltipRect.width / 2;
+        const centerX = clamp(buttonRect.left - hostRect.left + buttonRect.width / 2, halfWidth + 10, hostRect.width - halfWidth - 10);
+        let top = buttonRect.top - hostRect.top - tooltipRect.height - 10;
+        if (top < 8) {
+          top = buttonRect.bottom - hostRect.top + 10;
+          portalTooltip.classList.add('below');
+        }
+        portalTooltip.style.left = `${centerX}px`;
+        portalTooltip.style.top = `${top}px`;
+        portalTooltip.setAttribute('aria-hidden', 'false');
+        portalTooltip.classList.add('visible');
+      }
+
+      function applyViewport() {
+        world.style.transform = `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.scale})`;
+        $('zoomReadout').textContent = `${Math.round(viewport.scale * 100)}%`;
+      }
+
+      function isHorizontalSide(side) {
+        return side === 'left' || side === 'right';
+      }
+
+      function connectionSides(sourcePos, targetPos, edgeId) {
+        const sourceCenter = { x: sourcePos.x + NODE_W / 2, y: sourcePos.y + NODE_H / 2 };
+        const targetCenter = { x: targetPos.x + NODE_W / 2, y: targetPos.y + NODE_H / 2 };
+        const dx = targetCenter.x - sourceCenter.x;
+        const dy = targetCenter.y - sourceCenter.y;
+        const absX = Math.abs(dx);
+        const absY = Math.abs(dy);
+        const previousAxis = edgeAxisCache.get(edgeId);
+        let axis;
+        if (previousAxis === 'vertical') axis = absY >= absX * .84 ? 'vertical' : 'horizontal';
+        else if (previousAxis === 'horizontal') axis = absY > absX * 1.16 ? 'vertical' : 'horizontal';
+        else axis = absY > absX ? 'vertical' : 'horizontal';
+        edgeAxisCache.set(edgeId, axis);
+
+        if (axis === 'vertical') {
+          return dy >= 0
+            ? { axis, sourceSide: 'bottom', targetSide: 'top' }
+            : { axis, sourceSide: 'top', targetSide: 'bottom' };
+        }
+        return dx >= 0
+          ? { axis, sourceSide: 'right', targetSide: 'left' }
+          : { axis, sourceSide: 'left', targetSide: 'right' };
+      }
+
+      function nodePort(pos, side, role, slot = 0, count = 1) {
+        const spread = (slot - (count - 1) / 2) * 13;
+        const roleOffset = role === 'source' ? PORT_ROLE_OFFSET : -PORT_ROLE_OFFSET;
+        if (isHorizontalSide(side)) {
+          const y = clamp(pos.y + NODE_H / 2 + roleOffset + spread, pos.y + 18, pos.y + NODE_H - 18);
+          return { x: side === 'right' ? pos.x + NODE_W : pos.x, y, side };
+        }
+        const x = clamp(pos.x + NODE_W / 2 + roleOffset + spread, pos.x + 24, pos.x + NODE_W - 24);
+        return { x, y: side === 'bottom' ? pos.y + NODE_H : pos.y, side };
+      }
+
+      function orthogonalPath(start, end, lane = 0) {
+        const leadPoint = (point) => {
+          if (point.side === 'right') return { x: point.x + 34, y: point.y };
+          if (point.side === 'left') return { x: point.x - 34, y: point.y };
+          if (point.side === 'bottom') return { x: point.x, y: point.y + 34 };
+          return { x: point.x, y: point.y - 34 };
+        };
+        const startLead = leadPoint(start);
+        const endLead = leadPoint(end);
+        const startHorizontal = isHorizontalSide(start.side);
+        const endHorizontal = isHorizontalSide(end.side);
+        let points;
+        let labelX;
+        let labelY;
+
+        if (startHorizontal && endHorizontal) {
+          const facing = (start.side === 'right' && end.side === 'left' && start.x <= end.x)
+            || (start.side === 'left' && end.side === 'right' && start.x >= end.x);
+          const bendX = facing
+            ? (startLead.x + endLead.x) / 2 + lane
+            : (start.side === 'right' ? Math.max(start.x, end.x) + 54 + lane : Math.min(start.x, end.x) - 54 - lane);
+          points = [start, { x: bendX, y: start.y }, { x: bendX, y: end.y }, end];
+          labelX = bendX;
+          labelY = (start.y + end.y) / 2 - 7;
+        } else if (!startHorizontal && !endHorizontal) {
+          const facing = (start.side === 'bottom' && end.side === 'top' && start.y <= end.y)
+            || (start.side === 'top' && end.side === 'bottom' && start.y >= end.y);
+          const bendY = facing
+            ? (startLead.y + endLead.y) / 2 + lane
+            : (start.side === 'bottom' ? Math.max(start.y, end.y) + 54 + lane : Math.min(start.y, end.y) - 54 - lane);
+          points = [start, { x: start.x, y: bendY }, { x: end.x, y: bendY }, end];
+          labelX = (start.x + end.x) / 2;
+          labelY = bendY - 7;
+        } else {
+          const corner = startHorizontal
+            ? { x: endLead.x, y: startLead.y }
+            : { x: startLead.x, y: endLead.y };
+          points = [start, startLead, corner, endLead, end];
+          labelX = corner.x;
+          labelY = corner.y - 7;
+        }
+
+        const compactPoints = points.filter((point, index) => index === 0 || point.x !== points[index - 1].x || point.y !== points[index - 1].y);
+        return {
+          d: compactPoints.map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`).join(' '),
+          labelX,
+          labelY,
+          start,
+          end
+        };
+      }
+
+      function buildInternalRoutes() {
+        const records = state.edges.flatMap((edge, order) => {
+          const source = nodeById(edge.source);
+          const target = nodeById(edge.target);
+          if (!source || !target || !isVisible(source) || !isVisible(target)) return [];
+          const sourcePos = ensurePosition(source);
+          const targetPos = ensurePosition(target);
+          const sides = connectionSides(sourcePos, targetPos, edge.id);
+          return [{
+            edge,
+            order,
+            sourcePos,
+            targetPos,
+            axis: sides.axis,
+            sourceSide: sides.sourceSide,
+            targetSide: sides.targetSide,
+            sourceSlot: 0,
+            sourceCount: 1,
+            targetSlot: 0,
+            targetCount: 1
+          }];
+        });
+        const groups = new Map();
+        const addToGroup = (key, record, role, otherY) => {
+          if (!groups.has(key)) groups.set(key, []);
+          groups.get(key).push({ record, role, otherY });
+        };
+        records.forEach((record) => {
+          const sourceOtherCoordinate = isHorizontalSide(record.sourceSide) ? record.targetPos.y + NODE_H / 2 : record.targetPos.x + NODE_W / 2;
+          const targetOtherCoordinate = isHorizontalSide(record.targetSide) ? record.sourcePos.y + NODE_H / 2 : record.sourcePos.x + NODE_W / 2;
+          addToGroup(`${record.edge.source}:${record.sourceSide}:source`, record, 'source', sourceOtherCoordinate);
+          addToGroup(`${record.edge.target}:${record.targetSide}:target`, record, 'target', targetOtherCoordinate);
+        });
+        groups.forEach((items) => {
+          items.sort((a, b) => a.otherY - b.otherY || a.record.order - b.record.order);
+          items.forEach((item, index) => {
+            item.record[`${item.role}Slot`] = index;
+            item.record[`${item.role}Count`] = items.length;
+          });
+        });
+        return new Map(records.map((record) => [record.edge.id, record]));
+      }
+
+      function edgePath(route) {
+        const sourcePort = nodePort(route.sourcePos, route.sourceSide, 'source', route.sourceSlot, route.sourceCount);
+        const targetPort = nodePort(route.targetPos, route.targetSide, 'target', route.targetSlot, route.targetCount);
+        const lane = ((route.order % 3) - 1) * 7;
+        return orthogonalPath(sourcePort, targetPort, lane);
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function portalCollides(candidate, occupied) {
+        return occupied.some((rect) => {
+          const clearance = rect.kind === 'node' ? 28 : 14;
+          return candidate.x < rect.x + rect.width + clearance
+            && candidate.x + PORTAL_W + clearance > rect.x
+            && candidate.y < rect.y + rect.height + clearance
+            && candidate.y + PORTAL_H + clearance > rect.y;
+        });
+      }
+
+      function autoPortalPosition(visibleNode, incoming, slot, occupied) {
+        const pos = ensurePosition(visibleNode);
+        const nodeCenterY = pos.y + NODE_H / 2;
+        const preferredSide = incoming ? 'left' : 'right';
+        const baseOffset = slot % 2 === 0
+          ? -32 - Math.floor(slot / 2) * 56
+          : 32 + Math.floor(slot / 2) * 56;
+        const offsets = [baseOffset, 0, -96, 96, -160, 160, -224, 224];
+        const gaps = [PORTAL_AUTO_GAP, PORTAL_AUTO_GAP + 52, PORTAL_AUTO_GAP + 104];
+        const candidates = [];
+
+        [preferredSide, preferredSide === 'left' ? 'right' : 'left'].forEach((side, sideIndex) => {
+          gaps.forEach((gap, gapIndex) => {
+            offsets.forEach((offset) => {
+              const rawX = side === 'left' ? pos.x - PORTAL_W - gap : pos.x + NODE_W + gap;
+              const rawY = nodeCenterY + offset - PORTAL_H / 2;
+              const x = clamp(rawX, 16, WORLD_W - PORTAL_W - 16);
+              const y = clamp(rawY, 16, WORLD_H - PORTAL_H - 16);
+              candidates.push({
+                x,
+                y,
+                score: sideIndex * 900 + gapIndex * 32 + Math.abs(offset - baseOffset) * 1.6 + (Math.abs(rawX - x) + Math.abs(rawY - y)) * 2
+              });
+            });
+          });
+        });
+
+        const unique = Array.from(new Map(candidates.map((candidate) => [`${candidate.x}:${candidate.y}`, candidate])).values())
+          .sort((a, b) => a.score - b.score);
+        return unique.find((candidate) => !portalCollides(candidate, occupied)) || unique[0];
+      }
+
+      function portalGeometry(edge, source, target, sourceVisible, targetVisible, slot = 0, position = null) {
+        const incoming = !sourceVisible && targetVisible;
+        const visibleNode = incoming ? target : source;
+        const hiddenNode = incoming ? source : target;
+        const pos = ensurePosition(visibleNode);
+        const nodeCenter = { x: pos.x + NODE_W / 2, y: pos.y + NODE_H / 2 };
+        const offsetY = slot % 2 === 0 ? -32 - Math.floor(slot / 2) * 56 : 32 + Math.floor(slot / 2) * 56;
+        const defaultPosition = incoming
+          ? { x: pos.x - PORTAL_W - PORTAL_AUTO_GAP, y: nodeCenter.y + offsetY - PORTAL_H / 2 }
+          : { x: pos.x + NODE_W + PORTAL_AUTO_GAP, y: nodeCenter.y + offsetY - PORTAL_H / 2 };
+        const stored = edge.portalPositions?.[currentDomain];
+        const requested = position || stored || defaultPosition;
+        const x = clamp(requested.x, 16, WORLD_W - PORTAL_W - 16);
+        const y = clamp(requested.y, 16, WORLD_H - PORTAL_H - 16);
+        const pillCenter = { x: x + PORTAL_W / 2, y: y + PORTAL_H / 2 };
+        const dx = pillCenter.x - nodeCenter.x;
+        const dy = pillCenter.y - nodeCenter.y;
+        const vertical = Math.abs(dy) > Math.abs(dx) * 1.05;
+        const nodeSide = vertical ? (dy >= 0 ? 'bottom' : 'top') : (dx >= 0 ? 'right' : 'left');
+        const pillSide = vertical ? (dy >= 0 ? 'top' : 'bottom') : (dx >= 0 ? 'left' : 'right');
+        const nodePoint = nodePort(pos, nodeSide, incoming ? 'target' : 'source');
+        const portalSpread = slot === 0 ? 0 : Math.ceil(slot / 2) * 16 * (slot % 2 ? 1 : -1);
+        if (isHorizontalSide(nodeSide)) nodePoint.y = clamp(nodePoint.y + portalSpread, pos.y + 18, pos.y + NODE_H - 18);
+        else nodePoint.x = clamp(nodePoint.x + portalSpread, pos.x + 24, pos.x + NODE_W - 24);
+        const pillPoint = vertical
+          ? { x: pillCenter.x, y: dy >= 0 ? y : y + PORTAL_H, side: pillSide }
+          : { x: dx >= 0 ? x : x + PORTAL_W, y: pillCenter.y, side: pillSide };
+        const geometry = incoming
+          ? orthogonalPath(pillPoint, nodePoint, slot * 7)
+          : orthogonalPath(nodePoint, pillPoint, slot * 7);
+        return { ...geometry, x, y, incoming, visibleNode, hiddenNode };
+      }
+
+      function buildPortalRoutes() {
+        if (currentDomain === 'all') return new Map();
+        const portalSlots = new Map();
+        const occupied = visibleNodes().map((node) => {
+          const pos = ensurePosition(node);
+          return { x: pos.x, y: pos.y, width: NODE_W, height: NODE_H, kind: 'node' };
+        });
+        const routes = new Map();
+
+        state.edges.forEach((edge) => {
+          const source = nodeById(edge.source);
+          const target = nodeById(edge.target);
+          if (!source || !target) return;
+          const sourceVisible = isVisible(source);
+          const targetVisible = isVisible(target);
+          if (sourceVisible === targetVisible) return;
+          const slotKey = sourceVisible ? `out:${source.id}` : `in:${target.id}`;
+          const slot = portalSlots.get(slotKey) || 0;
+          portalSlots.set(slotKey, slot + 1);
+          const visibleNode = sourceVisible ? source : target;
+          const stored = edge.portalPositions?.[currentDomain];
+          const position = stored || autoPortalPosition(visibleNode, !sourceVisible && targetVisible, slot, occupied);
+          const geometry = portalGeometry(edge, source, target, sourceVisible, targetVisible, slot, position);
+          geometry.slot = slot;
+          geometry.autoPositioned = !stored;
+          routes.set(edge.id, geometry);
+          occupied.push({ x: geometry.x, y: geometry.y, width: PORTAL_W, height: PORTAL_H, kind: 'portal' });
+        });
+
+        return routes;
+      }
+
+      function renderTabs() {
+        $('domainTabs').innerHTML = state.domains.map((domain) => `
+          <button class="domain-tab ${domain.id === currentDomain ? 'active' : ''}"
+            data-domain="${domain.id}" style="--domain-color:${domain.color}">
+            ${escapeHtml(domain.name)}
+          </button>`).join('');
+        $('domainTabs').querySelectorAll('[data-domain]').forEach((button) => {
+          button.addEventListener('click', () => switchDomain(button.dataset.domain));
+        });
+        const last = navigationStack[navigationStack.length - 1];
+        $('backBtn').classList.toggle('visible', Boolean(last));
+        $('backLabel').textContent = last ? `${domainById(last.domain).name} · ${nodeById(last.selectedId)?.title || '이전 위치'}` : '이전 위치';
+      }
+
+      function renderEdges(animatePortals = true) {
+        hidePortalTooltip();
+        const internalRoutes = buildInternalRoutes();
+        const portalRoutes = buildPortalRoutes();
+        let paths = `
+          <defs>
+            <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,7 L8,3.5 z" fill="#4f5a54" /></marker>
+            <marker id="arrowCross" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,7 L8,3.5 z" fill="#b94b37" /></marker>
+          </defs>`;
+        let portals = '';
+
+        state.edges.forEach((edge) => {
+          const source = nodeById(edge.source);
+          const target = nodeById(edge.target);
+          if (!source || !target) return;
+          const sourceVisible = isVisible(source);
+          const targetVisible = isVisible(target);
+
+          if (sourceVisible && targetVisible) {
+            const route = internalRoutes.get(edge.id);
+            if (!route) return;
+            const geometry = edgePath(route);
+            const cross = !sharesDomain(source, target);
+            const candidate = edge.status === '후보';
+            const sourcePortCoordinate = isHorizontalSide(route.sourceSide) ? geometry.start.y : geometry.start.x;
+            const targetPortCoordinate = isHorizontalSide(route.targetSide) ? geometry.end.y : geometry.end.x;
+            paths += `<path class="edge-path ${cross ? 'cross' : ''} ${candidate ? 'candidate' : ''}" data-edge-id="${escapeHtml(edge.id)}" data-route-axis="${route.axis}" data-source-port="${route.sourceSide}:${sourcePortCoordinate}" data-target-port="${route.targetSide}:${targetPortCoordinate}" d="${geometry.d}" marker-end="url(#${cross ? 'arrowCross' : 'arrow'})" />`;
+            paths += `<text class="edge-label" x="${geometry.labelX}" y="${geometry.labelY}" text-anchor="middle">${escapeHtml(typeLabel(edge.type))}</text>`;
+          } else if (sourceVisible !== targetVisible && currentDomain !== 'all') {
+            const portal = portalRoutes.get(edge.id);
+            if (!portal) return;
+            const slot = portal.slot;
+            paths += `<path class="edge-path cross ${edge.status === '후보' ? 'candidate' : ''}" data-edge-id="${escapeHtml(edge.id)}" d="${portal.d}" marker-end="url(#arrowCross)" />`;
+            const destination = portal.incoming ? source : target;
+            const destinationDomain = destination.domains.find((id) => id !== currentDomain) || destination.domain;
+            const label = `${domainById(destinationDomain).name} · ${edge.paper}`;
+            portals += `
+              <button class="portal-pill ${animatePortals ? '' : 'no-entry'} ${edge.status === '후보' ? 'candidate' : ''}" style="left:${portal.x}px;top:${portal.y}px;--portal-color:${domainColor(destinationDomain)}"
+                data-edge-id="${escapeHtml(edge.id)}" data-portal-slot="${slot}" data-auto-positioned="${portal.autoPositioned}" data-portal-domain="${destinationDomain}" data-portal-node="${destination.id}"
+                data-tooltip="${escapeHtml(label)}" aria-describedby="portalTooltip" aria-label="${escapeHtml(label)}. 드래그하여 위치 이동, 클릭하여 이동">
+                <span class="portal-label"><b class="portal-domain">${escapeHtml(domainById(destinationDomain).name)}</b> · ${escapeHtml(edge.paper)}</span>
+              </button>`;
+          }
+        });
+
+        edgeLayer.innerHTML = paths;
+        portalLayer.innerHTML = portals;
+        portalLayer.querySelectorAll('[data-portal-node]').forEach((button) => {
+          button.addEventListener('mouseenter', () => showPortalTooltip(button));
+          button.addEventListener('mouseleave', () => hidePortalTooltip(button));
+          button.addEventListener('focus', () => {
+            if (!portalDragInfo || portalDragInfo.button !== button) showPortalTooltip(button);
+          });
+          button.addEventListener('blur', () => hidePortalTooltip(button));
+          button.addEventListener('pointerdown', (event) => {
+            hidePortalTooltip(button);
+            startPortalDrag(event);
+          });
+          button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (button.dataset.dragged === 'true') {
+              button.dataset.dragged = 'false';
+              return;
+            }
+            navigatePortal(button.dataset.portalDomain, button.dataset.portalNode);
+          });
+        });
+      }
+
+      function renderNodes() {
+        hidePortalTooltip();
+        nodeLayer.innerHTML = visibleNodes().map((node, index) => {
+          const pos = ensurePosition(node);
+          const domain = domainById(nodeDisplayDomain(node));
+          const firstPaper = paperTitle(node.papers?.[0]) || '연결된 논문 없음';
+          const more = (node.papers?.length || 0) > 1 ? ` 외 ${node.papers.length - 1}편` : '';
+          const rail = node.domains.length > 1
+            ? `<span class="domain-rail" aria-label="여러 분야에 표시되는 개념">${node.domains.map((id) => `<i style="background:${domainColor(id)}"></i>`).join('')}</span>`
+            : '';
+          return `
+            <article class="node-card ${node.id === selectedId ? 'selected' : ''} ${node.status === '후보' ? 'candidate' : ''}" tabindex="0" role="button"
+              aria-label="${escapeHtml(node.title)} 개념 노드" aria-describedby="portalTooltip" data-node-id="${node.id}" data-tooltip="${escapeHtml(node.title)}"
+              style="left:${pos.x}px;top:${pos.y}px;--domain-color:${domain.color};animation-delay:${Math.min(index * 35, 210)}ms">
+              ${rail}
+              ${node.status === '후보' ? '<span class="candidate-badge">후보</span>' : ''}
+              <div class="node-title">${escapeHtml(node.title)}</div>
+              <div class="node-summary">${escapeHtml(node.summary)}</div>
+              <div class="paper-chip"><span>${escapeHtml(firstPaper + more)}</span></div>
+            </article>`;
+        }).join('');
+
+        nodeLayer.querySelectorAll('[data-node-id]').forEach((card) => {
+          card.addEventListener('mouseenter', () => showPortalTooltip(card));
+          card.addEventListener('mouseleave', () => hidePortalTooltip(card));
+          card.addEventListener('focus', () => {
+            if (!dragInfo || dragInfo.card !== card) showPortalTooltip(card);
+          });
+          card.addEventListener('blur', () => hidePortalTooltip(card));
+          card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              selectNode(card.dataset.nodeId);
+            }
+          });
+          card.addEventListener('pointerdown', (event) => {
+            hidePortalTooltip(card);
+            startNodeDrag(event);
+          });
+        });
+      }
+
+      function setInspectorOpen(open) {
+        const node = selectedId ? nodeById(selectedId) : null;
+        const hasSelection = Boolean(node && isVisible(node));
+        inspectorOpen = Boolean(open && hasSelection);
+        workspace.classList.toggle('has-selection', hasSelection);
+        workspace.classList.toggle('inspector-open', inspectorOpen);
+        inspector.setAttribute('aria-hidden', String(!inspectorOpen));
+      }
+
+      function renderInspector() {
+        const node = selectedId ? nodeById(selectedId) : null;
+        if (!node || !isVisible(node)) {
+          inspector.innerHTML = '';
+          setInspectorOpen(false);
+          $('addEdgeBtn').disabled = false;
+          return;
+        }
+        const incoming = state.edges.filter((edge) => edge.target === node.id).length;
+        const outgoing = state.edges.filter((edge) => edge.source === node.id).length;
+        inspector.style.setProperty('--selected-color', domainColor(nodeDisplayDomain(node)));
+        inspector.innerHTML = `
+          <div class="inspector-head"><div class="inspector-kicker">${escapeHtml(domainById(nodeDisplayDomain(node)).name)} · ${node.status === '후보' ? '후보 개념' : '승인 개념'}</div><button class="btn icon inspector-close" id="inspectorCloseBtn" aria-label="노드 정보 닫기">×</button></div>
+          <h2>${escapeHtml(node.title)}</h2>
+          <p class="inspector-summary">${escapeHtml(node.summary)}</p>
+          <div class="section-label">표시 분야</div>
+          <div class="tag-row">${node.domains.map((id) => `<span class="tag">${escapeHtml(domainById(id).name)}</span>`).join('')}</div>
+          <div class="section-label">연결 논문</div>
+          <div class="paper-list">${(node.papers || []).map(renderPaperItem).join('')}</div>
+          <div class="section-label">관계</div>
+          <div class="relation-stats"><div class="stat"><strong>${incoming}</strong><span>들어오는 관계</span></div><div class="stat"><strong>${outgoing}</strong><span>나가는 관계</span></div></div>
+          <div class="inspector-actions"><button class="btn" id="focusSelectedBtn">화면 중앙</button>${notionSyncEnabled ? '<button class="btn" id="editInNotionBtn">Notion에서 편집</button>' : '<button class="btn danger" id="deleteSelectedBtn">노드 삭제</button>'}</div>`;
+        $('inspectorCloseBtn').addEventListener('click', () => setInspectorOpen(false));
+        $('focusSelectedBtn').addEventListener('click', () => focusNode(node.id));
+        if (notionSyncEnabled) $('editInNotionBtn').addEventListener('click', () => {
+          const notionUrl = safeNotionPageUrl(node.notionUrl);
+          if (notionUrl) window.open(notionUrl, '_blank', 'noopener,noreferrer');
+          else openNotionLibrary();
+        });
+        else $('deleteSelectedBtn').addEventListener('click', () => deleteSelectedNode());
+        setInspectorOpen(inspectorOpen);
+      }
+
+      function render() {
+        renderTabs();
+        renderEdges();
+        renderNodes();
+        renderInspector();
+        applyViewport();
+      }
+
+      function selectNode(id, options = {}) {
+        selectedId = id;
+        inspectorOpen = Boolean(id && options.openInspector !== false);
+        renderNodes();
+        renderInspector();
+      }
+
+      function switchDomain(domainId, options = {}) {
+        state.viewports[currentDomain] = { ...viewport };
+        currentDomain = domainId;
+        selectedId = options.selectedId || null;
+        inspectorOpen = Boolean(selectedId);
+        viewport = state.viewports[currentDomain] || { x: 55, y: 28, scale: .86 };
+        saveState('분야 전환 저장됨');
+        render();
+        if (options.focusId) requestAnimationFrame(() => focusNode(options.focusId));
+        else requestAnimationFrame(() => fitVisible(false));
+      }
+
+      function navigatePortal(domainId, nodeId) {
+        navigationStack.push({ domain: currentDomain, viewport: { ...viewport }, selectedId: selectedId || null });
+        switchDomain(domainId, { selectedId: nodeId, focusId: nodeId });
+        showToast(`${domainById(domainId).name}의 ${nodeById(nodeId)?.title || '개념'}으로 이동`);
+      }
+
+      function goBack() {
+        const previous = navigationStack.pop();
+        if (!previous) return;
+        state.viewports[currentDomain] = { ...viewport };
+        currentDomain = previous.domain;
+        selectedId = previous.selectedId && nodeById(previous.selectedId) ? previous.selectedId : null;
+        inspectorOpen = Boolean(selectedId);
+        viewport = previous.viewport;
+        saveState('이전 위치 복원됨');
+        render();
+      }
+
+      function focusNode(id) {
+        const node = nodeById(id);
+        if (!node || !isVisible(node)) return;
+        const pos = ensurePosition(node);
+        const rect = canvas.getBoundingClientRect();
+        const targetScale = Math.min(Math.max(viewport.scale, .9), 1.12);
+        viewport = {
+          scale: targetScale,
+          x: rect.width / 2 - (pos.x + NODE_W / 2) * targetScale,
+          y: rect.height / 2 - (pos.y + NODE_H / 2) * targetScale
+        };
+        applyViewport();
+        saveState('중심 위치 저장됨');
+        selectNode(id);
+      }
+
+      function fitVisible(animate = true) {
+        const nodes = visibleNodes();
+        if (!nodes.length) return;
+        const positions = nodes.map((node) => ensurePosition(node));
+        const bounds = positions.map((p) => ({ minX: p.x, minY: p.y, maxX: p.x + NODE_W, maxY: p.y + NODE_H }));
+        if (currentDomain !== 'all') {
+          buildPortalRoutes().forEach((portal) => {
+            bounds.push({ minX: portal.x - 12, minY: portal.y - 10, maxX: portal.x + 235, maxY: portal.y + 46 });
+          });
+        }
+        const minX = Math.min(...bounds.map((b) => b.minX));
+        const minY = Math.min(...bounds.map((b) => b.minY));
+        const maxX = Math.max(...bounds.map((b) => b.maxX));
+        const maxY = Math.max(...bounds.map((b) => b.maxY));
+        const rect = canvas.getBoundingClientRect();
+        const padding = 120;
+        const scale = Math.min(1.02, Math.max(.42, Math.min((rect.width - padding) / (maxX - minX), (rect.height - padding) / (maxY - minY))));
+        if (animate) world.style.transition = 'transform .35s cubic-bezier(.2,.8,.2,1)';
+        viewport = {
+          scale,
+          x: (rect.width - (maxX - minX) * scale) / 2 - minX * scale,
+          y: (rect.height - (maxY - minY) * scale) / 2 - minY * scale
+        };
+        applyViewport();
+        saveState('화면 배치 저장됨');
+        if (animate) setTimeout(() => { world.style.transition = ''; }, 380);
+      }
+
+      function startNodeDrag(event) {
+        if (event.button !== 0) return;
+        event.stopPropagation();
+        const card = event.currentTarget;
+        const node = nodeById(card.dataset.nodeId);
+        if (!node) return;
+        const pos = ensurePosition(node);
+        dragInfo = {
+          pointerId: event.pointerId,
+          node,
+          card,
+          startX: event.clientX,
+          startY: event.clientY,
+          originX: pos.x,
+          originY: pos.y,
+          moved: false
+        };
+        card.setPointerCapture(event.pointerId);
+      }
+
+      function moveNode(event) {
+        if (!dragInfo || dragInfo.pointerId !== event.pointerId) return;
+        const screenDx = event.clientX - dragInfo.startX;
+        const screenDy = event.clientY - dragInfo.startY;
+        if (!dragInfo.moved) {
+          if (Math.hypot(screenDx, screenDy) < NODE_DRAG_THRESHOLD) return;
+          dragInfo.moved = true;
+          selectedId = dragInfo.node.id;
+          inspectorOpen = false;
+          nodeLayer.querySelectorAll('.node-card').forEach((item) => item.classList.toggle('selected', item === dragInfo.card));
+          dragInfo.card.classList.add('dragging');
+          renderInspector();
+        }
+        const dx = screenDx / viewport.scale;
+        const dy = screenDy / viewport.scale;
+        const pos = ensurePosition(dragInfo.node);
+        pos.x = Math.max(0, Math.min(WORLD_W - NODE_W, dragInfo.originX + dx));
+        pos.y = Math.max(0, Math.min(WORLD_H - NODE_H, dragInfo.originY + dy));
+        dragInfo.card.style.left = `${pos.x}px`;
+        dragInfo.card.style.top = `${pos.y}px`;
+        renderEdges(false);
+      }
+
+      function endNodeDrag(event) {
+        if (!dragInfo || dragInfo.pointerId !== event.pointerId) return;
+        const completed = dragInfo;
+        completed.card.classList.remove('dragging');
+        dragInfo = null;
+        if (completed.moved) {
+          saveState('노드 위치 저장됨');
+          if (notionSyncEnabled) saveRemoteLayout('concept', completed.node.id, completed.node.positions);
+          return;
+        }
+        if (event.type !== 'pointercancel') selectNode(completed.node.id);
+      }
+
+      function startPortalDrag(event) {
+        if (event.button !== 0) return;
+        event.stopPropagation();
+        const button = event.currentTarget;
+        const edge = state.edges.find((item) => item.id === button.dataset.edgeId);
+        if (!edge) return;
+        const source = nodeById(edge.source);
+        const target = nodeById(edge.target);
+        if (!source || !target) return;
+        const sourceVisible = isVisible(source);
+        const targetVisible = isVisible(target);
+        if (sourceVisible === targetVisible) return;
+        const slot = Number(button.dataset.portalSlot || 0);
+        const portal = portalGeometry(edge, source, target, sourceVisible, targetVisible, slot);
+        const displayedX = Number.parseFloat(button.style.left);
+        const displayedY = Number.parseFloat(button.style.top);
+        portalDragInfo = {
+          pointerId: event.pointerId,
+          edge,
+          source,
+          target,
+          sourceVisible,
+          targetVisible,
+          slot,
+          button,
+          startX: event.clientX,
+          startY: event.clientY,
+          originX: Number.isFinite(displayedX) ? displayedX : portal.x,
+          originY: Number.isFinite(displayedY) ? displayedY : portal.y,
+          moved: false
+        };
+        button.dataset.dragged = 'false';
+        button.classList.add('dragging');
+        button.setPointerCapture(event.pointerId);
+      }
+
+      function movePortal(event) {
+        if (!portalDragInfo || portalDragInfo.pointerId !== event.pointerId) return;
+        const dx = (event.clientX - portalDragInfo.startX) / viewport.scale;
+        const dy = (event.clientY - portalDragInfo.startY) / viewport.scale;
+        if (Math.hypot(dx, dy) > 4) portalDragInfo.moved = true;
+        if (!portalDragInfo.moved) return;
+        portalDragInfo.edge.portalPositions ||= {};
+        portalDragInfo.edge.portalPositions[currentDomain] = {
+          x: Math.max(16, Math.min(WORLD_W - PORTAL_W - 16, portalDragInfo.originX + dx)),
+          y: Math.max(16, Math.min(WORLD_H - PORTAL_H - 16, portalDragInfo.originY + dy))
+        };
+        const portal = portalGeometry(
+          portalDragInfo.edge,
+          portalDragInfo.source,
+          portalDragInfo.target,
+          portalDragInfo.sourceVisible,
+          portalDragInfo.targetVisible,
+          portalDragInfo.slot
+        );
+        portalDragInfo.button.style.left = `${portal.x}px`;
+        portalDragInfo.button.style.top = `${portal.y}px`;
+        const path = Array.from(edgeLayer.querySelectorAll('[data-edge-id]')).find((item) => item.dataset.edgeId === portalDragInfo.edge.id);
+        path?.setAttribute('d', portal.d);
+      }
+
+      function endPortalDrag(event) {
+        if (!portalDragInfo || portalDragInfo.pointerId !== event.pointerId) return;
+        const completed = portalDragInfo;
+        completed.button.classList.remove('dragging');
+        completed.button.dataset.dragged = String(completed.moved);
+        const moved = completed.moved;
+        portalDragInfo = null;
+        if (moved) {
+          saveState('분야 포털 위치 저장됨');
+          if (notionSyncEnabled) saveRemoteLayout('relation', completed.edge.id, completed.edge.portalPositions);
+        }
+      }
+
+      function startPan(event) {
+        if (event.button !== 0 || event.target.closest('.node-card, .portal-pill, .canvas-tools')) return;
+        panInfo = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, originX: viewport.x, originY: viewport.y };
+        canvas.classList.add('panning');
+        canvas.setPointerCapture(event.pointerId);
+      }
+
+      function movePan(event) {
+        if (!panInfo || panInfo.pointerId !== event.pointerId) return;
+        viewport.x = panInfo.originX + event.clientX - panInfo.startX;
+        viewport.y = panInfo.originY + event.clientY - panInfo.startY;
+        applyViewport();
+      }
+
+      function endPan(event) {
+        if (!panInfo || panInfo.pointerId !== event.pointerId) return;
+        panInfo = null;
+        canvas.classList.remove('panning');
+        saveState('캔버스 위치 저장됨');
+      }
+
+      function zoomAt(delta, clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        const px = clientX ?? rect.left + rect.width / 2;
+        const py = clientY ?? rect.top + rect.height / 2;
+        const localX = px - rect.left;
+        const localY = py - rect.top;
+        const worldX = (localX - viewport.x) / viewport.scale;
+        const worldY = (localY - viewport.y) / viewport.scale;
+        const nextScale = Math.min(1.6, Math.max(.38, viewport.scale * delta));
+        viewport.x = localX - worldX * nextScale;
+        viewport.y = localY - worldY * nextScale;
+        viewport.scale = nextScale;
+        applyViewport();
+        saveState('확대율 저장됨');
+      }
+
+      function openModal(id) {
+        $(id).classList.add('open');
+        const first = $(id).querySelector('input, select, textarea');
+        setTimeout(() => first?.focus(), 30);
+      }
+
+      function closeModal(id) { $(id).classList.remove('open'); }
+
+      function populateForms() {
+        const previousDomain = $('nodeDomain').value;
+        const previousAdditional = new Set(selectedValues($('nodeAdditionalDomains')));
+        const domainOptions = state.domains.filter((domain) => domain.id !== 'all');
+        $('nodeDomain').innerHTML = `${domainOptions.map((domain) => `<option value="${domain.id}">${escapeHtml(domain.name)}</option>`).join('')}<option value="${NEW_DOMAIN_VALUE}">＋ 새 분야 추가</option>`;
+        $('nodeAdditionalDomains').innerHTML = domainOptions.map((domain) => `<option value="${domain.id}">${escapeHtml(domain.name)}</option>`).join('');
+        if (domainOptions.some((domain) => domain.id === previousDomain)) $('nodeDomain').value = previousDomain;
+        Array.from($('nodeAdditionalDomains').options).forEach((option) => { option.selected = previousAdditional.has(option.value); });
+        const options = state.nodes.map((node) => `<option value="${node.id}">${escapeHtml(node.domains.map((id) => domainById(id).name).join(' · '))} · ${escapeHtml(node.title)}</option>`).join('');
+        $('edgeSource').innerHTML = options;
+        $('edgeTarget').innerHTML = options;
+        populatePaperOptions();
+      }
+
+      function domainSlugify(value) {
+        const base = value.toLowerCase().trim().replace(/[^a-z0-9가-힣]+/g, '-').replace(/^-|-$/g, '') || 'field';
+        let id = base;
+        let counter = 2;
+        while (state.domains.some((domain) => domain.id === id)) id = `${base}-${counter++}`;
+        return id;
+      }
+
+      function addDomain(formData) {
+        const name = String(formData.get('name')).trim();
+        const existing = state.domains.find((domain) => domain.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+        if (existing) {
+          showToast('이미 있는 분야를 선택했습니다');
+          return existing;
+        }
+        const domain = {
+          id: domainSlugify(name),
+          name,
+          color: String(formData.get('color') || DOMAIN_COLOR_PALETTE[(state.domains.length - 1) % DOMAIN_COLOR_PALETTE.length])
+        };
+        state.domains.push(domain);
+        state.viewports[domain.id] = { x: 55, y: 28, scale: .86 };
+        saveState('새 분야 저장됨');
+        renderTabs();
+        showToast(`${domain.name} 분야를 추가했습니다`);
+        return domain;
+      }
+
+      function cancelDomainCreation() {
+        closeModal('domainModal');
+        $('nodeDomain').value = pendingDomainFallback;
+        $('domainForm').reset();
+      }
+
+      function slugify(value) {
+        const base = value.toLowerCase().trim().replace(/[^a-z0-9가-힣]+/g, '-').replace(/^-|-$/g, '') || 'concept';
+        let id = base;
+        let counter = 2;
+        while (nodeById(id)) id = `${base}-${counter++}`;
+        return id;
+      }
+
+      function addNode(formData) {
+        const domain = formData.get('domain');
+        if (!state.domains.some((item) => item.id === domain) || domain === 'all') {
+          showToast('노드를 추가할 분야를 선택해주세요');
+          return false;
+        }
+        const domains = [...new Set([domain, ...selectedValues($('nodeAdditionalDomains'))])];
+        const papers = selectedValues($('nodePapers')).map((id) => {
+          const paper = availablePapers.find((item) => item.id === id);
+          return paper ? { title: paper.title, notionUrl: paper.notionUrl, notionPageId: paper.id } : null;
+        }).filter(Boolean);
+        const id = slugify(formData.get('title'));
+        const sameDomainNodes = state.nodes.filter((node) => node.domains.includes(domain));
+        const index = sameDomainNodes.length;
+        state.nodes.push({
+          id,
+          title: String(formData.get('title')).trim(),
+          summary: String(formData.get('summary')).trim(),
+          domain,
+          domains,
+          status: '후보',
+          papers,
+          positions: {
+            [domain]: { x: 180 + (index % 3) * 350, y: 170 + Math.floor(index / 3) * 205 },
+            all: { x: 170 + (state.nodes.length % 4) * 325, y: 160 + Math.floor(state.nodes.length / 4) * 205 }
+          }
+        });
+        saveState('새 개념 저장됨');
+        populateForms();
+        if (currentDomain !== domain && currentDomain !== 'all') switchDomain(domain, { selectedId: id, focusId: id });
+        else { selectedId = id; inspectorOpen = true; render(); focusNode(id); }
+        showToast('새 개념 노드를 추가했습니다');
+        return true;
+      }
+
+      function addEdge(formData) {
+        const source = formData.get('source');
+        const target = formData.get('target');
+        if (source === target) {
+          showToast('같은 노드끼리는 연결할 수 없습니다');
+          return false;
+        }
+        if (state.edges.some((edge) => edge.source === source && edge.target === target)) {
+          showToast('이미 같은 방향의 관계가 있습니다');
+          return false;
+        }
+        const evidence = selectedValues($('edgePapers')).map((id) => availablePapers.find((paper) => paper.id === id)).filter(Boolean);
+        state.edges.push({
+          id: `edge-${Date.now()}`,
+          source,
+          target,
+          type: formData.get('type'),
+          paper: evidence[0]?.title || '근거 논문 미지정',
+          papers: evidence,
+          status: '후보'
+        });
+        saveState('새 관계 저장됨');
+        render();
+        showToast('새 개념 관계를 추가했습니다');
+        return true;
+      }
+
+      function deleteSelectedNode() {
+        const node = selectedId ? nodeById(selectedId) : null;
+        if (!node) return;
+        if (!confirm(`“${node.title}” 노드와 연결된 관계를 삭제할까요?`)) return;
+        state.nodes = state.nodes.filter((item) => item.id !== node.id);
+        state.edges = state.edges.filter((edge) => edge.source !== node.id && edge.target !== node.id);
+        selectedId = null;
+        inspectorOpen = false;
+        saveState('노드 삭제 저장됨');
+        populateForms();
+        render();
+        showToast('노드와 연결 관계를 삭제했습니다');
+      }
+
+      function exportJson() {
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = `paper-roadmap-${new Date().toISOString().slice(0, 10)}.json`;
+        anchor.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        showToast('그래프 JSON 백업을 만들었습니다');
+      }
+
+      function resetDemo() {
+        if (!confirm('추가한 노드와 위치를 모두 지우고 샘플 그래프로 되돌릴까요?')) return;
+        state = cloneSeed();
+        currentDomain = 'deep';
+        selectedId = null;
+        inspectorOpen = false;
+        navigationStack = [];
+        viewport = { x: 60, y: 20, scale: .86 };
+        saveState('샘플 초기화됨');
+        populateForms();
+        render();
+        requestAnimationFrame(() => fitVisible(false));
+        showToast('샘플 그래프로 초기화했습니다');
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      $('addNodeBtn').addEventListener('click', () => {
+        populateForms();
+        const initialDomain = currentDomain !== 'all' && state.domains.some((domain) => domain.id === currentDomain) ? currentDomain : 'deep';
+        pendingDomainFallback = initialDomain;
+        $('nodeDomain').value = initialDomain;
+        $('conceptMatchPreview').classList.remove('visible');
+        if (notionSyncEnabled) loadPaperOptions();
+        openModal('nodeModal');
+      });
+      $('addEdgeBtn').addEventListener('click', () => {
+        populateForms();
+        if (selectedId) $('edgeSource').value = selectedId;
+        if (notionSyncEnabled) loadPaperOptions();
+        openModal('edgeModal');
+      });
+      $('candidateToggleBtn').addEventListener('click', async () => {
+        if (!notionSyncEnabled) {
+          const connected = await syncFromNotion({ force: true });
+          if (!connected) {
+            showToast('Notion 동기화에 실패했습니다 · 잠시 후 다시 눌러주세요');
+            return;
+          }
+        }
+        if (!showCandidates && !(await getWriteKey())) return;
+        showCandidates = !showCandidates;
+        updateCandidateToggle();
+        await syncFromNotion({ force: true });
+      });
+      $('exportBtn').addEventListener('click', exportJson);
+      $('resetBtn').addEventListener('click', () => notionSyncEnabled ? syncFromNotion({ force: true }) : resetDemo());
+      $('backBtn').addEventListener('click', goBack);
+      $('zoomInBtn').addEventListener('click', () => zoomAt(1.15));
+      $('zoomOutBtn').addEventListener('click', () => zoomAt(1 / 1.15));
+      $('fitBtn').addEventListener('click', () => fitVisible());
+      inspectorPeek.addEventListener('click', () => setInspectorOpen(true));
+
+      $('nodeDomain').addEventListener('change', (event) => {
+        if (event.currentTarget.value !== NEW_DOMAIN_VALUE) {
+          pendingDomainFallback = event.currentTarget.value;
+          return;
+        }
+        $('domainName').value = '';
+        $('domainColor').value = DOMAIN_COLOR_PALETTE[(state.domains.length - 1) % DOMAIN_COLOR_PALETTE.length];
+        openModal('domainModal');
+      });
+      ['nodeTitle', 'nodeAliases', 'nodeSummary'].forEach((id) => $(id).addEventListener('change', () => previewConceptMatches()));
+
+      $('cancelDomainBtn').addEventListener('click', cancelDomainCreation);
+
+      $('domainForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const domain = notionSyncEnabled ? await addRemoteDomain(formData) : addDomain(formData);
+        if (!domain) return;
+        closeModal('domainModal');
+        form.reset();
+        populateForms();
+        pendingDomainFallback = domain.id;
+        $('nodeDomain').value = domain.id;
+      });
+
+      $('nodeForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const added = notionSyncEnabled ? await addRemoteNode(formData) : addNode(formData);
+        if (added) {
+          form.reset();
+          closeModal('nodeModal');
+        }
+      });
+
+      $('edgeForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const added = notionSyncEnabled ? await addRemoteEdge(formData) : addEdge(formData);
+        if (added) {
+          form.reset();
+          closeModal('edgeModal');
+        }
+      });
+
+      document.querySelectorAll('[data-close-modal]').forEach((button) => button.addEventListener('click', () => closeModal(button.dataset.closeModal)));
+      document.querySelectorAll('.modal-backdrop').forEach((modal) => modal.addEventListener('pointerdown', (event) => {
+        if (event.target !== modal) return;
+        if (modal.id === 'domainModal') cancelDomainCreation();
+        else closeModal(modal.id);
+      }));
+      headerRevealZone.addEventListener('pointerenter', showHeader);
+      headerRevealZone.addEventListener('click', showHeader);
+      headerRevealZone.addEventListener('focus', showHeader);
+      compactHeader.addEventListener('pointerenter', showHeader);
+      compactHeader.addEventListener('pointerleave', scheduleHeaderHide);
+      compactHeader.addEventListener('focusin', showHeader);
+      compactHeader.addEventListener('focusout', (event) => {
+        if (event.relatedTarget && (compactHeader.contains(event.relatedTarget) || event.relatedTarget === headerRevealZone)) return;
+        scheduleHeaderHide();
+      });
+      document.addEventListener('pointerdown', () => { headerKeyboardNavigation = false; }, { capture: true });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Tab') headerKeyboardNavigation = true;
+      }, { capture: true });
+      document.addEventListener('pointermove', (event) => {
+        if (event.clientY <= 12) {
+          showHeader();
+          return;
+        }
+        if (app.classList.contains('header-visible') && event.clientY > compactHeader.getBoundingClientRect().bottom + 8) scheduleHeaderHide();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          if ($('domainModal').classList.contains('open')) {
+            cancelDomainCreation();
+            return;
+          }
+          const openModals = document.querySelectorAll('.modal-backdrop.open');
+          if (openModals.length) openModals.forEach((modal) => closeModal(modal.id));
+          else if (inspectorOpen) setInspectorOpen(false);
+          else if (app.classList.contains('header-visible')) {
+            setHeaderVisible(false);
+            canvas.focus({ preventScroll: true });
+          }
+        }
+      });
+
+      canvas.addEventListener('pointerdown', startPan);
+      canvas.addEventListener('pointermove', (event) => { movePortal(event); moveNode(event); movePan(event); });
+      canvas.addEventListener('pointerup', (event) => { endPortalDrag(event); endNodeDrag(event); endPan(event); });
+      canvas.addEventListener('pointercancel', (event) => { endPortalDrag(event); endNodeDrag(event); endPan(event); });
+      canvas.addEventListener('click', (event) => { if (!event.target.closest('.node-card, .portal-pill, .canvas-tools')) selectNode(null); });
+      canvas.addEventListener('wheel', (event) => { event.preventDefault(); zoomAt(event.deltaY < 0 ? 1.08 : 1 / 1.08, event.clientX, event.clientY); }, { passive: false });
+      window.addEventListener('resize', () => fitVisible(false));
+
+      populateForms();
+      updateCandidateToggle();
+      render();
+      requestAnimationFrame(() => fitVisible(false));
+      if (ROADMAP_API_URL) {
+        syncFromNotion({ silent: true });
+        window.setInterval(() => syncFromNotion({ silent: true }), 60_000);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') syncFromNotion({ silent: true });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
