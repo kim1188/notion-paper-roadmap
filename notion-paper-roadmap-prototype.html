@@ -826,7 +826,7 @@
         <button class="btn icon primary" id="addNodeBtn" aria-label="개념 추가" title="개념 추가"><span aria-hidden="true">＋</span><span class="sr-only">개념 추가</span></button>
         <button class="btn icon" id="addEdgeBtn" aria-label="관계 추가" title="관계 추가"><span aria-hidden="true">↗</span><span class="sr-only">관계 추가</span></button>
         <button class="btn icon" id="exportBtn" aria-label="JSON 백업" title="JSON 백업"><span aria-hidden="true">↓</span><span class="sr-only">JSON 백업</span></button>
-        <button class="btn icon" id="resetBtn" aria-label="샘플 초기화" title="샘플 초기화"><span aria-hidden="true">↺</span><span class="sr-only">샘플 초기화</span></button>
+        <button class="btn icon" id="resetBtn" aria-label="AI 추천 배치로 재정렬" title="AI 추천 배치로 재정렬"><span aria-hidden="true">✦</span><span class="sr-only">AI 추천 배치로 재정렬</span></button>
       </div>
     </header>
 
@@ -1180,8 +1180,6 @@
         $('addNodeBtn').title = 'Notion에 후보 개념 추가';
         $('addEdgeBtn').setAttribute('aria-label', 'Notion에서 관계 편집');
         $('addEdgeBtn').title = 'Notion에서 관계 편집';
-        $('resetBtn').setAttribute('aria-label', 'Notion 지금 동기화');
-        $('resetBtn').title = 'Notion 지금 동기화';
       }
 
       function setHeaderVisible(visible) {
@@ -1534,9 +1532,10 @@
       }
 
       async function saveRemoteLayout(kind, pageId, layout) {
-        if (!notionSyncEnabled || !LAYOUT_API_URL) return;
+        if (!notionSyncEnabled || !LAYOUT_API_URL) return false;
         const result = await authorizedRequest(LAYOUT_API_URL, { method: 'PATCH', body: { kind, pageId, layout } }, '공유 위치를 저장하지 못했습니다');
         if (result.ok) $('saveText').textContent = 'Notion에 공유 위치 저장됨';
+        return result.ok;
       }
 
       function updateCandidateToggle() {
@@ -2445,19 +2444,65 @@
         showToast('그래프 JSON 백업을 만들었습니다');
       }
 
-      function resetDemo() {
-        if (!confirm('추가한 노드와 위치를 모두 지우고 샘플 그래프로 되돌릴까요?')) return;
-        state = cloneSeed();
-        currentDomain = 'deep';
-        selectedId = null;
-        inspectorOpen = false;
-        navigationStack = [];
-        viewport = { x: 60, y: 20, scale: .86 };
-        saveState('샘플 초기화됨');
-        populateForms();
-        render();
-        requestAnimationFrame(() => fitVisible(false));
-        showToast('샘플 그래프로 초기화했습니다');
+      async function restoreRecommendedLayout() {
+        const domainName = currentDomain === 'all' ? '전체' : domainById(currentDomain).name;
+        if (!confirm(`${domainName} 화면을 AI 추천 배치로 되돌릴까요?\n직접 옮긴 노드와 포털 위치가 초기화됩니다.`)) return;
+        if (notionSyncEnabled && (!LAYOUT_API_URL || !(await getWriteKey()))) {
+          showToast('편집 키가 있어야 공유 배치를 재정렬할 수 있습니다');
+          return;
+        }
+
+        const button = $('resetBtn');
+        button.disabled = true;
+        try {
+          const nodes = visibleNodes();
+          const edges = state.edges.filter((edge) => {
+            const source = nodeById(edge.source);
+            const target = nodeById(edge.target);
+            const sourceVisible = Boolean(source && isVisible(source));
+            const targetVisible = Boolean(target && isVisible(target));
+            return Boolean(edge.portalPositions?.[currentDomain])
+              || (currentDomain !== 'all' && sourceVisible !== targetVisible);
+          });
+
+          nodes.forEach((node) => {
+            node.positions ||= {};
+            delete node.positions[currentDomain];
+          });
+          edges.forEach((edge) => {
+            edge.portalPositions ||= {};
+            delete edge.portalPositions[currentDomain];
+          });
+
+          const domainOrder = new Map(state.domains.map((domain, index) => [domain.id, index]));
+          applyAutomaticLayout(state.nodes, state.edges, currentDomain, domainOrder);
+          selectedId = null;
+          inspectorOpen = false;
+          render();
+          fitVisible(false);
+          saveState('AI 추천 배치로 재정렬됨');
+
+          let failedWrites = 0;
+          if (notionSyncEnabled) {
+            $('saveText').textContent = 'AI 추천 배치를 Notion에 저장 중';
+            for (const node of nodes) {
+              if (!(await saveRemoteLayout('concept', node.id, node.positions))) failedWrites += 1;
+            }
+            for (const edge of edges) {
+              if (!(await saveRemoteLayout('relation', edge.id, edge.portalPositions))) failedWrites += 1;
+            }
+          }
+
+          if (failedWrites) {
+            $('saveText').textContent = '일부 추천 위치를 저장하지 못함';
+            showToast('일부 위치를 Notion에 저장하지 못했습니다');
+          } else {
+            $('saveText').textContent = notionSyncEnabled ? 'AI 추천 배치를 Notion에 저장함' : 'AI 추천 배치로 재정렬됨';
+            showToast(`${domainName} 화면을 AI 추천 배치로 재정렬했습니다`);
+          }
+        } finally {
+          button.disabled = false;
+        }
       }
 
       function showToast(message) {
@@ -2496,7 +2541,7 @@
         await syncFromNotion({ force: true });
       });
       $('exportBtn').addEventListener('click', exportJson);
-      $('resetBtn').addEventListener('click', () => notionSyncEnabled ? syncFromNotion({ force: true }) : resetDemo());
+      $('resetBtn').addEventListener('click', restoreRecommendedLayout);
       $('backBtn').addEventListener('click', goBack);
       $('zoomInBtn').addEventListener('click', () => zoomAt(1.15));
       $('zoomOutBtn').addEventListener('click', () => zoomAt(1 / 1.15));
