@@ -1963,7 +1963,9 @@
             : '';
           return `
             <article class="node-card ${node.id === selectedId ? 'selected' : ''} ${node.status === '후보' ? 'candidate' : ''}" tabindex="0" role="button"
-              aria-label="${escapeHtml(node.title)} 개념 노드" aria-describedby="portalTooltip" data-node-id="${node.id}" data-tooltip="${escapeHtml(node.title)}"
+              aria-label="${escapeHtml(node.title)} 개념 노드" aria-describedby="portalTooltip" aria-controls="inspector"
+              aria-pressed="${node.id === selectedId}" aria-expanded="${node.id === selectedId && inspectorOpen}"
+              data-node-id="${node.id}" data-tooltip="${escapeHtml(node.title)}"
               style="left:${pos.x}px;top:${pos.y}px;--domain-color:${domain.color};animation-delay:${Math.min(index * 35, 210)}ms">
               ${rail}
               ${node.status === '후보' ? '<span class="candidate-badge">후보</span>' : ''}
@@ -1983,7 +1985,7 @@
           card.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault();
-              selectNode(card.dataset.nodeId);
+              selectNode(card.dataset.nodeId, { toggleInspector: true });
             }
           });
           card.addEventListener('pointerdown', (event) => {
@@ -2044,8 +2046,9 @@
       }
 
       function selectNode(id, options = {}) {
+        const togglingCurrentInspector = Boolean(id && id === selectedId && options.toggleInspector === true);
         selectedId = id;
-        inspectorOpen = Boolean(id && options.openInspector !== false);
+        inspectorOpen = togglingCurrentInspector ? !inspectorOpen : Boolean(id && options.openInspector !== false);
         renderNodes();
         renderInspector();
       }
@@ -2177,7 +2180,7 @@
           if (notionSyncEnabled) saveRemoteLayout('concept', completed.node.id, completed.node.positions);
           return;
         }
-        if (event.type !== 'pointercancel') selectNode(completed.node.id);
+        if (event.type !== 'pointercancel') selectNode(completed.node.id, { toggleInspector: true });
       }
 
       function startPortalDrag(event) {
