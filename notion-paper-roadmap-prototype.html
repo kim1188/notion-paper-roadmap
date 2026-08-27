@@ -73,6 +73,7 @@
     .btn.primary { background: var(--ink); color: var(--surface); border-color: var(--ink); }
     .btn.danger { color: #8b3029; border-color: rgba(139, 48, 41, .45); }
     .btn.icon { width: 32px; padding: 0; font-size: 16px; }
+    .btn.icon.undo-mode { color: #315d80; border-color: rgba(49, 93, 128, .55); background: rgba(230, 240, 246, .9); }
     .btn[disabled] { opacity: .4; cursor: not-allowed; transform: none; }
 
     .sr-only {
@@ -923,6 +924,7 @@
       const PORTAL_AUTO_GAP = 116;
       const PORT_ROLE_OFFSET = 18;
       const NODE_DRAG_THRESHOLD = 6;
+      const RECOMMENDED_LAYOUT_UNDO_MOVE_LIMIT = 5;
       const WORLD_W = 6720;
       const WORLD_H = 3600;
       const CANVAS_LAYOUT_VERSION = 2;
@@ -1053,6 +1055,8 @@
       let notionSyncInFlight = null;
       let showCandidates = false;
       let availablePapers = [];
+      let recommendedLayoutUndo = null;
+      let layoutSaveQueue = Promise.resolve(true);
       const edgeAxisCache = new Map();
 
       function cloneSeed() {
@@ -1180,6 +1184,24 @@
         $('addNodeBtn').title = 'Notion에 후보 개념 추가';
         $('addEdgeBtn').setAttribute('aria-label', 'Notion에서 관계 편집');
         $('addEdgeBtn').title = 'Notion에서 관계 편집';
+      }
+
+      function canRestoreRecommendedLayout() {
+        return Boolean(recommendedLayoutUndo && recommendedLayoutUndo.domainId === currentDomain);
+      }
+
+      function updateLayoutActionButton() {
+        const button = $('resetBtn');
+        const undoAvailable = canRestoreRecommendedLayout();
+        const label = undoAvailable
+          ? `AI 추천 배치 적용 전으로 돌아가기 · 노드 이동 ${recommendedLayoutUndo.nodeMoves}/${RECOMMENDED_LAYOUT_UNDO_MOVE_LIMIT}`
+          : 'AI 추천 배치로 재정렬';
+        button.classList.toggle('undo-mode', undoAvailable);
+        button.dataset.mode = undoAvailable ? 'undo' : 'recommend';
+        button.setAttribute('aria-label', label);
+        button.title = label;
+        button.querySelector('[aria-hidden]').textContent = undoAvailable ? '↶' : '✦';
+        button.querySelector('.sr-only').textContent = label;
       }
 
       function setHeaderVisible(visible) {
@@ -1533,9 +1555,22 @@
 
       async function saveRemoteLayout(kind, pageId, layout) {
         if (!notionSyncEnabled || !LAYOUT_API_URL) return false;
-        const result = await authorizedRequest(LAYOUT_API_URL, { method: 'PATCH', body: { kind, pageId, layout } }, '공유 위치를 저장하지 못했습니다');
-        if (result.ok) $('saveText').textContent = 'Notion에 공유 위치 저장됨';
-        return result.ok;
+        try {
+          const result = await authorizedRequest(LAYOUT_API_URL, { method: 'PATCH', body: { kind, pageId, layout } }, '공유 위치를 저장하지 못했습니다');
+          if (result.ok) $('saveText').textContent = 'Notion에 공유 위치 저장됨';
+          return result.ok;
+        } catch (_) {
+          showToast('공유 위치를 저장하지 못했습니다');
+          return false;
+        }
+      }
+
+      function queueRemoteLayout(kind, pageId, layout) {
+        const savedLayout = JSON.parse(JSON.stringify(layout || {}));
+        const save = () => saveRemoteLayout(kind, pageId, savedLayout);
+        const queued = layoutSaveQueue.then(save, save);
+        layoutSaveQueue = queued.catch(() => false);
+        return queued;
       }
 
       function updateCandidateToggle() {
@@ -2042,6 +2077,7 @@
         renderNodes();
         renderInspector();
         applyViewport();
+        updateLayoutActionButton();
       }
 
       function selectNode(id, options = {}) {
@@ -2175,8 +2211,16 @@
         completed.card.classList.remove('dragging');
         dragInfo = null;
         if (completed.moved) {
+          if (recommendedLayoutUndo?.domainId === currentDomain) {
+            recommendedLayoutUndo.nodeMoves += 1;
+            if (recommendedLayoutUndo.nodeMoves > RECOMMENDED_LAYOUT_UNDO_MOVE_LIMIT) {
+              recommendedLayoutUndo = null;
+              showToast('노드를 6회 이동해 이전 배치 복원이 종료되었습니다');
+            }
+            updateLayoutActionButton();
+          }
           saveState('노드 위치 저장됨');
-          if (notionSyncEnabled) saveRemoteLayout('concept', completed.node.id, completed.node.positions);
+          if (notionSyncEnabled) queueRemoteLayout('concept', completed.node.id, completed.node.positions);
           return;
         }
         if (event.type !== 'pointercancel') selectNode(completed.node.id, { toggleInspector: true });
@@ -2252,7 +2296,7 @@
         portalDragInfo = null;
         if (moved) {
           saveState('분야 포털 위치 저장됨');
-          if (notionSyncEnabled) saveRemoteLayout('relation', completed.edge.id, completed.edge.portalPositions);
+          if (notionSyncEnabled) queueRemoteLayout('relation', completed.edge.id, completed.edge.portalPositions);
         }
       }
 
@@ -2444,6 +2488,47 @@
         showToast('그래프 JSON 백업을 만들었습니다');
       }
 
+      function recommendedLayoutRecords() {
+        const nodes = visibleNodes();
+        const edges = state.edges.filter((edge) => {
+          const source = nodeById(edge.source);
+          const target = nodeById(edge.target);
+          const sourceVisible = Boolean(source && isVisible(source));
+          const targetVisible = Boolean(target && isVisible(target));
+          return Boolean(edge.portalPositions?.[currentDomain])
+            || (currentDomain !== 'all' && sourceVisible !== targetVisible);
+        });
+        return { nodes, edges };
+      }
+
+      function captureLayoutBeforeRecommendation(nodes, edges) {
+        return {
+          domainId: currentDomain,
+          nodeMoves: 0,
+          viewport: { ...viewport },
+          nodes: nodes.map((node) => ({
+            id: node.id,
+            position: node.positions?.[currentDomain] ? { ...node.positions[currentDomain] } : null
+          })),
+          edges: edges.map((edge) => ({
+            id: edge.id,
+            position: edge.portalPositions?.[currentDomain] ? { ...edge.portalPositions[currentDomain] } : null
+          }))
+        };
+      }
+
+      async function persistRecommendedLayout(nodes, edges) {
+        let failedWrites = 0;
+        if (!notionSyncEnabled) return failedWrites;
+        for (const node of nodes) {
+          if (!(await queueRemoteLayout('concept', node.id, node.positions))) failedWrites += 1;
+        }
+        for (const edge of edges) {
+          if (!(await queueRemoteLayout('relation', edge.id, edge.portalPositions))) failedWrites += 1;
+        }
+        return failedWrites;
+      }
+
       async function restoreRecommendedLayout() {
         const domainName = currentDomain === 'all' ? '전체' : domainById(currentDomain).name;
         if (!confirm(`${domainName} 화면을 AI 추천 배치로 되돌릴까요?\n직접 옮긴 노드와 포털 위치가 초기화됩니다.`)) return;
@@ -2455,15 +2540,9 @@
         const button = $('resetBtn');
         button.disabled = true;
         try {
-          const nodes = visibleNodes();
-          const edges = state.edges.filter((edge) => {
-            const source = nodeById(edge.source);
-            const target = nodeById(edge.target);
-            const sourceVisible = Boolean(source && isVisible(source));
-            const targetVisible = Boolean(target && isVisible(target));
-            return Boolean(edge.portalPositions?.[currentDomain])
-              || (currentDomain !== 'all' && sourceVisible !== targetVisible);
-          });
+          await layoutSaveQueue;
+          const { nodes, edges } = recommendedLayoutRecords();
+          recommendedLayoutUndo = captureLayoutBeforeRecommendation(nodes, edges);
 
           nodes.forEach((node) => {
             node.positions ||= {};
@@ -2482,16 +2561,10 @@
           fitVisible(false);
           saveState('AI 추천 배치로 재정렬됨');
 
-          let failedWrites = 0;
           if (notionSyncEnabled) {
             $('saveText').textContent = 'AI 추천 배치를 Notion에 저장 중';
-            for (const node of nodes) {
-              if (!(await saveRemoteLayout('concept', node.id, node.positions))) failedWrites += 1;
-            }
-            for (const edge of edges) {
-              if (!(await saveRemoteLayout('relation', edge.id, edge.portalPositions))) failedWrites += 1;
-            }
           }
+          const failedWrites = await persistRecommendedLayout(nodes, edges);
 
           if (failedWrites) {
             $('saveText').textContent = '일부 추천 위치를 저장하지 못함';
@@ -2503,6 +2576,67 @@
         } finally {
           button.disabled = false;
         }
+      }
+
+      async function restoreLayoutBeforeRecommendation() {
+        const snapshot = recommendedLayoutUndo;
+        if (!snapshot || snapshot.domainId !== currentDomain) {
+          updateLayoutActionButton();
+          return;
+        }
+        if (notionSyncEnabled && (!LAYOUT_API_URL || !(await getWriteKey()))) {
+          showToast('편집 키가 있어야 이전 공유 배치로 돌아갈 수 있습니다');
+          return;
+        }
+
+        const button = $('resetBtn');
+        button.disabled = true;
+        try {
+          await layoutSaveQueue;
+          const nodes = [];
+          snapshot.nodes.forEach((record) => {
+            const node = nodeById(record.id);
+            if (!node) return;
+            node.positions ||= {};
+            if (record.position) node.positions[currentDomain] = { ...record.position };
+            else delete node.positions[currentDomain];
+            nodes.push(node);
+          });
+          const edges = [];
+          snapshot.edges.forEach((record) => {
+            const edge = state.edges.find((item) => item.id === record.id);
+            if (!edge) return;
+            edge.portalPositions ||= {};
+            if (record.position) edge.portalPositions[currentDomain] = { ...record.position };
+            else delete edge.portalPositions[currentDomain];
+            edges.push(edge);
+          });
+
+          viewport = { ...snapshot.viewport };
+          state.viewports[currentDomain] = { ...viewport };
+          recommendedLayoutUndo = null;
+          selectedId = null;
+          inspectorOpen = false;
+          render();
+          saveState('AI 추천 배치 적용 전으로 돌아감');
+
+          if (notionSyncEnabled) $('saveText').textContent = '이전 배치를 Notion에 복원 중';
+          const failedWrites = await persistRecommendedLayout(nodes, edges);
+          if (failedWrites) {
+            $('saveText').textContent = '일부 이전 위치를 저장하지 못함';
+            showToast('일부 이전 위치를 Notion에 저장하지 못했습니다');
+          } else {
+            $('saveText').textContent = notionSyncEnabled ? '이전 배치를 Notion에 복원함' : 'AI 추천 배치 적용 전으로 돌아감';
+            showToast('AI 추천 배치 적용 전 위치로 돌아갔습니다');
+          }
+        } finally {
+          button.disabled = false;
+          updateLayoutActionButton();
+        }
+      }
+
+      function handleLayoutAction() {
+        return canRestoreRecommendedLayout() ? restoreLayoutBeforeRecommendation() : restoreRecommendedLayout();
       }
 
       function showToast(message) {
@@ -2541,7 +2675,7 @@
         await syncFromNotion({ force: true });
       });
       $('exportBtn').addEventListener('click', exportJson);
-      $('resetBtn').addEventListener('click', restoreRecommendedLayout);
+      $('resetBtn').addEventListener('click', handleLayoutAction);
       $('backBtn').addEventListener('click', goBack);
       $('zoomInBtn').addEventListener('click', () => zoomAt(1.15));
       $('zoomOutBtn').addEventListener('click', () => zoomAt(1 / 1.15));
