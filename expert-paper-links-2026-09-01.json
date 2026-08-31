@@ -1,0 +1,1058 @@
+{
+  "version": 1,
+  "asOf": "2026-09-01",
+  "count": 210,
+  "policy": "원 논문, 공식 출판사, DOI 또는 arXiv 링크를 우선 사용한다.",
+  "papers": [
+    {
+      "title": "On the importance of initialization and momentum in deep learning",
+      "url": "https://proceedings.mlr.press/v28/sutskever13.html",
+      "source": "PMLR"
+    },
+    {
+      "title": "Adaptive Subgradient Methods for Online Learning and Stochastic Optimization",
+      "url": "https://jmlr.org/papers/v12/duchi11a.html",
+      "source": "JMLR"
+    },
+    {
+      "title": "Adam: A Method for Stochastic Optimization",
+      "url": "https://arxiv.org/abs/1412.6980",
+      "source": "arXiv"
+    },
+    {
+      "title": "Decoupled Weight Decay Regularization",
+      "url": "https://arxiv.org/abs/1711.05101",
+      "source": "arXiv"
+    },
+    {
+      "title": "Optimizing Neural Networks with Kronecker-factored Approximate Curvature",
+      "url": "https://arxiv.org/abs/1503.05671",
+      "source": "arXiv"
+    },
+    {
+      "title": "Shampoo: Preconditioned Stochastic Tensor Optimization",
+      "url": "https://arxiv.org/abs/1802.09568",
+      "source": "arXiv"
+    },
+    {
+      "title": "Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour",
+      "url": "https://arxiv.org/abs/1706.02677",
+      "source": "arXiv"
+    },
+    {
+      "title": "Mixed Precision Training",
+      "url": "https://arxiv.org/abs/1710.03740",
+      "source": "arXiv"
+    },
+    {
+      "title": "Muon: An optimizer for hidden layers in neural networks",
+      "url": "https://kellerjordan.github.io/posts/muon/",
+      "source": "원문"
+    },
+    {
+      "title": "Fantastic Pretraining Optimizers and Where to Find Them II: Hyperball Optimization",
+      "url": "https://arxiv.org/abs/2606.16899",
+      "source": "arXiv"
+    },
+    {
+      "title": "Learning representations by back-propagating errors",
+      "url": "https://doi.org/10.1038/323533a0",
+      "source": "DOI"
+    },
+    {
+      "title": "Dropout: A Simple Way to Prevent Neural Networks from Overfitting",
+      "url": "https://jmlr.org/papers/v15/srivastava14a.html",
+      "source": "JMLR"
+    },
+    {
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "url": "https://arxiv.org/abs/1502.03167",
+      "source": "arXiv"
+    },
+    {
+      "title": "Layer Normalization",
+      "url": "https://arxiv.org/abs/1607.06450",
+      "source": "arXiv"
+    },
+    {
+      "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+      "url": "https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+      "source": "NeurIPS"
+    },
+    {
+      "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+      "url": "https://arxiv.org/abs/1409.1556",
+      "source": "arXiv"
+    },
+    {
+      "title": "Going Deeper with Convolutions",
+      "url": "https://arxiv.org/abs/1409.4842",
+      "source": "arXiv"
+    },
+    {
+      "title": "Deep Residual Learning for Image Recognition",
+      "url": "https://arxiv.org/abs/1512.03385",
+      "source": "arXiv"
+    },
+    {
+      "title": "Identity Mappings in Deep Residual Networks",
+      "url": "https://arxiv.org/abs/1603.05027",
+      "source": "arXiv"
+    },
+    {
+      "title": "Long Short-Term Memory",
+      "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "source": "DOI"
+    },
+    {
+      "title": "Recurrent Neural Network Regularization",
+      "url": "https://arxiv.org/abs/1409.2329",
+      "source": "arXiv"
+    },
+    {
+      "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+      "url": "https://arxiv.org/abs/1409.0473",
+      "source": "arXiv"
+    },
+    {
+      "title": "Attention Is All You Need",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "source": "arXiv"
+    },
+    {
+      "title": "Representation Learning with Contrastive Predictive Coding",
+      "url": "https://arxiv.org/abs/1807.03748",
+      "source": "arXiv"
+    },
+    {
+      "title": "A Simple Framework for Contrastive Learning of Visual Representations",
+      "url": "https://arxiv.org/abs/2002.05709",
+      "source": "arXiv"
+    },
+    {
+      "title": "Momentum Contrast for Unsupervised Visual Representation Learning",
+      "url": "https://arxiv.org/abs/1911.05722",
+      "source": "arXiv"
+    },
+    {
+      "title": "Bootstrap Your Own Latent",
+      "url": "https://arxiv.org/abs/2006.07733",
+      "source": "arXiv"
+    },
+    {
+      "title": "Masked Autoencoders Are Scalable Vision Learners",
+      "url": "https://arxiv.org/abs/2111.06377",
+      "source": "arXiv"
+    },
+    {
+      "title": "DINOv2: Learning Robust Visual Features without Supervision",
+      "url": "https://arxiv.org/abs/2304.07193",
+      "source": "arXiv"
+    },
+    {
+      "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+      "url": "https://arxiv.org/abs/1506.01497",
+      "source": "arXiv"
+    },
+    {
+      "title": "You Only Look Once: Unified, Real-Time Object Detection",
+      "url": "https://arxiv.org/abs/1506.02640",
+      "source": "arXiv"
+    },
+    {
+      "title": "Mask R-CNN",
+      "url": "https://arxiv.org/abs/1703.06870",
+      "source": "arXiv"
+    },
+    {
+      "title": "Fully Convolutional Networks for Semantic Segmentation",
+      "url": "https://arxiv.org/abs/1605.06211",
+      "source": "arXiv"
+    },
+    {
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "url": "https://arxiv.org/abs/1505.04597",
+      "source": "arXiv"
+    },
+    {
+      "title": "Rethinking Atrous Convolution for Semantic Image Segmentation",
+      "url": "https://arxiv.org/abs/1706.05587",
+      "source": "arXiv"
+    },
+    {
+      "title": "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation",
+      "url": "https://www.nature.com/articles/s41592-020-01008-z",
+      "source": "Nature"
+    },
+    {
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "url": "https://arxiv.org/abs/2010.11929",
+      "source": "arXiv"
+    },
+    {
+      "title": "End-to-End Object Detection with Transformers",
+      "url": "https://arxiv.org/abs/2005.12872",
+      "source": "arXiv"
+    },
+    {
+      "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
+      "url": "https://arxiv.org/abs/2103.14030",
+      "source": "arXiv"
+    },
+    {
+      "title": "Segment Anything",
+      "url": "https://arxiv.org/abs/2304.02643",
+      "source": "arXiv"
+    },
+    {
+      "title": "Segment Anything in Medical Images",
+      "url": "https://arxiv.org/abs/2304.12306",
+      "source": "arXiv"
+    },
+    {
+      "title": "Auto-Encoding Variational Bayes",
+      "url": "https://arxiv.org/abs/1312.6114",
+      "source": "arXiv"
+    },
+    {
+      "title": "Variational Lossy Autoencoder",
+      "url": "https://arxiv.org/abs/1611.02731",
+      "source": "arXiv"
+    },
+    {
+      "title": "Generative Adversarial Nets",
+      "url": "https://proceedings.neurips.cc/paper/2014/hash/f033ed80deb0234979a61f95710dbe25-Abstract.html",
+      "source": "NeurIPS"
+    },
+    {
+      "title": "Pixel Recurrent Neural Networks",
+      "url": "https://arxiv.org/abs/1601.06759",
+      "source": "arXiv"
+    },
+    {
+      "title": "Density Estimation using Real NVP",
+      "url": "https://arxiv.org/abs/1605.08803",
+      "source": "arXiv"
+    },
+    {
+      "title": "Flow Matching for Generative Modeling",
+      "url": "https://arxiv.org/abs/2210.02747",
+      "source": "arXiv"
+    },
+    {
+      "title": "Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
+      "url": "https://arxiv.org/abs/1503.03585",
+      "source": "arXiv"
+    },
+    {
+      "title": "Denoising Diffusion Probabilistic Models",
+      "url": "https://arxiv.org/abs/2006.11239",
+      "source": "arXiv"
+    },
+    {
+      "title": "Score-Based Generative Modeling through Stochastic Differential Equations",
+      "url": "https://arxiv.org/abs/2011.13456",
+      "source": "arXiv"
+    },
+    {
+      "title": "Classifier-Free Diffusion Guidance",
+      "url": "https://arxiv.org/abs/2207.12598",
+      "source": "arXiv"
+    },
+    {
+      "title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "url": "https://arxiv.org/abs/2112.10752",
+      "source": "arXiv"
+    },
+    {
+      "title": "Diffusion-LM Improves Controllable Text Generation",
+      "url": "https://arxiv.org/abs/2205.14217",
+      "source": "arXiv"
+    },
+    {
+      "title": "Large Language Diffusion Models",
+      "url": "https://arxiv.org/abs/2502.09992",
+      "source": "arXiv"
+    },
+    {
+      "title": "Efficient Estimation of Word Representations in Vector Space",
+      "url": "https://arxiv.org/abs/1301.3781",
+      "source": "arXiv"
+    },
+    {
+      "title": "Sequence to Sequence Learning with Neural Networks",
+      "url": "https://arxiv.org/abs/1409.3215",
+      "source": "arXiv"
+    },
+    {
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "url": "https://arxiv.org/abs/1810.04805",
+      "source": "arXiv"
+    },
+    {
+      "title": "RoBERTa: A Robustly Optimized BERT Pretraining Approach",
+      "url": "https://arxiv.org/abs/1907.11692",
+      "source": "arXiv"
+    },
+    {
+      "title": "ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators",
+      "url": "https://arxiv.org/abs/2003.10555",
+      "source": "arXiv"
+    },
+    {
+      "title": "BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension",
+      "url": "https://arxiv.org/abs/1910.13461",
+      "source": "arXiv"
+    },
+    {
+      "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "url": "https://arxiv.org/abs/1910.10683",
+      "source": "arXiv"
+    },
+    {
+      "title": "Improving Language Understanding by Generative Pre-Training",
+      "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf",
+      "source": "OpenAI"
+    },
+    {
+      "title": "Language Models are Few-Shot Learners",
+      "url": "https://arxiv.org/abs/2005.14165",
+      "source": "arXiv"
+    },
+    {
+      "title": "LLaMA: Open and Efficient Foundation Language Models",
+      "url": "https://arxiv.org/abs/2302.13971",
+      "source": "arXiv"
+    },
+    {
+      "title": "Scaling Laws for Neural Language Models",
+      "url": "https://arxiv.org/abs/2001.08361",
+      "source": "arXiv"
+    },
+    {
+      "title": "Training Compute-Optimal Large Language Models",
+      "url": "https://arxiv.org/abs/2203.15556",
+      "source": "arXiv"
+    },
+    {
+      "title": "Finetuned Language Models Are Zero-Shot Learners",
+      "url": "https://arxiv.org/abs/2109.01652",
+      "source": "arXiv"
+    },
+    {
+      "title": "Scaling Instruction-Finetuned Language Models",
+      "url": "https://arxiv.org/abs/2210.11416",
+      "source": "arXiv"
+    },
+    {
+      "title": "Parameter-Efficient Transfer Learning for NLP",
+      "url": "https://arxiv.org/abs/1902.00751",
+      "source": "arXiv"
+    },
+    {
+      "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation",
+      "url": "https://arxiv.org/abs/2101.00190",
+      "source": "arXiv"
+    },
+    {
+      "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
+      "url": "https://arxiv.org/abs/2104.08691",
+      "source": "arXiv"
+    },
+    {
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "url": "https://arxiv.org/abs/2106.09685",
+      "source": "arXiv"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+      "url": "https://arxiv.org/abs/2305.14314",
+      "source": "arXiv"
+    },
+    {
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "url": "https://arxiv.org/abs/2004.04906",
+      "source": "arXiv"
+    },
+    {
+      "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "url": "https://arxiv.org/abs/2004.12832",
+      "source": "arXiv"
+    },
+    {
+      "title": "Improving Text Embeddings with Large Language Models",
+      "url": "https://arxiv.org/abs/2401.00368",
+      "source": "arXiv"
+    },
+    {
+      "title": "NV-Embed",
+      "url": "https://arxiv.org/abs/2405.17428",
+      "source": "arXiv"
+    },
+    {
+      "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "url": "https://arxiv.org/abs/2002.08909",
+      "source": "arXiv"
+    },
+    {
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "source": "arXiv"
+    },
+    {
+      "title": "Improving Language Models by Retrieving from Trillions of Tokens",
+      "url": "https://arxiv.org/abs/2112.04426",
+      "source": "arXiv"
+    },
+    {
+      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "url": "https://arxiv.org/abs/2310.11511",
+      "source": "arXiv"
+    },
+    {
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+      "url": "https://arxiv.org/abs/2201.11903",
+      "source": "arXiv"
+    },
+    {
+      "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+      "url": "https://arxiv.org/abs/2203.11171",
+      "source": "arXiv"
+    },
+    {
+      "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+      "url": "https://arxiv.org/abs/2305.10601",
+      "source": "arXiv"
+    },
+    {
+      "title": "Deep Reinforcement Learning from Human Preferences",
+      "url": "https://arxiv.org/abs/1706.03741",
+      "source": "arXiv"
+    },
+    {
+      "title": "Training language models to follow instructions with human feedback",
+      "url": "https://arxiv.org/abs/2203.02155",
+      "source": "arXiv"
+    },
+    {
+      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "url": "https://arxiv.org/abs/2305.18290",
+      "source": "arXiv"
+    },
+    {
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "url": "https://arxiv.org/abs/2402.03300",
+      "source": "arXiv"
+    },
+    {
+      "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+      "url": "https://arxiv.org/abs/2503.14476",
+      "source": "arXiv"
+    },
+    {
+      "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
+      "url": "https://arxiv.org/abs/2104.09864",
+      "source": "arXiv"
+    },
+    {
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "url": "https://arxiv.org/abs/2205.14135",
+      "source": "arXiv"
+    },
+    {
+      "title": "Efficient Streaming Language Models with Attention Sinks",
+      "url": "https://arxiv.org/abs/2309.17453",
+      "source": "arXiv"
+    },
+    {
+      "title": "TransMLA: Multi-Head Latent Attention Is All You Need",
+      "url": "https://arxiv.org/abs/2502.07864",
+      "source": "arXiv"
+    },
+    {
+      "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+      "url": "https://arxiv.org/abs/1701.06538",
+      "source": "arXiv"
+    },
+    {
+      "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+      "url": "https://arxiv.org/abs/2101.03961",
+      "source": "arXiv"
+    },
+    {
+      "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",
+      "url": "https://arxiv.org/abs/2405.04434",
+      "source": "arXiv"
+    },
+    {
+      "title": "Efficiently Modeling Long Sequences with Structured State Spaces",
+      "url": "https://arxiv.org/abs/2111.00396",
+      "source": "arXiv"
+    },
+    {
+      "title": "Linear Transformers Are Secretly Fast Weight Programmers",
+      "url": "https://arxiv.org/abs/2102.11174",
+      "source": "arXiv"
+    },
+    {
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "url": "https://arxiv.org/abs/2312.00752",
+      "source": "arXiv"
+    },
+    {
+      "title": "Parallelizing Linear Transformers with the Delta Rule over Sequence Length",
+      "url": "https://arxiv.org/abs/2406.06484",
+      "source": "arXiv"
+    },
+    {
+      "title": "Fast Model Editing at Scale",
+      "url": "https://arxiv.org/abs/2110.11309",
+      "source": "arXiv"
+    },
+    {
+      "title": "Locating and Editing Factual Associations in GPT",
+      "url": "https://arxiv.org/abs/2202.05262",
+      "source": "arXiv"
+    },
+    {
+      "title": "Mass-Editing Memory in a Transformer",
+      "url": "https://arxiv.org/abs/2210.07229",
+      "source": "arXiv"
+    },
+    {
+      "title": "Scaling and Evaluating Sparse Autoencoders",
+      "url": "https://arxiv.org/abs/2406.04093",
+      "source": "arXiv"
+    },
+    {
+      "title": "Sparse Crosscoders for Cross-Layer Features and Model Diffing",
+      "url": "https://transformer-circuits.pub/2024/crosscoders/",
+      "source": "Transformer Circuits"
+    },
+    {
+      "title": "Emergent Misalignment",
+      "url": "https://arxiv.org/abs/2502.17424",
+      "source": "arXiv"
+    },
+    {
+      "title": "Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Model Parameters",
+      "url": "https://arxiv.org/abs/2408.03314",
+      "source": "arXiv"
+    },
+    {
+      "title": "Learning to Discover at Test Time",
+      "url": "https://arxiv.org/abs/2601.16175",
+      "source": "arXiv"
+    },
+    {
+      "title": "DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models",
+      "url": "https://arxiv.org/abs/2512.02556",
+      "source": "arXiv"
+    },
+    {
+      "title": "Scaling Laws for Precision",
+      "url": "https://arxiv.org/abs/2411.04330",
+      "source": "arXiv"
+    },
+    {
+      "title": "Artificial Hivemind: The Open-Ended Homogeneity of Language Models",
+      "url": "https://arxiv.org/abs/2510.22954",
+      "source": "arXiv"
+    },
+    {
+      "title": "Reinforcement Learning: An Overview",
+      "url": "https://arxiv.org/abs/2412.05265",
+      "source": "arXiv"
+    },
+    {
+      "title": "Human-level control through deep reinforcement learning",
+      "url": "https://www.nature.com/articles/nature14236",
+      "source": "Nature"
+    },
+    {
+      "title": "Deep Reinforcement Learning with Double Q-learning",
+      "url": "https://arxiv.org/abs/1509.06461",
+      "source": "arXiv"
+    },
+    {
+      "title": "Dueling Network Architectures for Deep Reinforcement Learning",
+      "url": "https://arxiv.org/abs/1511.06581",
+      "source": "arXiv"
+    },
+    {
+      "title": "Prioritized Experience Replay",
+      "url": "https://arxiv.org/abs/1511.05952",
+      "source": "arXiv"
+    },
+    {
+      "title": "Rainbow: Combining Improvements in Deep Reinforcement Learning",
+      "url": "https://arxiv.org/abs/1710.02298",
+      "source": "arXiv"
+    },
+    {
+      "title": "Asynchronous Methods for Deep Reinforcement Learning",
+      "url": "https://arxiv.org/abs/1602.01783",
+      "source": "arXiv"
+    },
+    {
+      "title": "High-Dimensional Continuous Control Using Generalized Advantage Estimation",
+      "url": "https://arxiv.org/abs/1506.02438",
+      "source": "arXiv"
+    },
+    {
+      "title": "Trust Region Policy Optimization",
+      "url": "https://arxiv.org/abs/1502.05477",
+      "source": "arXiv"
+    },
+    {
+      "title": "Proximal Policy Optimization Algorithms",
+      "url": "https://arxiv.org/abs/1707.06347",
+      "source": "arXiv"
+    },
+    {
+      "title": "Deterministic Policy Gradient Algorithms",
+      "url": "https://proceedings.mlr.press/v32/silver14.html",
+      "source": "PMLR"
+    },
+    {
+      "title": "Continuous Control with Deep Reinforcement Learning",
+      "url": "https://arxiv.org/abs/1509.02971",
+      "source": "arXiv"
+    },
+    {
+      "title": "Addressing Function Approximation Error in Actor-Critic Methods",
+      "url": "https://arxiv.org/abs/1802.09477",
+      "source": "arXiv"
+    },
+    {
+      "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+      "url": "https://arxiv.org/abs/1801.01290",
+      "source": "arXiv"
+    },
+    {
+      "title": "Curiosity-driven Exploration by Self-supervised Prediction",
+      "url": "https://arxiv.org/abs/1705.05363",
+      "source": "arXiv"
+    },
+    {
+      "title": "Exploration by Random Network Distillation",
+      "url": "https://arxiv.org/abs/1810.12894",
+      "source": "arXiv"
+    },
+    {
+      "title": "Hindsight Experience Replay",
+      "url": "https://arxiv.org/abs/1707.01495",
+      "source": "arXiv"
+    },
+    {
+      "title": "Off-Policy Deep Reinforcement Learning without Exploration",
+      "url": "https://arxiv.org/abs/1812.02900",
+      "source": "arXiv"
+    },
+    {
+      "title": "Conservative Q-Learning for Offline Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2006.04779",
+      "source": "arXiv"
+    },
+    {
+      "title": "Offline Reinforcement Learning with Implicit Q-Learning",
+      "url": "https://arxiv.org/abs/2110.06169",
+      "source": "arXiv"
+    },
+    {
+      "title": "Decision Transformer: Reinforcement Learning via Sequence Modeling",
+      "url": "https://arxiv.org/abs/2106.01345",
+      "source": "arXiv"
+    },
+    {
+      "title": "Absolute Zero: Reinforced Self-play Reasoning with Zero Data",
+      "url": "https://arxiv.org/abs/2505.03335",
+      "source": "arXiv"
+    },
+    {
+      "title": "SPICE: Self-Play In Corpus Environments Improves Reasoning",
+      "url": "https://arxiv.org/abs/2510.24684",
+      "source": "arXiv"
+    },
+    {
+      "title": "World Models",
+      "url": "https://arxiv.org/abs/1803.10122",
+      "source": "arXiv"
+    },
+    {
+      "title": "Learning Latent Dynamics for Planning from Pixels",
+      "url": "https://arxiv.org/abs/1811.04551",
+      "source": "arXiv"
+    },
+    {
+      "title": "Dream to Control: Learning Behaviors by Latent Imagination",
+      "url": "https://arxiv.org/abs/1912.01603",
+      "source": "arXiv"
+    },
+    {
+      "title": "Mastering Atari with Discrete World Models",
+      "url": "https://arxiv.org/abs/2010.02193",
+      "source": "arXiv"
+    },
+    {
+      "title": "Mastering Diverse Control Tasks through World Models",
+      "url": "https://www.nature.com/articles/s41586-025-08744-2",
+      "source": "Nature"
+    },
+    {
+      "title": "Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model",
+      "url": "https://arxiv.org/abs/1911.08265",
+      "source": "arXiv"
+    },
+    {
+      "title": "Transformers are Sample-Efficient World Models",
+      "url": "https://arxiv.org/abs/2209.00588",
+      "source": "arXiv"
+    },
+    {
+      "title": "Temporal Difference Learning for Model Predictive Control",
+      "url": "https://arxiv.org/abs/2203.04955",
+      "source": "arXiv"
+    },
+    {
+      "title": "TD-MPC2: Scalable, Robust World Models for Continuous Control",
+      "url": "https://arxiv.org/abs/2310.16828",
+      "source": "arXiv"
+    },
+    {
+      "title": "Wonder: Video World Model Done Better",
+      "url": "https://arxiv.org/abs/2607.26037",
+      "source": "arXiv"
+    },
+    {
+      "title": "Q-Learning With World Models",
+      "url": "https://arxiv.org/abs/2608.17163",
+      "source": "arXiv"
+    },
+    {
+      "title": "World Action Models are Zero-shot Policies",
+      "url": "https://arxiv.org/abs/2602.15922",
+      "source": "arXiv"
+    },
+    {
+      "title": "τ0-WM: A Unified Video-Action World Model for Robotic Manipulation",
+      "url": "https://arxiv.org/abs/2606.01027",
+      "source": "arXiv"
+    },
+    {
+      "title": "τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
+      "url": "https://arxiv.org/abs/2608.16885",
+      "source": "arXiv"
+    },
+    {
+      "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "url": "https://arxiv.org/abs/1011.0686",
+      "source": "arXiv"
+    },
+    {
+      "title": "Causal Confusion in Imitation Learning",
+      "url": "https://arxiv.org/abs/1905.11979",
+      "source": "arXiv"
+    },
+    {
+      "title": "End-to-End Training of Deep Visuomotor Policies",
+      "url": "https://arxiv.org/abs/1504.00702",
+      "source": "arXiv"
+    },
+    {
+      "title": "The Surprising Effectiveness of Representation Learning for Visual Imitation",
+      "url": "https://arxiv.org/abs/2112.01511",
+      "source": "arXiv"
+    },
+    {
+      "title": "Transporter Networks: Rearranging the Visual World for Robotic Manipulation",
+      "url": "https://arxiv.org/abs/2010.14406",
+      "source": "arXiv"
+    },
+    {
+      "title": "Implicit Behavioral Cloning",
+      "url": "https://arxiv.org/abs/2109.00137",
+      "source": "arXiv"
+    },
+    {
+      "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+      "url": "https://arxiv.org/abs/2303.04137",
+      "source": "arXiv"
+    },
+    {
+      "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+      "url": "https://arxiv.org/abs/2304.13705",
+      "source": "arXiv"
+    },
+    {
+      "title": "Language Conditioned Imitation Learning over Unstructured Data",
+      "url": "https://arxiv.org/abs/2005.07648",
+      "source": "arXiv"
+    },
+    {
+      "title": "A Generalist Agent",
+      "url": "https://arxiv.org/abs/2205.06175",
+      "source": "arXiv"
+    },
+    {
+      "title": "RT-1: Robotics Transformer for Real-World Control at Scale",
+      "url": "https://arxiv.org/abs/2212.06817",
+      "source": "arXiv"
+    },
+    {
+      "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+      "url": "https://arxiv.org/abs/2307.15818",
+      "source": "arXiv"
+    },
+    {
+      "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+      "url": "https://arxiv.org/abs/2406.09246",
+      "source": "arXiv"
+    },
+    {
+      "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
+      "url": "https://arxiv.org/abs/2410.24164",
+      "source": "arXiv"
+    },
+    {
+      "title": "π0.5: A Vision-Language-Action Model with Open-World Generalization",
+      "url": "https://proceedings.mlr.press/v305/black25a.html",
+      "source": "PMLR"
+    },
+    {
+      "title": "π*0.6: a VLA That Learns From Experience",
+      "url": "https://arxiv.org/abs/2511.14759",
+      "source": "arXiv"
+    },
+    {
+      "title": "Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering",
+      "url": "https://arxiv.org/abs/1606.09375",
+      "source": "arXiv"
+    },
+    {
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "url": "https://arxiv.org/abs/1609.02907",
+      "source": "arXiv"
+    },
+    {
+      "title": "Neural Message Passing for Quantum Chemistry",
+      "url": "https://arxiv.org/abs/1704.01212",
+      "source": "arXiv"
+    },
+    {
+      "title": "Inductive Representation Learning on Large Graphs",
+      "url": "https://arxiv.org/abs/1706.02216",
+      "source": "arXiv"
+    },
+    {
+      "title": "Graph Attention Networks",
+      "url": "https://arxiv.org/abs/1710.10903",
+      "source": "arXiv"
+    },
+    {
+      "title": "How Powerful are Graph Neural Networks?",
+      "url": "https://arxiv.org/abs/1810.00826",
+      "source": "arXiv"
+    },
+    {
+      "title": "Modeling Relational Data with Graph Convolutional Networks",
+      "url": "https://arxiv.org/abs/1703.06103",
+      "source": "arXiv"
+    },
+    {
+      "title": "Heterogeneous Graph Transformer",
+      "url": "https://arxiv.org/abs/2003.01332",
+      "source": "arXiv"
+    },
+    {
+      "title": "Do Transformers Really Perform Bad for Graph Representation?",
+      "url": "https://arxiv.org/abs/2106.05234",
+      "source": "arXiv"
+    },
+    {
+      "title": "Graphormer",
+      "url": "https://arxiv.org/abs/2106.05234",
+      "source": "arXiv"
+    },
+    {
+      "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+      "url": "https://arxiv.org/abs/2404.16130",
+      "source": "arXiv"
+    },
+    {
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "source": "arXiv"
+    },
+    {
+      "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+      "url": "https://arxiv.org/abs/2302.04761",
+      "source": "arXiv"
+    },
+    {
+      "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2303.11366",
+      "source": "arXiv"
+    },
+    {
+      "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+      "url": "https://arxiv.org/abs/2304.03442",
+      "source": "arXiv"
+    },
+    {
+      "title": "Agent Workflow Memory",
+      "url": "https://arxiv.org/abs/2409.07429",
+      "source": "arXiv"
+    },
+    {
+      "title": "VOYAGER: An Open-Ended Embodied Agent with Large Language Models",
+      "url": "https://arxiv.org/abs/2305.16291",
+      "source": "arXiv"
+    },
+    {
+      "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+      "url": "https://arxiv.org/abs/2310.06770",
+      "source": "arXiv"
+    },
+    {
+      "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+      "url": "https://arxiv.org/abs/2405.15793",
+      "source": "arXiv"
+    },
+    {
+      "title": "OpenHands: An Open Platform for AI Software Developers as Generalist Agents",
+      "url": "https://arxiv.org/abs/2407.16741",
+      "source": "arXiv"
+    },
+    {
+      "title": "The OpenHands Software Agent SDK: A Composable and Extensible Foundation for Production Agents",
+      "url": "https://arxiv.org/abs/2511.03690",
+      "source": "arXiv"
+    },
+    {
+      "title": "Agent Lightning v1.0: Towards Harnessed Agentic RL",
+      "url": "https://arxiv.org/abs/2608.17528",
+      "source": "arXiv"
+    },
+    {
+      "title": "LEGO-RL: Harness-Native Reinforcement Learning for Coding Agents",
+      "url": "https://arxiv.org/abs/2608.17393",
+      "source": "arXiv"
+    },
+    {
+      "title": "SPADE: Self-Play in Adaptive Synthetic Executable Environments",
+      "url": "https://arxiv.org/abs/2608.19197",
+      "source": "arXiv"
+    },
+    {
+      "title": "Toward Training Superintelligent Software Agents through Self-Play SWE-RL",
+      "url": "https://arxiv.org/abs/2512.18552",
+      "source": "arXiv"
+    },
+    {
+      "title": "EnvHarness: Awakening Static Worlds for Agent Learning",
+      "url": "https://arxiv.org/abs/2608.19880",
+      "source": "arXiv"
+    },
+    {
+      "title": "Persistent Recursive Worlds Enable Autonomous Software Evolution",
+      "url": "https://arxiv.org/abs/2608.10450",
+      "source": "arXiv"
+    },
+    {
+      "title": "AgentRewind: Recoverable Execution for Long-Horizon LLM Agents",
+      "url": "https://arxiv.org/abs/2608.14380",
+      "source": "arXiv"
+    },
+    {
+      "title": "AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses",
+      "url": "https://arxiv.org/abs/2608.12307",
+      "source": "arXiv"
+    },
+    {
+      "title": "Active Task Disambiguation with LLMs",
+      "url": "https://arxiv.org/abs/2502.04485",
+      "source": "arXiv"
+    },
+    {
+      "title": "CONSORT-AI extension",
+      "url": "https://doi.org/10.1038/s41591-020-1034-x",
+      "source": "DOI"
+    },
+    {
+      "title": "SPIRIT-AI extension",
+      "url": "https://doi.org/10.1016/S2589-7500(20)30219-3",
+      "source": "DOI"
+    },
+    {
+      "title": "CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning",
+      "url": "https://arxiv.org/abs/1711.05225",
+      "source": "arXiv"
+    },
+    {
+      "title": "CheXpert: A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison",
+      "url": "https://arxiv.org/abs/1901.07031",
+      "source": "arXiv"
+    },
+    {
+      "title": "BioBERT: a pre-trained biomedical language representation model for biomedical text mining",
+      "url": "https://arxiv.org/abs/1901.08746",
+      "source": "arXiv"
+    },
+    {
+      "title": "Publicly Available Clinical BERT Embeddings",
+      "url": "https://arxiv.org/abs/1904.03323",
+      "source": "arXiv"
+    },
+    {
+      "title": "ClinicalBERT: Modeling Clinical Notes and Predicting Hospital Readmission",
+      "url": "https://arxiv.org/abs/1904.05342",
+      "source": "arXiv"
+    },
+    {
+      "title": "Clinical-BERT: Vision-Language Pre-training for Radiograph Diagnosis and Reports Generation",
+      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/20204",
+      "source": "AAAI"
+    },
+    {
+      "title": "Towards Generalist Biomedical AI",
+      "url": "https://arxiv.org/abs/2307.14334",
+      "source": "arXiv"
+    },
+    {
+      "title": "A generalist vision-language foundation model for diverse biomedical tasks",
+      "url": "https://arxiv.org/abs/2305.17100",
+      "source": "arXiv"
+    },
+    {
+      "title": "AgentClinic",
+      "url": "https://www.nature.com/articles/s41746-026-02674-7",
+      "source": "Nature"
+    },
+    {
+      "title": "MDAgents: An Adaptive Collaboration of LLMs for Medical Decision-Making",
+      "url": "https://arxiv.org/abs/2404.15155",
+      "source": "arXiv"
+    },
+    {
+      "title": "MedAgentBench: A Realistic Virtual EHR Environment to Benchmark Medical LLM Agents",
+      "url": "https://arxiv.org/abs/2501.14654",
+      "source": "arXiv"
+    },
+    {
+      "title": "Causal Graph Neural Networks for Healthcare",
+      "url": "https://arxiv.org/abs/2511.02531",
+      "source": "arXiv"
+    },
+    {
+      "title": "A stromal-immune computational pathology signature for prognosis and immune checkpoint inhibitor response in localized, locally advanced and metastatic urothelial carcinoma: A multicenter retrospective study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42585992/",
+      "source": "PubMed"
+    },
+    {
+      "title": "ResidencyRL: Reinforcement Learning in Simulated Clinical Environments",
+      "url": "https://arxiv.org/abs/2608.07418",
+      "source": "arXiv"
+    }
+  ]
+}
