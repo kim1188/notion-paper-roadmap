@@ -804,6 +804,19 @@
       line-height: 1.5;
     }
     .match-preview.visible { display: block; }
+    .import-modal { width: min(700px, 100%); }
+    .import-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+    .import-summary-card { padding: 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); }
+    .import-summary-card strong { display: block; font-size: 20px; }
+    .import-summary-card span { color: var(--ink-soft); font-size: 10px; }
+    .import-panel { display: none; margin-top: 14px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: #fffefa; }
+    .import-panel.visible { display: block; }
+    .import-panel h4 { margin: 0 0 7px; font-size: 12px; }
+    .import-panel p { margin: 5px 0; color: var(--ink-soft); font-size: 10px; line-height: 1.55; }
+    .import-hold-list { max-height: 120px; margin: 8px 0 0; padding-left: 18px; overflow-y: auto; color: #8b5b21; font-size: 10px; }
+    .import-progress-track { height: 8px; margin: 10px 0 6px; overflow: hidden; border-radius: 999px; background: var(--paper-deep); }
+    .import-progress-bar { width: 0; height: 100%; border-radius: inherit; background: var(--deep); transition: width .2s ease; }
+    .paper-shortcuts { display: inline-flex; flex: 0 0 auto; gap: 4px; }
     .field input[type="color"] { height: 42px; padding: 4px; cursor: pointer; }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--deep); box-shadow: 0 0 0 3px rgba(49, 93, 128, .12); }
     .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
@@ -853,6 +866,7 @@
       <nav class="domain-tabs" id="domainTabs" aria-label="분야 로드맵"></nav>
       <div class="header-actions" aria-label="그래프 편집 도구">
         <button class="btn review-toggle" id="candidateToggleBtn" type="button" aria-pressed="false" title="관리자용 후보 데이터 보기">후보 포함</button>
+        <button class="btn" id="importBtn" type="button" title="현재 로드맵을 Notion 후보 데이터로 가져오기">Notion으로 보내기</button>
         <button class="btn icon primary" id="addNodeBtn" aria-label="개념 추가" title="개념 추가"><span aria-hidden="true">＋</span><span class="sr-only">개념 추가</span></button>
         <button class="btn icon" id="addEdgeBtn" aria-label="관계 추가" title="관계 추가"><span aria-hidden="true">↗</span><span class="sr-only">관계 추가</span></button>
         <button class="btn icon" id="exportBtn" aria-label="JSON 백업" title="JSON 백업"><span aria-hidden="true">↓</span><span class="sr-only">JSON 백업</span></button>
@@ -930,6 +944,30 @@
     </form>
   </div>
 
+  <div class="modal-backdrop" id="importModal" role="dialog" aria-modal="true" aria-labelledby="importModalTitle">
+    <div class="modal import-modal">
+      <h3 id="importModalTitle">Notion 후보로 가져오기</h3>
+      <p class="modal-intro">바로 생성하지 않고 기존 3개 DB 전체를 먼저 검색합니다. 실제 쓰기는 미리보기 승인 뒤에만 시작하며 중단되어도 이어갈 수 있습니다.</p>
+      <div class="field">
+        <label for="importScope">가져올 범위</label>
+        <select id="importScope"></select>
+        <small id="importScopeHelp">현재 화면과 선택한 노드에 맞춰 범위를 고를 수 있습니다.</small>
+      </div>
+      <div class="import-panel" id="importPreviewPanel" aria-live="polite"></div>
+      <div class="import-panel" id="importProgressPanel" aria-live="polite">
+        <h4 id="importProgressTitle">가져오기 준비</h4>
+        <div class="import-progress-track"><div class="import-progress-bar" id="importProgressBar"></div></div>
+        <p id="importProgressText"></p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-close-modal="importModal">닫기</button>
+        <button type="button" class="btn" id="downloadImportReceiptBtn" hidden>영수증 다운로드</button>
+        <button type="button" class="btn" id="previewImportBtn">미리보기</button>
+        <button type="button" class="btn primary" id="applyImportBtn" disabled>후보 데이터 생성 승인</button>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status"></div>
 
   <script>
@@ -938,7 +976,10 @@
 
       const STATIC_MODE = true;
       const STORAGE_KEY = 'notion-paper-roadmap-expert-static-v1';
+      const IMPORT_PROGRESS_KEY = 'notion-paper-roadmap-expert-import-v1';
       const ROADMAP_API_URL = '';
+      const IMPORT_PREVIEW_API_URL = /^https?:$/.test(window.location.protocol) ? new URL('/api/import/preview', window.location.href).href : '';
+      const IMPORT_APPLY_API_URL = /^https?:$/.test(window.location.protocol) ? new URL('/api/import/apply', window.location.href).href : '';
       const siblingApiUrl = (name) => ROADMAP_API_URL ? new URL(ROADMAP_API_URL.replace(/\/roadmap(?:\?.*)?$/, `/${name}`)).href : '';
       const DOMAIN_API_URL = siblingApiUrl('domains');
       const PAPER_API_URL = siblingApiUrl('papers');
@@ -5678,6 +5719,10 @@
       let showCandidates = false;
       let availablePapers = [];
       let recommendedLayoutUndo = null;
+      let expertImportPreview = null;
+      let expertImportProgress = null;
+      let expertImportReceipt = [];
+      let expertImportRunning = false;
       let layoutSaveQueue = Promise.resolve(true);
       const edgeAxisCache = new Map();
 
@@ -5764,18 +5809,26 @@
       function paperTitle(paper) { return normalizePaperRecord(paper).title; }
       function paperNotionUrl(paper) { return normalizePaperRecord(paper).notionUrl; }
       function paperSourceUrl(paper) { return normalizePaperRecord(paper).sourceUrl; }
+      function paperExternalKey(paper) {
+        const record = normalizePaperRecord(paper);
+        const doi = record.sourceUrl.match(/(?:doi\.org\/|^doi:)(10\.\d{4,9}\/[^?#\s]+)/i)?.[1];
+        if (doi) return `doi:${doi.toLocaleLowerCase('en-US')}`;
+        const arxiv = record.sourceUrl.match(/arxiv\.org\/(?:abs|pdf)\/([^?#/]+)(?:\.pdf)?/i)?.[1];
+        if (arxiv) return `arxiv:${arxiv.toLocaleLowerCase('en-US')}`;
+        const title = record.title.normalize('NFKC').toLocaleLowerCase('en-US').replace(/[–—−]/g, '-').replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/\s+/g, ' ');
+        return `title:${title}`;
+      }
 
       function renderPaperItem(paper) {
         const record = normalizePaperRecord(paper);
         const title = record.title;
         const sourceUrl = record.sourceUrl;
         const notionUrl = record.notionUrl;
-        const shortcut = sourceUrl
-          ? `<a class="paper-shortcut" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(title)} 원문 열기">원문</a>`
-          : notionUrl
-            ? `<a class="paper-shortcut" href="${escapeHtml(notionUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(title)} 노션 페이지 바로가기">노션</a>`
-            : `<button class="paper-shortcut" type="button" disabled>링크 없음</button>`;
-        return `<div class="paper-item"><span class="paper-item-title">${escapeHtml(title)}</span>${shortcut}</div>`;
+        const shortcuts = [
+          sourceUrl ? `<a class="paper-shortcut" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(title)} 원문 열기">원문</a>` : '',
+          notionUrl ? `<a class="paper-shortcut" href="${escapeHtml(notionUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(title)} 노션 페이지 바로가기">노션</a>` : ''
+        ].filter(Boolean).join('');
+        return `<div class="paper-item"><span class="paper-item-title">${escapeHtml(title)}</span><span class="paper-shortcuts">${shortcuts || '<button class="paper-shortcut" type="button" disabled>링크 없음</button>'}</span></div>`;
       }
 
       function normalizeDomains(savedDomains, nodes = [], includeDefaults = true) {
@@ -6119,6 +6172,231 @@
         }
         sessionStorage.setItem('roadmap-write-key', writeKey);
         return { ok: true, status: response.status, data };
+      }
+
+      function loadImportProgress() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(IMPORT_PROGRESS_KEY) || 'null');
+          return parsed?.batchId && parsed?.approvalToken ? parsed : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function saveImportProgress(progress) {
+        expertImportProgress = progress;
+        if (progress) localStorage.setItem(IMPORT_PROGRESS_KEY, JSON.stringify(progress));
+        else localStorage.removeItem(IMPORT_PROGRESS_KEY);
+      }
+
+      function importScopeRequest() {
+        const value = $('importScope').value;
+        if (value === 'nodes') return { scope: 'nodes', nodeIds: selectedId ? [selectedId] : [] };
+        if (value === 'domain') return { scope: 'domain', domainId: currentDomain };
+        return { scope: 'all' };
+      }
+
+      function populateImportScope() {
+        const options = [];
+        if (selectedId && nodeById(selectedId)) options.push(`<option value="nodes">선택 노드 · ${escapeHtml(nodeById(selectedId).title)}</option>`);
+        if (currentDomain !== 'all') options.push(`<option value="domain">현재 분야 · ${escapeHtml(domainById(currentDomain).name)}</option>`);
+        options.push('<option value="all">전체 전문가 로드맵</option>');
+        $('importScope').innerHTML = options.join('');
+      }
+
+      function importSchemaGapText(schemaGaps = {}) {
+        const labels = { papers: '논문', concepts: '개념', relations: '개념 관계' };
+        return Object.entries(schemaGaps)
+          .filter(([, names]) => Array.isArray(names) && names.length)
+          .map(([key, names]) => `${labels[key]} DB: ${names.join(', ')}`)
+          .join('<br>');
+      }
+
+      function renderImportPreview(result) {
+        const preview = result.preview;
+        const held = preview.concepts.filter((item) => item.action === 'hold');
+        const schemaText = importSchemaGapText(preview.schemaGaps);
+        $('importPreviewPanel').classList.add('visible');
+        $('importPreviewPanel').innerHTML = `
+          <h4>미리보기 결과</h4>
+          <div class="import-summary-grid">
+            <div class="import-summary-card"><strong>${preview.counts.create}</strong><span>신규 후보 생성</span></div>
+            <div class="import-summary-card"><strong>${preview.counts.reuse}</strong><span>기존 페이지 재사용</span></div>
+            <div class="import-summary-card"><strong>${preview.counts.hold}</strong><span>사람 검토 전 보류</span></div>
+          </div>
+          <p>논문 ${preview.counts.papers}편 · 개념 ${preview.counts.concepts}개 · 관계 ${preview.counts.relations}개를 처리합니다.</p>
+          ${schemaText ? `<p><strong>적용 시 자동으로 추가할 추적용 열</strong><br>${schemaText}</p>` : '<p>필요한 추적용 DB 열이 모두 준비되어 있습니다.</p>'}
+          <p>관계는 논문 근거로 자동 확정하지 않고 <strong>로드맵 편집 판단 · 미검토 · 후보</strong>로 생성합니다.</p>
+          ${held.length ? `<h4>자동 생성하지 않을 유사 개념</h4><ul class="import-hold-list">${held.map((item) => `<li>${escapeHtml(item.title)} ↔ ${escapeHtml(item.match?.title || '유사 후보')}</li>`).join('')}</ul>` : ''}`;
+        $('applyImportBtn').disabled = false;
+        $('applyImportBtn').textContent = '후보 데이터 생성 승인';
+      }
+
+      function renderImportProgress() {
+        const progress = expertImportProgress;
+        const panel = $('importProgressPanel');
+        if (!progress) {
+          panel.classList.remove('visible');
+          return;
+        }
+        panel.classList.add('visible');
+        const completed = progress.receipt?.length || 0;
+        const total = progress.total || 1;
+        const percent = Math.min(100, Math.round(completed / total * 100));
+        $('importProgressBar').style.width = `${percent}%`;
+        $('importProgressTitle').textContent = progress.done ? '가져오기 완료' : `가져오는 중 · ${progress.phase}`;
+        $('importProgressText').textContent = `${completed}/${total}개 처리 · 배치 ${progress.batchId}${progress.done ? ' · 모든 새 데이터는 후보 상태입니다.' : ' · 창을 닫아도 다음에 이어집니다.'}`;
+        $('applyImportBtn').disabled = Boolean(progress.done || expertImportRunning);
+        $('applyImportBtn').textContent = progress.done ? '가져오기 완료' : expertImportRunning ? '가져오는 중…' : '중단 지점부터 이어가기';
+        $('downloadImportReceiptBtn').hidden = !progress.done;
+      }
+
+      function mergeImportResult(payload) {
+        for (const result of payload.results || []) {
+          if (result.phase === 'concepts' && result.id) {
+            const node = nodeById(result.key);
+            if (node) {
+              node.notionPageId = result.id;
+              node.notionUrl = safeNotionPageUrl(result.url);
+            }
+          }
+          if (result.phase === 'papers' && result.title && result.id) {
+            state.nodes.forEach((node) => {
+              node.papers = (node.papers || []).map((paper) => {
+                const record = normalizePaperRecord(paper);
+                return paperExternalKey(record) === result.key ? { ...record, notionPageId: result.id, notionUrl: safeNotionPageUrl(result.url) } : record;
+              });
+            });
+          }
+        }
+        saveState('Notion 후보 페이지 연결 저장됨');
+        renderNodes();
+        renderInspector();
+      }
+
+      function mergeImportPreviewLinks(preview) {
+        for (const concept of preview.concepts || []) {
+          if (concept.action !== 'reuse' || !concept.match?.id) continue;
+          const node = nodeById(concept.roadmapId);
+          if (!node) continue;
+          node.notionPageId = concept.match.id;
+          node.notionUrl = safeNotionPageUrl(concept.match.url);
+        }
+        for (const paper of preview.papers || []) {
+          if (paper.action !== 'reuse' || !paper.existing?.id) continue;
+          state.nodes.forEach((node) => {
+            node.papers = (node.papers || []).map((raw) => {
+              const record = normalizePaperRecord(raw);
+              return paperExternalKey(record) === paper.externalKey ? { ...record, notionPageId: paper.existing.id, notionUrl: safeNotionPageUrl(paper.existing.url) } : record;
+            });
+          });
+        }
+        saveState('기존 Notion 페이지 연결 저장됨');
+        renderNodes();
+        renderInspector();
+      }
+
+      async function previewExpertImport() {
+        if (!IMPORT_PREVIEW_API_URL) {
+          showToast('배포된 전문가 로드맵에서 사용할 수 있습니다');
+          return;
+        }
+        $('previewImportBtn').disabled = true;
+        $('applyImportBtn').disabled = true;
+        $('importPreviewPanel').classList.add('visible');
+        $('importPreviewPanel').innerHTML = '<p>Notion 3개 DB 전체를 검색하고 있습니다…</p>';
+        const result = await authorizedRequest(IMPORT_PREVIEW_API_URL, { body: importScopeRequest() }, '가져오기 미리보기를 만들지 못했습니다');
+        $('previewImportBtn').disabled = false;
+        if (!result.ok) return;
+        expertImportPreview = result.data;
+        expertImportReceipt = [];
+        saveImportProgress(null);
+        mergeImportPreviewLinks(result.data.preview);
+        renderImportPreview(result.data);
+      }
+
+      async function applyExpertImport() {
+        if (expertImportRunning) return;
+        if (!expertImportProgress) {
+          if (!expertImportPreview) return;
+          const counts = expertImportPreview.preview.counts;
+          if (!confirm(`신규 ${counts.create}건을 후보로 만들고 기존 ${counts.reuse}건을 재사용할까요? 보류 ${counts.hold}건은 자동 생성하지 않습니다.`)) return;
+          const total = counts.papers * 2 + counts.concepts + counts.relations;
+          saveImportProgress({
+            batchId: expertImportPreview.batchId,
+            approvalToken: expertImportPreview.approvalToken,
+            phase: 'papers',
+            cursor: 0,
+            total,
+            receipt: [],
+            done: false,
+            startedAt: new Date().toISOString()
+          });
+        }
+        expertImportRunning = true;
+        renderImportProgress();
+        try {
+          while (!expertImportProgress.done) {
+            const result = await authorizedRequest(IMPORT_APPLY_API_URL, { body: {
+              batchId: expertImportProgress.batchId,
+              approvalToken: expertImportProgress.approvalToken,
+              phase: expertImportProgress.phase,
+              cursor: expertImportProgress.cursor
+            } }, 'Notion 가져오기가 중단되었습니다');
+            if (!result.ok) throw new Error(result.data?.error || 'IMPORT_APPLY_FAILED');
+            mergeImportResult(result.data);
+            const next = result.data.next;
+            const progress = {
+              ...expertImportProgress,
+              phase: next.phase,
+              cursor: next.cursor,
+              done: Boolean(next.done),
+              receipt: [...(expertImportProgress.receipt || []), ...(result.data.results || [])],
+              updatedAt: new Date().toISOString()
+            };
+            saveImportProgress(progress);
+            renderImportProgress();
+            if (!next.done) await new Promise((resolve) => setTimeout(resolve, 180));
+          }
+          expertImportReceipt = expertImportProgress.receipt;
+          showToast('Notion 후보 가져오기를 완료했습니다');
+        } catch (error) {
+          console.warn('Expert roadmap import paused', error);
+          showToast('가져오기가 일시 중단되었습니다 · 다시 눌러 이어갈 수 있습니다');
+        } finally {
+          expertImportRunning = false;
+          renderImportProgress();
+        }
+      }
+
+      function downloadImportReceipt() {
+        const progress = expertImportProgress;
+        if (!progress?.done) return;
+        const receipt = {
+          batchId: progress.batchId,
+          startedAt: progress.startedAt,
+          completedAt: progress.updatedAt,
+          results: progress.receipt
+        };
+        const blob = new Blob([JSON.stringify(receipt, null, 2)], { type: 'application/json' });
+        const anchor = document.createElement('a');
+        anchor.href = URL.createObjectURL(blob);
+        anchor.download = `${progress.batchId}-receipt.json`;
+        anchor.click();
+        URL.revokeObjectURL(anchor.href);
+      }
+
+      function openImportModal() {
+        populateImportScope();
+        expertImportProgress = loadImportProgress();
+        expertImportReceipt = expertImportProgress?.receipt || [];
+        expertImportPreview = null;
+        $('importPreviewPanel').classList.remove('visible');
+        $('applyImportBtn').disabled = !expertImportProgress || Boolean(expertImportProgress.done);
+        $('applyImportBtn').textContent = expertImportProgress ? '중단 지점부터 이어가기' : '후보 데이터 생성 승인';
+        $('downloadImportReceiptBtn').hidden = !expertImportProgress?.done;
+        renderImportProgress();
+        openModal('importModal');
       }
 
       async function addRemoteDomain(formData) {
@@ -6736,11 +7014,11 @@
           <div class="paper-list">${(node.papers || []).map(renderPaperItem).join('')}</div>
           <div class="section-label">관계</div>
           <div class="relation-stats"><div class="stat"><strong>${incoming}</strong><span>들어오는 관계</span></div><div class="stat"><strong>${outgoing}</strong><span>나가는 관계</span></div></div>
-          <div class="inspector-actions"><button class="btn" id="focusSelectedBtn">화면 중앙</button>${STATIC_MODE ? '' : notionSyncEnabled ? '<button class="btn" id="editInNotionBtn">Notion에서 편집</button>' : '<button class="btn danger" id="deleteSelectedBtn">노드 삭제</button>'}</div>`;
+          <div class="inspector-actions"><button class="btn" id="focusSelectedBtn">화면 중앙</button>${STATIC_MODE ? (safeNotionPageUrl(node.notionUrl) ? '<button class="btn" id="editInNotionBtn">Notion에서 열기</button>' : '') : notionSyncEnabled ? '<button class="btn" id="editInNotionBtn">Notion에서 편집</button>' : '<button class="btn danger" id="deleteSelectedBtn">노드 삭제</button>'}</div>`;
         $('inspectorCloseBtn').addEventListener('click', () => setInspectorOpen(false));
         $('focusSelectedBtn').addEventListener('click', () => focusNode(node.id));
         if (STATIC_MODE) {
-          // 정적 전문가판에서는 그래프 탐색과 개인 배치만 허용한다.
+          if ($('editInNotionBtn')) $('editInNotionBtn').addEventListener('click', () => window.open(safeNotionPageUrl(node.notionUrl), '_blank', 'noopener,noreferrer'));
         } else if (notionSyncEnabled) $('editInNotionBtn').addEventListener('click', () => {
           const notionUrl = safeNotionPageUrl(node.notionUrl);
           if (notionUrl) window.open(notionUrl, '_blank', 'noopener,noreferrer');
@@ -7353,6 +7631,10 @@
         updateCandidateToggle();
         await syncFromNotion({ force: true });
       });
+      $('importBtn').addEventListener('click', openImportModal);
+      $('previewImportBtn').addEventListener('click', previewExpertImport);
+      $('applyImportBtn').addEventListener('click', applyExpertImport);
+      $('downloadImportReceiptBtn').addEventListener('click', downloadImportReceipt);
       $('exportBtn').addEventListener('click', exportJson);
       $('resetBtn').addEventListener('click', handleLayoutAction);
       $('backBtn').addEventListener('click', goBack);

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/notion-paper-roadmap-prototype.html" }
+  ],
+  "headers": [
+    {
+      "source": "/notion-paper-roadmap-prototype.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/expert-paper-roadmap.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}

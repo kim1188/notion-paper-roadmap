@@ -1,0 +1,12 @@
+{
+  "name": "notion-paper-roadmap",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:import-manifest": "node scripts/build-expert-import-manifest.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

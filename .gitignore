@@ -1,0 +1,9 @@
+.vercel/
+node_modules/
+.DS_Store
+.env
+.env.*
+*.png
+*.pdf
+*.md
+!README.md

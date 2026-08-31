@@ -1,0 +1,6426 @@
+{
+  "version": 1,
+  "sourceVersion": 3,
+  "asOf": "2026-09-01",
+  "templateVersion": "paper-atlas-import-v1",
+  "policy": {
+    "defaultValidationStatus": "후보",
+    "conceptMatchValues": [
+      "SAME",
+      "RELATED_DISTINCT",
+      "UNSURE"
+    ],
+    "relationEvidencePolicy": "로드맵의 학습 순서는 논문 근거로 가장하지 않고 미검토 편집 판단으로 등록한다."
+  },
+  "domains": [
+    {
+      "id": "opt",
+      "name": "최적화",
+      "color": "#7a5269"
+    },
+    {
+      "id": "deep",
+      "name": "딥러닝",
+      "color": "#315d80"
+    },
+    {
+      "id": "ssl",
+      "name": "자기지도학습",
+      "color": "#3f7d6b"
+    },
+    {
+      "id": "vision",
+      "name": "컴퓨터비전",
+      "color": "#4f6f9a"
+    },
+    {
+      "id": "generative",
+      "name": "생성모델",
+      "color": "#a65d42"
+    },
+    {
+      "id": "nlp",
+      "name": "NLP",
+      "color": "#86684b"
+    },
+    {
+      "id": "llm",
+      "name": "LLM",
+      "color": "#6f5b8f"
+    },
+    {
+      "id": "rl",
+      "name": "강화학습",
+      "color": "#b96d32"
+    },
+    {
+      "id": "world",
+      "name": "월드모델",
+      "color": "#596b7a"
+    },
+    {
+      "id": "robot",
+      "name": "로봇공학",
+      "color": "#64724c"
+    },
+    {
+      "id": "graph",
+      "name": "그래프 ML",
+      "color": "#2f7c79"
+    },
+    {
+      "id": "agent",
+      "name": "에이전트",
+      "color": "#8a5a86"
+    },
+    {
+      "id": "medical",
+      "name": "의료 AI",
+      "color": "#8d4554"
+    }
+  ],
+  "papers": [
+    {
+      "externalKey": "title:on the importance of initialization and momentum in deep learning",
+      "title": "On the importance of initialization and momentum in deep learning",
+      "originalUrl": "https://proceedings.mlr.press/v28/sutskever13.html",
+      "source": "PMLR",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 1,
+      "roadmapConceptIds": [
+        "opt-sgd"
+      ]
+    },
+    {
+      "externalKey": "title:adaptive subgradient methods for online learning and stochastic optimization",
+      "title": "Adaptive Subgradient Methods for Online Learning and Stochastic Optimization",
+      "originalUrl": "https://jmlr.org/papers/v12/duchi11a.html",
+      "source": "JMLR",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 2,
+      "roadmapConceptIds": [
+        "opt-adaptive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1412.6980",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "originalUrl": "https://arxiv.org/abs/1412.6980",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1412.6980",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 3,
+      "roadmapConceptIds": [
+        "opt-adam"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1711.05101",
+      "title": "Decoupled Weight Decay Regularization",
+      "originalUrl": "https://arxiv.org/abs/1711.05101",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1711.05101",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 4,
+      "roadmapConceptIds": [
+        "opt-adamw"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1503.05671",
+      "title": "Optimizing Neural Networks with Kronecker-factored Approximate Curvature",
+      "originalUrl": "https://arxiv.org/abs/1503.05671",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1503.05671",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 5,
+      "roadmapConceptIds": [
+        "opt-curvature"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1802.09568",
+      "title": "Shampoo: Preconditioned Stochastic Tensor Optimization",
+      "originalUrl": "https://arxiv.org/abs/1802.09568",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1802.09568",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 5,
+      "roadmapConceptIds": [
+        "opt-curvature"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1706.02677",
+      "title": "Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour",
+      "originalUrl": "https://arxiv.org/abs/1706.02677",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1706.02677",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 6,
+      "roadmapConceptIds": [
+        "opt-scale"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1710.03740",
+      "title": "Mixed Precision Training",
+      "originalUrl": "https://arxiv.org/abs/1710.03740",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1710.03740",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 6,
+      "roadmapConceptIds": [
+        "opt-scale"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2606.16899",
+      "title": "Fantastic Pretraining Optimizers and Where to Find Them II: Hyperball Optimization",
+      "originalUrl": "https://arxiv.org/abs/2606.16899",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2606.16899",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 7,
+      "roadmapConceptIds": [
+        "opt-frontier"
+      ]
+    },
+    {
+      "externalKey": "title:muon an optimizer for hidden layers in neural networks",
+      "title": "Muon: An optimizer for hidden layers in neural networks",
+      "originalUrl": "https://kellerjordan.github.io/posts/muon/",
+      "source": "원문",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 7,
+      "roadmapConceptIds": [
+        "opt-frontier"
+      ]
+    },
+    {
+      "externalKey": "doi:10.1038/323533a0",
+      "title": "Learning representations by back-propagating errors",
+      "originalUrl": "https://doi.org/10.1038/323533a0",
+      "source": "DOI",
+      "doi": "10.1038/323533a0",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 8,
+      "roadmapConceptIds": [
+        "dl-backprop"
+      ]
+    },
+    {
+      "externalKey": "title:dropout a simple way to prevent neural networks from overfitting",
+      "title": "Dropout: A Simple Way to Prevent Neural Networks from Overfitting",
+      "originalUrl": "https://jmlr.org/papers/v15/srivastava14a.html",
+      "source": "JMLR",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 9,
+      "roadmapConceptIds": [
+        "dl-generalization"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1502.03167",
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "originalUrl": "https://arxiv.org/abs/1502.03167",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1502.03167",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 10,
+      "roadmapConceptIds": [
+        "dl-normalization"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1607.06450",
+      "title": "Layer Normalization",
+      "originalUrl": "https://arxiv.org/abs/1607.06450",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1607.06450",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 10,
+      "roadmapConceptIds": [
+        "dl-normalization"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1409.4842",
+      "title": "Going Deeper with Convolutions",
+      "originalUrl": "https://arxiv.org/abs/1409.4842",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1409.4842",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 11,
+      "roadmapConceptIds": [
+        "dl-cnn"
+      ]
+    },
+    {
+      "externalKey": "title:imagenet classification with deep convolutional neural networks",
+      "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+      "originalUrl": "https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+      "source": "NeurIPS",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 11,
+      "roadmapConceptIds": [
+        "dl-cnn"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1409.1556",
+      "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+      "originalUrl": "https://arxiv.org/abs/1409.1556",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1409.1556",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 11,
+      "roadmapConceptIds": [
+        "dl-cnn"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1512.03385",
+      "title": "Deep Residual Learning for Image Recognition",
+      "originalUrl": "https://arxiv.org/abs/1512.03385",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1512.03385",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 12,
+      "roadmapConceptIds": [
+        "dl-resnet"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1603.05027",
+      "title": "Identity Mappings in Deep Residual Networks",
+      "originalUrl": "https://arxiv.org/abs/1603.05027",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1603.05027",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 12,
+      "roadmapConceptIds": [
+        "dl-resnet"
+      ]
+    },
+    {
+      "externalKey": "doi:10.1162/neco.1997.9.8.1735",
+      "title": "Long Short-Term Memory",
+      "originalUrl": "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "source": "DOI",
+      "doi": "10.1162/neco.1997.9.8.1735",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 13,
+      "roadmapConceptIds": [
+        "dl-rnn"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1409.2329",
+      "title": "Recurrent Neural Network Regularization",
+      "originalUrl": "https://arxiv.org/abs/1409.2329",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1409.2329",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 13,
+      "roadmapConceptIds": [
+        "dl-rnn"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1706.03762",
+      "title": "Attention Is All You Need",
+      "originalUrl": "https://arxiv.org/abs/1706.03762",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1706.03762",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 14,
+      "roadmapConceptIds": [
+        "dl-transformer"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1409.0473",
+      "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+      "originalUrl": "https://arxiv.org/abs/1409.0473",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1409.0473",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 14,
+      "roadmapConceptIds": [
+        "dl-transformer",
+        "nlp-seq2seq"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2002.05709",
+      "title": "A Simple Framework for Contrastive Learning of Visual Representations",
+      "originalUrl": "https://arxiv.org/abs/2002.05709",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2002.05709",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 15,
+      "roadmapConceptIds": [
+        "ssl-contrastive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1911.05722",
+      "title": "Momentum Contrast for Unsupervised Visual Representation Learning",
+      "originalUrl": "https://arxiv.org/abs/1911.05722",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1911.05722",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 15,
+      "roadmapConceptIds": [
+        "ssl-contrastive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1807.03748",
+      "title": "Representation Learning with Contrastive Predictive Coding",
+      "originalUrl": "https://arxiv.org/abs/1807.03748",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1807.03748",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 15,
+      "roadmapConceptIds": [
+        "ssl-contrastive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2006.07733",
+      "title": "Bootstrap Your Own Latent",
+      "originalUrl": "https://arxiv.org/abs/2006.07733",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2006.07733",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 16,
+      "roadmapConceptIds": [
+        "ssl-noncontrastive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2111.06377",
+      "title": "Masked Autoencoders Are Scalable Vision Learners",
+      "originalUrl": "https://arxiv.org/abs/2111.06377",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2111.06377",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 17,
+      "roadmapConceptIds": [
+        "ssl-masked"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2304.07193",
+      "title": "DINOv2: Learning Robust Visual Features without Supervision",
+      "originalUrl": "https://arxiv.org/abs/2304.07193",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2304.07193",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 18,
+      "roadmapConceptIds": [
+        "ssl-foundation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1506.01497",
+      "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+      "originalUrl": "https://arxiv.org/abs/1506.01497",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1506.01497",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 19,
+      "roadmapConceptIds": [
+        "cv-detection"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1703.06870",
+      "title": "Mask R-CNN",
+      "originalUrl": "https://arxiv.org/abs/1703.06870",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1703.06870",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 19,
+      "roadmapConceptIds": [
+        "cv-detection"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1506.02640",
+      "title": "You Only Look Once: Unified, Real-Time Object Detection",
+      "originalUrl": "https://arxiv.org/abs/1506.02640",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1506.02640",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 19,
+      "roadmapConceptIds": [
+        "cv-detection"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1605.06211",
+      "title": "Fully Convolutional Networks for Semantic Segmentation",
+      "originalUrl": "https://arxiv.org/abs/1605.06211",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1605.06211",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 20,
+      "roadmapConceptIds": [
+        "cv-segmentation"
+      ]
+    },
+    {
+      "externalKey": "title:nnu net a self configuring method for deep learning based biomedical image segmentation",
+      "title": "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation",
+      "originalUrl": "https://www.nature.com/articles/s41592-020-01008-z",
+      "source": "Nature",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 20,
+      "roadmapConceptIds": [
+        "cv-segmentation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1706.05587",
+      "title": "Rethinking Atrous Convolution for Semantic Image Segmentation",
+      "originalUrl": "https://arxiv.org/abs/1706.05587",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1706.05587",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 20,
+      "roadmapConceptIds": [
+        "cv-segmentation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1505.04597",
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "originalUrl": "https://arxiv.org/abs/1505.04597",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1505.04597",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 20,
+      "roadmapConceptIds": [
+        "cv-segmentation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2010.11929",
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "originalUrl": "https://arxiv.org/abs/2010.11929",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2010.11929",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 21,
+      "roadmapConceptIds": [
+        "cv-vit"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2005.12872",
+      "title": "End-to-End Object Detection with Transformers",
+      "originalUrl": "https://arxiv.org/abs/2005.12872",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2005.12872",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 22,
+      "roadmapConceptIds": [
+        "cv-transformer"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2103.14030",
+      "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
+      "originalUrl": "https://arxiv.org/abs/2103.14030",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2103.14030",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 22,
+      "roadmapConceptIds": [
+        "cv-transformer"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2304.02643",
+      "title": "Segment Anything",
+      "originalUrl": "https://arxiv.org/abs/2304.02643",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2304.02643",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 23,
+      "roadmapConceptIds": [
+        "cv-foundation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2304.12306",
+      "title": "Segment Anything in Medical Images",
+      "originalUrl": "https://arxiv.org/abs/2304.12306",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2304.12306",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 23,
+      "roadmapConceptIds": [
+        "cv-foundation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1312.6114",
+      "title": "Auto-Encoding Variational Bayes",
+      "originalUrl": "https://arxiv.org/abs/1312.6114",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1312.6114",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 24,
+      "roadmapConceptIds": [
+        "gen-vae"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1611.02731",
+      "title": "Variational Lossy Autoencoder",
+      "originalUrl": "https://arxiv.org/abs/1611.02731",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1611.02731",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 24,
+      "roadmapConceptIds": [
+        "gen-vae"
+      ]
+    },
+    {
+      "externalKey": "title:generative adversarial nets",
+      "title": "Generative Adversarial Nets",
+      "originalUrl": "https://proceedings.neurips.cc/paper/2014/hash/f033ed80deb0234979a61f95710dbe25-Abstract.html",
+      "source": "NeurIPS",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 25,
+      "roadmapConceptIds": [
+        "gen-gan"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1601.06759",
+      "title": "Pixel Recurrent Neural Networks",
+      "originalUrl": "https://arxiv.org/abs/1601.06759",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1601.06759",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 26,
+      "roadmapConceptIds": [
+        "gen-autoregressive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1605.08803",
+      "title": "Density Estimation using Real NVP",
+      "originalUrl": "https://arxiv.org/abs/1605.08803",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1605.08803",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 27,
+      "roadmapConceptIds": [
+        "gen-flow"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2210.02747",
+      "title": "Flow Matching for Generative Modeling",
+      "originalUrl": "https://arxiv.org/abs/2210.02747",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2210.02747",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 27,
+      "roadmapConceptIds": [
+        "gen-flow"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1503.03585",
+      "title": "Deep Unsupervised Learning using Nonequilibrium Thermodynamics",
+      "originalUrl": "https://arxiv.org/abs/1503.03585",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1503.03585",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 28,
+      "roadmapConceptIds": [
+        "gen-diffusion"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2006.11239",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "originalUrl": "https://arxiv.org/abs/2006.11239",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2006.11239",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 28,
+      "roadmapConceptIds": [
+        "gen-diffusion"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2011.13456",
+      "title": "Score-Based Generative Modeling through Stochastic Differential Equations",
+      "originalUrl": "https://arxiv.org/abs/2011.13456",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2011.13456",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 29,
+      "roadmapConceptIds": [
+        "gen-scoreflow"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2207.12598",
+      "title": "Classifier-Free Diffusion Guidance",
+      "originalUrl": "https://arxiv.org/abs/2207.12598",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2207.12598",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 30,
+      "roadmapConceptIds": [
+        "gen-conditioned"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2112.10752",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "originalUrl": "https://arxiv.org/abs/2112.10752",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2112.10752",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 30,
+      "roadmapConceptIds": [
+        "gen-conditioned"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2205.14217",
+      "title": "Diffusion-LM Improves Controllable Text Generation",
+      "originalUrl": "https://arxiv.org/abs/2205.14217",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2205.14217",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 31,
+      "roadmapConceptIds": [
+        "gen-language"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2502.09992",
+      "title": "Large Language Diffusion Models",
+      "originalUrl": "https://arxiv.org/abs/2502.09992",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2502.09992",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 31,
+      "roadmapConceptIds": [
+        "gen-language"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1301.3781",
+      "title": "Efficient Estimation of Word Representations in Vector Space",
+      "originalUrl": "https://arxiv.org/abs/1301.3781",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1301.3781",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 32,
+      "roadmapConceptIds": [
+        "nlp-word"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1409.3215",
+      "title": "Sequence to Sequence Learning with Neural Networks",
+      "originalUrl": "https://arxiv.org/abs/1409.3215",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1409.3215",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 33,
+      "roadmapConceptIds": [
+        "nlp-seq2seq"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1810.04805",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "originalUrl": "https://arxiv.org/abs/1810.04805",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1810.04805",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 34,
+      "roadmapConceptIds": [
+        "llm-encoder"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2003.10555",
+      "title": "ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators",
+      "originalUrl": "https://arxiv.org/abs/2003.10555",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2003.10555",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 34,
+      "roadmapConceptIds": [
+        "llm-encoder"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1907.11692",
+      "title": "RoBERTa: A Robustly Optimized BERT Pretraining Approach",
+      "originalUrl": "https://arxiv.org/abs/1907.11692",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1907.11692",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 34,
+      "roadmapConceptIds": [
+        "llm-encoder"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1910.13461",
+      "title": "BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension",
+      "originalUrl": "https://arxiv.org/abs/1910.13461",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1910.13461",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 35,
+      "roadmapConceptIds": [
+        "llm-encdec"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1910.10683",
+      "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "originalUrl": "https://arxiv.org/abs/1910.10683",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1910.10683",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 35,
+      "roadmapConceptIds": [
+        "llm-encdec"
+      ]
+    },
+    {
+      "externalKey": "title:improving language understanding by generative pre training",
+      "title": "Improving Language Understanding by Generative Pre-Training",
+      "originalUrl": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf",
+      "source": "OpenAI",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 36,
+      "roadmapConceptIds": [
+        "llm-decoder"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2005.14165",
+      "title": "Language Models are Few-Shot Learners",
+      "originalUrl": "https://arxiv.org/abs/2005.14165",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2005.14165",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 36,
+      "roadmapConceptIds": [
+        "llm-decoder"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2302.13971",
+      "title": "LLaMA: Open and Efficient Foundation Language Models",
+      "originalUrl": "https://arxiv.org/abs/2302.13971",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2302.13971",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 36,
+      "roadmapConceptIds": [
+        "llm-decoder"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2001.08361",
+      "title": "Scaling Laws for Neural Language Models",
+      "originalUrl": "https://arxiv.org/abs/2001.08361",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2001.08361",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 37,
+      "roadmapConceptIds": [
+        "llm-scaling"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2203.15556",
+      "title": "Training Compute-Optimal Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2203.15556",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2203.15556",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 37,
+      "roadmapConceptIds": [
+        "llm-scaling"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2109.01652",
+      "title": "Finetuned Language Models Are Zero-Shot Learners",
+      "originalUrl": "https://arxiv.org/abs/2109.01652",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2109.01652",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 38,
+      "roadmapConceptIds": [
+        "llm-instruction"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2210.11416",
+      "title": "Scaling Instruction-Finetuned Language Models",
+      "originalUrl": "https://arxiv.org/abs/2210.11416",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2210.11416",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 38,
+      "roadmapConceptIds": [
+        "llm-instruction"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2106.09685",
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2106.09685",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2106.09685",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 39,
+      "roadmapConceptIds": [
+        "llm-peft"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1902.00751",
+      "title": "Parameter-Efficient Transfer Learning for NLP",
+      "originalUrl": "https://arxiv.org/abs/1902.00751",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1902.00751",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 39,
+      "roadmapConceptIds": [
+        "llm-peft"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2101.00190",
+      "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation",
+      "originalUrl": "https://arxiv.org/abs/2101.00190",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2101.00190",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 39,
+      "roadmapConceptIds": [
+        "llm-peft"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2305.14314",
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+      "originalUrl": "https://arxiv.org/abs/2305.14314",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2305.14314",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 39,
+      "roadmapConceptIds": [
+        "llm-peft"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2104.08691",
+      "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
+      "originalUrl": "https://arxiv.org/abs/2104.08691",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2104.08691",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 39,
+      "roadmapConceptIds": [
+        "llm-peft"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2004.12832",
+      "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "originalUrl": "https://arxiv.org/abs/2004.12832",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2004.12832",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 40,
+      "roadmapConceptIds": [
+        "llm-retrieval"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2004.04906",
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "originalUrl": "https://arxiv.org/abs/2004.04906",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2004.04906",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 40,
+      "roadmapConceptIds": [
+        "llm-retrieval"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2401.00368",
+      "title": "Improving Text Embeddings with Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2401.00368",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2401.00368",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 40,
+      "roadmapConceptIds": [
+        "llm-retrieval"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2405.17428",
+      "title": "NV-Embed",
+      "originalUrl": "https://arxiv.org/abs/2405.17428",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2405.17428",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 40,
+      "roadmapConceptIds": [
+        "llm-retrieval"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2112.04426",
+      "title": "Improving Language Models by Retrieving from Trillions of Tokens",
+      "originalUrl": "https://arxiv.org/abs/2112.04426",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2112.04426",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 41,
+      "roadmapConceptIds": [
+        "llm-rag"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2002.08909",
+      "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+      "originalUrl": "https://arxiv.org/abs/2002.08909",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2002.08909",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 41,
+      "roadmapConceptIds": [
+        "llm-rag"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2005.11401",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "originalUrl": "https://arxiv.org/abs/2005.11401",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2005.11401",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 41,
+      "roadmapConceptIds": [
+        "llm-rag"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2310.11511",
+      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "originalUrl": "https://arxiv.org/abs/2310.11511",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2310.11511",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 41,
+      "roadmapConceptIds": [
+        "llm-rag"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2201.11903",
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2201.11903",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2201.11903",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 42,
+      "roadmapConceptIds": [
+        "llm-reasoning"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2203.11171",
+      "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+      "originalUrl": "https://arxiv.org/abs/2203.11171",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2203.11171",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 42,
+      "roadmapConceptIds": [
+        "llm-reasoning"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2305.10601",
+      "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2305.10601",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2305.10601",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 42,
+      "roadmapConceptIds": [
+        "llm-reasoning"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1706.03741",
+      "title": "Deep Reinforcement Learning from Human Preferences",
+      "originalUrl": "https://arxiv.org/abs/1706.03741",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1706.03741",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 43,
+      "roadmapConceptIds": [
+        "rl-preference"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2203.02155",
+      "title": "Training language models to follow instructions with human feedback",
+      "originalUrl": "https://arxiv.org/abs/2203.02155",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2203.02155",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 43,
+      "roadmapConceptIds": [
+        "rl-preference"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2305.18290",
+      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "originalUrl": "https://arxiv.org/abs/2305.18290",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2305.18290",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 44,
+      "roadmapConceptIds": [
+        "llm-dpo"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2503.14476",
+      "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+      "originalUrl": "https://arxiv.org/abs/2503.14476",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2503.14476",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 45,
+      "roadmapConceptIds": [
+        "llm-reasoning-rl"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2402.03300",
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "originalUrl": "https://arxiv.org/abs/2402.03300",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2402.03300",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 45,
+      "roadmapConceptIds": [
+        "llm-reasoning-rl"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2309.17453",
+      "title": "Efficient Streaming Language Models with Attention Sinks",
+      "originalUrl": "https://arxiv.org/abs/2309.17453",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2309.17453",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 46,
+      "roadmapConceptIds": [
+        "llm-attn-efficiency"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2205.14135",
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "originalUrl": "https://arxiv.org/abs/2205.14135",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2205.14135",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 46,
+      "roadmapConceptIds": [
+        "llm-attn-efficiency"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2104.09864",
+      "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
+      "originalUrl": "https://arxiv.org/abs/2104.09864",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2104.09864",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 46,
+      "roadmapConceptIds": [
+        "llm-attn-efficiency"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2502.07864",
+      "title": "TransMLA: Multi-Head Latent Attention Is All You Need",
+      "originalUrl": "https://arxiv.org/abs/2502.07864",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2502.07864",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 46,
+      "roadmapConceptIds": [
+        "llm-attn-efficiency"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2405.04434",
+      "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",
+      "originalUrl": "https://arxiv.org/abs/2405.04434",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2405.04434",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 47,
+      "roadmapConceptIds": [
+        "llm-moe"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1701.06538",
+      "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+      "originalUrl": "https://arxiv.org/abs/1701.06538",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1701.06538",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 47,
+      "roadmapConceptIds": [
+        "llm-moe"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2101.03961",
+      "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+      "originalUrl": "https://arxiv.org/abs/2101.03961",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2101.03961",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 47,
+      "roadmapConceptIds": [
+        "llm-moe"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2111.00396",
+      "title": "Efficiently Modeling Long Sequences with Structured State Spaces",
+      "originalUrl": "https://arxiv.org/abs/2111.00396",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2111.00396",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 48,
+      "roadmapConceptIds": [
+        "llm-alt-sequence"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2102.11174",
+      "title": "Linear Transformers Are Secretly Fast Weight Programmers",
+      "originalUrl": "https://arxiv.org/abs/2102.11174",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2102.11174",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 48,
+      "roadmapConceptIds": [
+        "llm-alt-sequence"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2312.00752",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "originalUrl": "https://arxiv.org/abs/2312.00752",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2312.00752",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 48,
+      "roadmapConceptIds": [
+        "llm-alt-sequence"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2406.06484",
+      "title": "Parallelizing Linear Transformers with the Delta Rule over Sequence Length",
+      "originalUrl": "https://arxiv.org/abs/2406.06484",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2406.06484",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 48,
+      "roadmapConceptIds": [
+        "llm-alt-sequence"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2110.11309",
+      "title": "Fast Model Editing at Scale",
+      "originalUrl": "https://arxiv.org/abs/2110.11309",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2110.11309",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 49,
+      "roadmapConceptIds": [
+        "llm-editing"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2202.05262",
+      "title": "Locating and Editing Factual Associations in GPT",
+      "originalUrl": "https://arxiv.org/abs/2202.05262",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2202.05262",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 49,
+      "roadmapConceptIds": [
+        "llm-editing"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2210.07229",
+      "title": "Mass-Editing Memory in a Transformer",
+      "originalUrl": "https://arxiv.org/abs/2210.07229",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2210.07229",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 49,
+      "roadmapConceptIds": [
+        "llm-editing"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2502.17424",
+      "title": "Emergent Misalignment",
+      "originalUrl": "https://arxiv.org/abs/2502.17424",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2502.17424",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 50,
+      "roadmapConceptIds": [
+        "llm-interpretability"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2406.04093",
+      "title": "Scaling and Evaluating Sparse Autoencoders",
+      "originalUrl": "https://arxiv.org/abs/2406.04093",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2406.04093",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 50,
+      "roadmapConceptIds": [
+        "llm-interpretability"
+      ]
+    },
+    {
+      "externalKey": "title:sparse crosscoders for cross layer features and model diffing",
+      "title": "Sparse Crosscoders for Cross-Layer Features and Model Diffing",
+      "originalUrl": "https://transformer-circuits.pub/2024/crosscoders/",
+      "source": "Transformer Circuits",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 50,
+      "roadmapConceptIds": [
+        "llm-interpretability"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2601.16175",
+      "title": "Learning to Discover at Test Time",
+      "originalUrl": "https://arxiv.org/abs/2601.16175",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2601.16175",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 51,
+      "roadmapConceptIds": [
+        "llm-test-time"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2408.03314",
+      "title": "Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Model Parameters",
+      "originalUrl": "https://arxiv.org/abs/2408.03314",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2408.03314",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 51,
+      "roadmapConceptIds": [
+        "llm-test-time"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2510.22954",
+      "title": "Artificial Hivemind: The Open-Ended Homogeneity of Language Models",
+      "originalUrl": "https://arxiv.org/abs/2510.22954",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2510.22954",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 52,
+      "roadmapConceptIds": [
+        "llm-frontier"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2512.02556",
+      "title": "DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2512.02556",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2512.02556",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 52,
+      "roadmapConceptIds": [
+        "llm-frontier"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2411.04330",
+      "title": "Scaling Laws for Precision",
+      "originalUrl": "https://arxiv.org/abs/2411.04330",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2411.04330",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 52,
+      "roadmapConceptIds": [
+        "llm-frontier"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2412.05265",
+      "title": "Reinforcement Learning: An Overview",
+      "originalUrl": "https://arxiv.org/abs/2412.05265",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2412.05265",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 53,
+      "roadmapConceptIds": [
+        "rl-mdp"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1509.06461",
+      "title": "Deep Reinforcement Learning with Double Q-learning",
+      "originalUrl": "https://arxiv.org/abs/1509.06461",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1509.06461",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 54,
+      "roadmapConceptIds": [
+        "rl-value"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1511.06581",
+      "title": "Dueling Network Architectures for Deep Reinforcement Learning",
+      "originalUrl": "https://arxiv.org/abs/1511.06581",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1511.06581",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 54,
+      "roadmapConceptIds": [
+        "rl-value"
+      ]
+    },
+    {
+      "externalKey": "title:human level control through deep reinforcement learning",
+      "title": "Human-level control through deep reinforcement learning",
+      "originalUrl": "https://www.nature.com/articles/nature14236",
+      "source": "Nature",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 54,
+      "roadmapConceptIds": [
+        "rl-value"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1511.05952",
+      "title": "Prioritized Experience Replay",
+      "originalUrl": "https://arxiv.org/abs/1511.05952",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1511.05952",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 54,
+      "roadmapConceptIds": [
+        "rl-value"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1710.02298",
+      "title": "Rainbow: Combining Improvements in Deep Reinforcement Learning",
+      "originalUrl": "https://arxiv.org/abs/1710.02298",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1710.02298",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 54,
+      "roadmapConceptIds": [
+        "rl-value"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1602.01783",
+      "title": "Asynchronous Methods for Deep Reinforcement Learning",
+      "originalUrl": "https://arxiv.org/abs/1602.01783",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1602.01783",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 55,
+      "roadmapConceptIds": [
+        "rl-actorcritic"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1506.02438",
+      "title": "High-Dimensional Continuous Control Using Generalized Advantage Estimation",
+      "originalUrl": "https://arxiv.org/abs/1506.02438",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1506.02438",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 55,
+      "roadmapConceptIds": [
+        "rl-actorcritic"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1707.06347",
+      "title": "Proximal Policy Optimization Algorithms",
+      "originalUrl": "https://arxiv.org/abs/1707.06347",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1707.06347",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 56,
+      "roadmapConceptIds": [
+        "rl-ppo"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1502.05477",
+      "title": "Trust Region Policy Optimization",
+      "originalUrl": "https://arxiv.org/abs/1502.05477",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1502.05477",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 56,
+      "roadmapConceptIds": [
+        "rl-ppo"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1802.09477",
+      "title": "Addressing Function Approximation Error in Actor-Critic Methods",
+      "originalUrl": "https://arxiv.org/abs/1802.09477",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1802.09477",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 57,
+      "roadmapConceptIds": [
+        "rl-continuous"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1509.02971",
+      "title": "Continuous Control with Deep Reinforcement Learning",
+      "originalUrl": "https://arxiv.org/abs/1509.02971",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1509.02971",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 57,
+      "roadmapConceptIds": [
+        "rl-continuous"
+      ]
+    },
+    {
+      "externalKey": "title:deterministic policy gradient algorithms",
+      "title": "Deterministic Policy Gradient Algorithms",
+      "originalUrl": "https://proceedings.mlr.press/v32/silver14.html",
+      "source": "PMLR",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 57,
+      "roadmapConceptIds": [
+        "rl-continuous"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1801.01290",
+      "title": "Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor",
+      "originalUrl": "https://arxiv.org/abs/1801.01290",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1801.01290",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 58,
+      "roadmapConceptIds": [
+        "rl-sac"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1705.05363",
+      "title": "Curiosity-driven Exploration by Self-supervised Prediction",
+      "originalUrl": "https://arxiv.org/abs/1705.05363",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1705.05363",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 59,
+      "roadmapConceptIds": [
+        "rl-exploration"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1810.12894",
+      "title": "Exploration by Random Network Distillation",
+      "originalUrl": "https://arxiv.org/abs/1810.12894",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1810.12894",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 59,
+      "roadmapConceptIds": [
+        "rl-exploration"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1707.01495",
+      "title": "Hindsight Experience Replay",
+      "originalUrl": "https://arxiv.org/abs/1707.01495",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1707.01495",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 59,
+      "roadmapConceptIds": [
+        "rl-exploration"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2006.04779",
+      "title": "Conservative Q-Learning for Offline Reinforcement Learning",
+      "originalUrl": "https://arxiv.org/abs/2006.04779",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2006.04779",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 60,
+      "roadmapConceptIds": [
+        "rl-offline"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1812.02900",
+      "title": "Off-Policy Deep Reinforcement Learning without Exploration",
+      "originalUrl": "https://arxiv.org/abs/1812.02900",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1812.02900",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 60,
+      "roadmapConceptIds": [
+        "rl-offline"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2110.06169",
+      "title": "Offline Reinforcement Learning with Implicit Q-Learning",
+      "originalUrl": "https://arxiv.org/abs/2110.06169",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2110.06169",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 60,
+      "roadmapConceptIds": [
+        "rl-offline"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2106.01345",
+      "title": "Decision Transformer: Reinforcement Learning via Sequence Modeling",
+      "originalUrl": "https://arxiv.org/abs/2106.01345",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2106.01345",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 61,
+      "roadmapConceptIds": [
+        "rl-sequence"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2505.03335",
+      "title": "Absolute Zero: Reinforced Self-play Reasoning with Zero Data",
+      "originalUrl": "https://arxiv.org/abs/2505.03335",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2505.03335",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 62,
+      "roadmapConceptIds": [
+        "rl-selfplay"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2510.24684",
+      "title": "SPICE: Self-Play In Corpus Environments Improves Reasoning",
+      "originalUrl": "https://arxiv.org/abs/2510.24684",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2510.24684",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 62,
+      "roadmapConceptIds": [
+        "rl-selfplay"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1811.04551",
+      "title": "Learning Latent Dynamics for Planning from Pixels",
+      "originalUrl": "https://arxiv.org/abs/1811.04551",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1811.04551",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 63,
+      "roadmapConceptIds": [
+        "wm-latent"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1803.10122",
+      "title": "World Models",
+      "originalUrl": "https://arxiv.org/abs/1803.10122",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1803.10122",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 63,
+      "roadmapConceptIds": [
+        "wm-latent"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1912.01603",
+      "title": "Dream to Control: Learning Behaviors by Latent Imagination",
+      "originalUrl": "https://arxiv.org/abs/1912.01603",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1912.01603",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 64,
+      "roadmapConceptIds": [
+        "wm-dreamer"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2010.02193",
+      "title": "Mastering Atari with Discrete World Models",
+      "originalUrl": "https://arxiv.org/abs/2010.02193",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2010.02193",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 64,
+      "roadmapConceptIds": [
+        "wm-dreamer"
+      ]
+    },
+    {
+      "externalKey": "title:mastering diverse control tasks through world models",
+      "title": "Mastering Diverse Control Tasks through World Models",
+      "originalUrl": "https://www.nature.com/articles/s41586-025-08744-2",
+      "source": "Nature",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 64,
+      "roadmapConceptIds": [
+        "wm-dreamer"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1911.08265",
+      "title": "Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model",
+      "originalUrl": "https://arxiv.org/abs/1911.08265",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1911.08265",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 65,
+      "roadmapConceptIds": [
+        "wm-muzero"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2209.00588",
+      "title": "Transformers are Sample-Efficient World Models",
+      "originalUrl": "https://arxiv.org/abs/2209.00588",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2209.00588",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 66,
+      "roadmapConceptIds": [
+        "wm-iris"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2310.16828",
+      "title": "TD-MPC2: Scalable, Robust World Models for Continuous Control",
+      "originalUrl": "https://arxiv.org/abs/2310.16828",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2310.16828",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 67,
+      "roadmapConceptIds": [
+        "wm-tdmpc"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2203.04955",
+      "title": "Temporal Difference Learning for Model Predictive Control",
+      "originalUrl": "https://arxiv.org/abs/2203.04955",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2203.04955",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 67,
+      "roadmapConceptIds": [
+        "wm-tdmpc"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2607.26037",
+      "title": "Wonder: Video World Model Done Better",
+      "originalUrl": "https://arxiv.org/abs/2607.26037",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2607.26037",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 68,
+      "roadmapConceptIds": [
+        "wm-video"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.17163",
+      "title": "Q-Learning With World Models",
+      "originalUrl": "https://arxiv.org/abs/2608.17163",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.17163",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 69,
+      "roadmapConceptIds": [
+        "wm-qlearning"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2602.15922",
+      "title": "World Action Models are Zero-shot Policies",
+      "originalUrl": "https://arxiv.org/abs/2602.15922",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2602.15922",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 70,
+      "roadmapConceptIds": [
+        "wm-action"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.16885",
+      "title": "τ0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
+      "originalUrl": "https://arxiv.org/abs/2608.16885",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.16885",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 70,
+      "roadmapConceptIds": [
+        "wm-action",
+        "rob-frontier"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2606.01027",
+      "title": "τ0-WM: A Unified Video-Action World Model for Robotic Manipulation",
+      "originalUrl": "https://arxiv.org/abs/2606.01027",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2606.01027",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 70,
+      "roadmapConceptIds": [
+        "wm-action"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1011.0686",
+      "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "originalUrl": "https://arxiv.org/abs/1011.0686",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1011.0686",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 71,
+      "roadmapConceptIds": [
+        "rob-imitation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1905.11979",
+      "title": "Causal Confusion in Imitation Learning",
+      "originalUrl": "https://arxiv.org/abs/1905.11979",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1905.11979",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 71,
+      "roadmapConceptIds": [
+        "rob-imitation"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1504.00702",
+      "title": "End-to-End Training of Deep Visuomotor Policies",
+      "originalUrl": "https://arxiv.org/abs/1504.00702",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1504.00702",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 72,
+      "roadmapConceptIds": [
+        "rob-visuomotor"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2112.01511",
+      "title": "The Surprising Effectiveness of Representation Learning for Visual Imitation",
+      "originalUrl": "https://arxiv.org/abs/2112.01511",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2112.01511",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 72,
+      "roadmapConceptIds": [
+        "rob-visuomotor"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2010.14406",
+      "title": "Transporter Networks: Rearranging the Visual World for Robotic Manipulation",
+      "originalUrl": "https://arxiv.org/abs/2010.14406",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2010.14406",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 73,
+      "roadmapConceptIds": [
+        "rob-transporter"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2303.04137",
+      "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+      "originalUrl": "https://arxiv.org/abs/2303.04137",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2303.04137",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 74,
+      "roadmapConceptIds": [
+        "rob-generative"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2109.00137",
+      "title": "Implicit Behavioral Cloning",
+      "originalUrl": "https://arxiv.org/abs/2109.00137",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2109.00137",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 74,
+      "roadmapConceptIds": [
+        "rob-generative"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2304.13705",
+      "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+      "originalUrl": "https://arxiv.org/abs/2304.13705",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2304.13705",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 75,
+      "roadmapConceptIds": [
+        "rob-act"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2205.06175",
+      "title": "A Generalist Agent",
+      "originalUrl": "https://arxiv.org/abs/2205.06175",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2205.06175",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 76,
+      "roadmapConceptIds": [
+        "rob-language"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2005.07648",
+      "title": "Language Conditioned Imitation Learning over Unstructured Data",
+      "originalUrl": "https://arxiv.org/abs/2005.07648",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2005.07648",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 76,
+      "roadmapConceptIds": [
+        "rob-language"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2212.06817",
+      "title": "RT-1: Robotics Transformer for Real-World Control at Scale",
+      "originalUrl": "https://arxiv.org/abs/2212.06817",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2212.06817",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 77,
+      "roadmapConceptIds": [
+        "rob-rt"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2307.15818",
+      "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+      "originalUrl": "https://arxiv.org/abs/2307.15818",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2307.15818",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 77,
+      "roadmapConceptIds": [
+        "rob-rt"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2406.09246",
+      "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+      "originalUrl": "https://arxiv.org/abs/2406.09246",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2406.09246",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 78,
+      "roadmapConceptIds": [
+        "rob-vla"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2410.24164",
+      "title": "π0: A Vision-Language-Action Flow Model for General Robot Control",
+      "originalUrl": "https://arxiv.org/abs/2410.24164",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2410.24164",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 78,
+      "roadmapConceptIds": [
+        "rob-vla"
+      ]
+    },
+    {
+      "externalKey": "title:π0 5 a vision language action model with open world generalization",
+      "title": "π0.5: A Vision-Language-Action Model with Open-World Generalization",
+      "originalUrl": "https://proceedings.mlr.press/v305/black25a.html",
+      "source": "PMLR",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 78,
+      "roadmapConceptIds": [
+        "rob-vla"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2511.14759",
+      "title": "π*0.6: a VLA That Learns From Experience",
+      "originalUrl": "https://arxiv.org/abs/2511.14759",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2511.14759",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 79,
+      "roadmapConceptIds": [
+        "rob-frontier"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1606.09375",
+      "title": "Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering",
+      "originalUrl": "https://arxiv.org/abs/1606.09375",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1606.09375",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 80,
+      "roadmapConceptIds": [
+        "gml-spectral"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1609.02907",
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "originalUrl": "https://arxiv.org/abs/1609.02907",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1609.02907",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 80,
+      "roadmapConceptIds": [
+        "gml-spectral"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1704.01212",
+      "title": "Neural Message Passing for Quantum Chemistry",
+      "originalUrl": "https://arxiv.org/abs/1704.01212",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1704.01212",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 81,
+      "roadmapConceptIds": [
+        "gml-message"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1710.10903",
+      "title": "Graph Attention Networks",
+      "originalUrl": "https://arxiv.org/abs/1710.10903",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1710.10903",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 82,
+      "roadmapConceptIds": [
+        "gml-inductive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1706.02216",
+      "title": "Inductive Representation Learning on Large Graphs",
+      "originalUrl": "https://arxiv.org/abs/1706.02216",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1706.02216",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 82,
+      "roadmapConceptIds": [
+        "gml-inductive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1810.00826",
+      "title": "How Powerful are Graph Neural Networks?",
+      "originalUrl": "https://arxiv.org/abs/1810.00826",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1810.00826",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 83,
+      "roadmapConceptIds": [
+        "gml-expressive"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2003.01332",
+      "title": "Heterogeneous Graph Transformer",
+      "originalUrl": "https://arxiv.org/abs/2003.01332",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2003.01332",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 84,
+      "roadmapConceptIds": [
+        "gml-hetero"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1703.06103",
+      "title": "Modeling Relational Data with Graph Convolutional Networks",
+      "originalUrl": "https://arxiv.org/abs/1703.06103",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1703.06103",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 84,
+      "roadmapConceptIds": [
+        "gml-hetero"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2106.05234",
+      "title": "Do Transformers Really Perform Bad for Graph Representation?",
+      "originalUrl": "https://arxiv.org/abs/2106.05234",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2106.05234",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 85,
+      "roadmapConceptIds": [
+        "gml-transformer"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2404.16130",
+      "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+      "originalUrl": "https://arxiv.org/abs/2404.16130",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2404.16130",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 86,
+      "roadmapConceptIds": [
+        "gml-graphrag"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2210.03629",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "originalUrl": "https://arxiv.org/abs/2210.03629",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2210.03629",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 87,
+      "roadmapConceptIds": [
+        "agent-react"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2302.04761",
+      "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+      "originalUrl": "https://arxiv.org/abs/2302.04761",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2302.04761",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 88,
+      "roadmapConceptIds": [
+        "agent-tools"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2409.07429",
+      "title": "Agent Workflow Memory",
+      "originalUrl": "https://arxiv.org/abs/2409.07429",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2409.07429",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 89,
+      "roadmapConceptIds": [
+        "agent-reflection",
+        "agent-harness"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2304.03442",
+      "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+      "originalUrl": "https://arxiv.org/abs/2304.03442",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2304.03442",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 89,
+      "roadmapConceptIds": [
+        "agent-reflection"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2303.11366",
+      "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+      "originalUrl": "https://arxiv.org/abs/2303.11366",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2303.11366",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 89,
+      "roadmapConceptIds": [
+        "agent-reflection"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2305.16291",
+      "title": "VOYAGER: An Open-Ended Embodied Agent with Large Language Models",
+      "originalUrl": "https://arxiv.org/abs/2305.16291",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2305.16291",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 90,
+      "roadmapConceptIds": [
+        "agent-embodied"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2407.16741",
+      "title": "OpenHands: An Open Platform for AI Software Developers as Generalist Agents",
+      "originalUrl": "https://arxiv.org/abs/2407.16741",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2407.16741",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 91,
+      "roadmapConceptIds": [
+        "agent-software"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2405.15793",
+      "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+      "originalUrl": "https://arxiv.org/abs/2405.15793",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2405.15793",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 91,
+      "roadmapConceptIds": [
+        "agent-software"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2310.06770",
+      "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+      "originalUrl": "https://arxiv.org/abs/2310.06770",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2310.06770",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 91,
+      "roadmapConceptIds": [
+        "agent-software"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2511.03690",
+      "title": "The OpenHands Software Agent SDK: A Composable and Extensible Foundation for Production Agents",
+      "originalUrl": "https://arxiv.org/abs/2511.03690",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2511.03690",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 92,
+      "roadmapConceptIds": [
+        "agent-harness"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.17528",
+      "title": "Agent Lightning v1.0: Towards Harnessed Agentic RL",
+      "originalUrl": "https://arxiv.org/abs/2608.17528",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.17528",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 93,
+      "roadmapConceptIds": [
+        "agent-rl"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.17393",
+      "title": "LEGO-RL: Harness-Native Reinforcement Learning for Coding Agents",
+      "originalUrl": "https://arxiv.org/abs/2608.17393",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.17393",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 93,
+      "roadmapConceptIds": [
+        "agent-rl"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.19880",
+      "title": "EnvHarness: Awakening Static Worlds for Agent Learning",
+      "originalUrl": "https://arxiv.org/abs/2608.19880",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.19880",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 94,
+      "roadmapConceptIds": [
+        "agent-selfplay"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.10450",
+      "title": "Persistent Recursive Worlds Enable Autonomous Software Evolution",
+      "originalUrl": "https://arxiv.org/abs/2608.10450",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.10450",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 94,
+      "roadmapConceptIds": [
+        "agent-selfplay"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.19197",
+      "title": "SPADE: Self-Play in Adaptive Synthetic Executable Environments",
+      "originalUrl": "https://arxiv.org/abs/2608.19197",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.19197",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 94,
+      "roadmapConceptIds": [
+        "agent-selfplay"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2512.18552",
+      "title": "Toward Training Superintelligent Software Agents through Self-Play SWE-RL",
+      "originalUrl": "https://arxiv.org/abs/2512.18552",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2512.18552",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 94,
+      "roadmapConceptIds": [
+        "agent-selfplay"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2502.04485",
+      "title": "Active Task Disambiguation with LLMs",
+      "originalUrl": "https://arxiv.org/abs/2502.04485",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2502.04485",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 95,
+      "roadmapConceptIds": [
+        "agent-reliability"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.14380",
+      "title": "AgentRewind: Recoverable Execution for Long-Horizon LLM Agents",
+      "originalUrl": "https://arxiv.org/abs/2608.14380",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.14380",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 95,
+      "roadmapConceptIds": [
+        "agent-reliability"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.12307",
+      "title": "AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses",
+      "originalUrl": "https://arxiv.org/abs/2608.12307",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.12307",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 95,
+      "roadmapConceptIds": [
+        "agent-reliability"
+      ]
+    },
+    {
+      "externalKey": "doi:10.1038/s41591-020-1034-x",
+      "title": "CONSORT-AI extension",
+      "originalUrl": "https://doi.org/10.1038/s41591-020-1034-x",
+      "source": "DOI",
+      "doi": "10.1038/s41591-020-1034-x",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 96,
+      "roadmapConceptIds": [
+        "med-eval"
+      ]
+    },
+    {
+      "externalKey": "doi:10.1016/s2589-7500(20)30219-3",
+      "title": "SPIRIT-AI extension",
+      "originalUrl": "https://doi.org/10.1016/S2589-7500(20)30219-3",
+      "source": "DOI",
+      "doi": "10.1016/s2589-7500(20)30219-3",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 96,
+      "roadmapConceptIds": [
+        "med-eval"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1711.05225",
+      "title": "CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning",
+      "originalUrl": "https://arxiv.org/abs/1711.05225",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1711.05225",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 97,
+      "roadmapConceptIds": [
+        "med-xray"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1901.07031",
+      "title": "CheXpert: A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison",
+      "originalUrl": "https://arxiv.org/abs/1901.07031",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1901.07031",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 97,
+      "roadmapConceptIds": [
+        "med-xray"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1901.08746",
+      "title": "BioBERT: a pre-trained biomedical language representation model for biomedical text mining",
+      "originalUrl": "https://arxiv.org/abs/1901.08746",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1901.08746",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 98,
+      "roadmapConceptIds": [
+        "med-nlp"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1904.05342",
+      "title": "ClinicalBERT: Modeling Clinical Notes and Predicting Hospital Readmission",
+      "originalUrl": "https://arxiv.org/abs/1904.05342",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1904.05342",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 98,
+      "roadmapConceptIds": [
+        "med-nlp"
+      ]
+    },
+    {
+      "externalKey": "arxiv:1904.03323",
+      "title": "Publicly Available Clinical BERT Embeddings",
+      "originalUrl": "https://arxiv.org/abs/1904.03323",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "1904.03323",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 98,
+      "roadmapConceptIds": [
+        "med-nlp"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2305.17100",
+      "title": "A generalist vision-language foundation model for diverse biomedical tasks",
+      "originalUrl": "https://arxiv.org/abs/2305.17100",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2305.17100",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 99,
+      "roadmapConceptIds": [
+        "med-vlm"
+      ]
+    },
+    {
+      "externalKey": "title:clinical bert vision language pre training for radiograph diagnosis and reports generation",
+      "title": "Clinical-BERT: Vision-Language Pre-training for Radiograph Diagnosis and Reports Generation",
+      "originalUrl": "https://ojs.aaai.org/index.php/AAAI/article/view/20204",
+      "source": "AAAI",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 99,
+      "roadmapConceptIds": [
+        "med-vlm"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2307.14334",
+      "title": "Towards Generalist Biomedical AI",
+      "originalUrl": "https://arxiv.org/abs/2307.14334",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2307.14334",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 99,
+      "roadmapConceptIds": [
+        "med-vlm"
+      ]
+    },
+    {
+      "externalKey": "title:agentclinic",
+      "title": "AgentClinic",
+      "originalUrl": "https://www.nature.com/articles/s41746-026-02674-7",
+      "source": "Nature",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 100,
+      "roadmapConceptIds": [
+        "med-agents"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2404.15155",
+      "title": "MDAgents: An Adaptive Collaboration of LLMs for Medical Decision-Making",
+      "originalUrl": "https://arxiv.org/abs/2404.15155",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2404.15155",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 100,
+      "roadmapConceptIds": [
+        "med-agents"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2501.14654",
+      "title": "MedAgentBench: A Realistic Virtual EHR Environment to Benchmark Medical LLM Agents",
+      "originalUrl": "https://arxiv.org/abs/2501.14654",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2501.14654",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 100,
+      "roadmapConceptIds": [
+        "med-agents"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2511.02531",
+      "title": "Causal Graph Neural Networks for Healthcare",
+      "originalUrl": "https://arxiv.org/abs/2511.02531",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2511.02531",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 101,
+      "roadmapConceptIds": [
+        "med-causal"
+      ]
+    },
+    {
+      "externalKey": "title:a stromal immune computational pathology signature for prognosis and immune checkpoint inhibitor response in localized locally advanced and metastatic urothelial carcinoma a multicenter retrospective study",
+      "title": "A stromal-immune computational pathology signature for prognosis and immune checkpoint inhibitor response in localized, locally advanced and metastatic urothelial carcinoma: A multicenter retrospective study",
+      "originalUrl": "https://pubmed.ncbi.nlm.nih.gov/42585992/",
+      "source": "PubMed",
+      "doi": "",
+      "arxivId": "",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "부분 확인",
+      "readingOrder": 102,
+      "roadmapConceptIds": [
+        "med-pathology"
+      ]
+    },
+    {
+      "externalKey": "arxiv:2608.07418",
+      "title": "ResidencyRL: Reinforcement Learning in Simulated Clinical Environments",
+      "originalUrl": "https://arxiv.org/abs/2608.07418",
+      "source": "arXiv",
+      "doi": "",
+      "arxivId": "2608.07418",
+      "authors": "",
+      "year": null,
+      "abstract": "",
+      "metadataStatus": "식별자 확인",
+      "readingOrder": 103,
+      "roadmapConceptIds": [
+        "med-rl"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "roadmapId": "opt-sgd",
+      "title": "SGD와 Momentum",
+      "aliases": [],
+      "domains": [
+        "최적화",
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "SGD와 Momentum의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "title:on the importance of initialization and momentum in deep learning"
+      ]
+    },
+    {
+      "roadmapId": "opt-adaptive",
+      "title": "적응형 학습률",
+      "aliases": [],
+      "domains": [
+        "최적화"
+      ],
+      "tier": "핵심",
+      "summary": "적응형 학습률의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "title:adaptive subgradient methods for online learning and stochastic optimization"
+      ]
+    },
+    {
+      "roadmapId": "opt-adam",
+      "title": "Adam",
+      "aliases": [],
+      "domains": [
+        "최적화",
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "Adam의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1412.6980"
+      ]
+    },
+    {
+      "roadmapId": "opt-adamw",
+      "title": "AdamW",
+      "aliases": [],
+      "domains": [
+        "최적화",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "AdamW의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1711.05101"
+      ]
+    },
+    {
+      "roadmapId": "opt-curvature",
+      "title": "곡률 기반 최적화",
+      "aliases": [],
+      "domains": [
+        "최적화"
+      ],
+      "tier": "심화",
+      "summary": "곡률 기반 최적화의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1503.05671",
+        "arxiv:1802.09568"
+      ]
+    },
+    {
+      "roadmapId": "opt-scale",
+      "title": "대규모 사전학습 최적화",
+      "aliases": [],
+      "domains": [
+        "최적화",
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "대규모 사전학습 최적화의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1706.02677",
+        "arxiv:1710.03740"
+      ]
+    },
+    {
+      "roadmapId": "opt-frontier",
+      "title": "Muon과 Hyperball",
+      "aliases": [],
+      "domains": [
+        "최적화",
+        "LLM"
+      ],
+      "tier": "프런티어",
+      "summary": "Muon과 Hyperball의 핵심 원리와 대표 논문을 통해 학습의 수렴, 안정성, 계산 효율이 어떻게 달라지는지 이해한다.",
+      "paperKeys": [
+        "title:muon an optimizer for hidden layers in neural networks",
+        "arxiv:2606.16899"
+      ]
+    },
+    {
+      "roadmapId": "dl-backprop",
+      "title": "역전파",
+      "aliases": [],
+      "domains": [
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "역전파의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "doi:10.1038/323533a0"
+      ]
+    },
+    {
+      "roadmapId": "dl-generalization",
+      "title": "일반화와 정규화",
+      "aliases": [],
+      "domains": [
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "일반화와 정규화의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "title:dropout a simple way to prevent neural networks from overfitting"
+      ]
+    },
+    {
+      "roadmapId": "dl-normalization",
+      "title": "정규화 층",
+      "aliases": [],
+      "domains": [
+        "딥러닝",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "정규화 층의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1502.03167",
+        "arxiv:1607.06450"
+      ]
+    },
+    {
+      "roadmapId": "dl-cnn",
+      "title": "CNN 표현학습",
+      "aliases": [],
+      "domains": [
+        "딥러닝",
+        "컴퓨터비전",
+        "의료 AI"
+      ],
+      "tier": "핵심",
+      "summary": "CNN 표현학습의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "title:imagenet classification with deep convolutional neural networks",
+        "arxiv:1409.1556",
+        "arxiv:1409.4842"
+      ]
+    },
+    {
+      "roadmapId": "dl-resnet",
+      "title": "잔차학습",
+      "aliases": [],
+      "domains": [
+        "딥러닝",
+        "컴퓨터비전",
+        "의료 AI"
+      ],
+      "tier": "핵심",
+      "summary": "잔차학습의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1512.03385",
+        "arxiv:1603.05027"
+      ]
+    },
+    {
+      "roadmapId": "dl-rnn",
+      "title": "순환 시퀀스 모델",
+      "aliases": [],
+      "domains": [
+        "딥러닝",
+        "NLP"
+      ],
+      "tier": "핵심",
+      "summary": "순환 시퀀스 모델의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "doi:10.1162/neco.1997.9.8.1735",
+        "arxiv:1409.2329"
+      ]
+    },
+    {
+      "roadmapId": "dl-transformer",
+      "title": "Attention과 Transformer",
+      "aliases": [],
+      "domains": [
+        "딥러닝",
+        "NLP",
+        "LLM",
+        "컴퓨터비전",
+        "로봇공학"
+      ],
+      "tier": "핵심",
+      "summary": "Attention과 Transformer의 핵심 원리와 대표 논문을 통해 신경망의 표현과 학습 구조가 어떻게 발전했는지 이해한다.",
+      "paperKeys": [
+        "arxiv:1409.0473",
+        "arxiv:1706.03762"
+      ]
+    },
+    {
+      "roadmapId": "ssl-contrastive",
+      "title": "대조 표현학습",
+      "aliases": [],
+      "domains": [
+        "자기지도학습",
+        "컴퓨터비전"
+      ],
+      "tier": "핵심",
+      "summary": "대조 표현학습의 핵심 원리와 대표 논문을 통해 라벨 없이 재사용 가능한 표현을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1807.03748",
+        "arxiv:2002.05709",
+        "arxiv:1911.05722"
+      ]
+    },
+    {
+      "roadmapId": "ssl-noncontrastive",
+      "title": "비대조 자기지도학습",
+      "aliases": [],
+      "domains": [
+        "자기지도학습",
+        "컴퓨터비전"
+      ],
+      "tier": "심화",
+      "summary": "비대조 자기지도학습의 핵심 원리와 대표 논문을 통해 라벨 없이 재사용 가능한 표현을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2006.07733"
+      ]
+    },
+    {
+      "roadmapId": "ssl-masked",
+      "title": "마스킹 기반 표현학습",
+      "aliases": [],
+      "domains": [
+        "자기지도학습",
+        "컴퓨터비전"
+      ],
+      "tier": "핵심",
+      "summary": "마스킹 기반 표현학습의 핵심 원리와 대표 논문을 통해 라벨 없이 재사용 가능한 표현을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2111.06377"
+      ]
+    },
+    {
+      "roadmapId": "ssl-foundation",
+      "title": "범용 비전 표현",
+      "aliases": [],
+      "domains": [
+        "자기지도학습",
+        "컴퓨터비전"
+      ],
+      "tier": "심화",
+      "summary": "범용 비전 표현의 핵심 원리와 대표 논문을 통해 라벨 없이 재사용 가능한 표현을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2304.07193"
+      ]
+    },
+    {
+      "roadmapId": "cv-detection",
+      "title": "객체 검출",
+      "aliases": [],
+      "domains": [
+        "컴퓨터비전"
+      ],
+      "tier": "핵심",
+      "summary": "객체 검출의 핵심 원리와 대표 논문을 통해 이미지에서 구조적 표현과 예측을 만드는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1506.01497",
+        "arxiv:1506.02640",
+        "arxiv:1703.06870"
+      ]
+    },
+    {
+      "roadmapId": "cv-segmentation",
+      "title": "의미론적·의료영상 분할",
+      "aliases": [],
+      "domains": [
+        "컴퓨터비전",
+        "의료 AI"
+      ],
+      "tier": "핵심",
+      "summary": "의미론적·의료영상 분할의 핵심 원리와 대표 논문을 통해 이미지에서 구조적 표현과 예측을 만드는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1605.06211",
+        "arxiv:1505.04597",
+        "arxiv:1706.05587",
+        "title:nnu net a self configuring method for deep learning based biomedical image segmentation"
+      ]
+    },
+    {
+      "roadmapId": "cv-vit",
+      "title": "Vision Transformer",
+      "aliases": [],
+      "domains": [
+        "컴퓨터비전",
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "Vision Transformer의 핵심 원리와 대표 논문을 통해 이미지에서 구조적 표현과 예측을 만드는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2010.11929"
+      ]
+    },
+    {
+      "roadmapId": "cv-transformer",
+      "title": "Transformer 기반 인식",
+      "aliases": [],
+      "domains": [
+        "컴퓨터비전"
+      ],
+      "tier": "심화",
+      "summary": "Transformer 기반 인식의 핵심 원리와 대표 논문을 통해 이미지에서 구조적 표현과 예측을 만드는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2005.12872",
+        "arxiv:2103.14030"
+      ]
+    },
+    {
+      "roadmapId": "cv-foundation",
+      "title": "범용 분할 모델",
+      "aliases": [],
+      "domains": [
+        "컴퓨터비전",
+        "의료 AI"
+      ],
+      "tier": "심화",
+      "summary": "범용 분할 모델의 핵심 원리와 대표 논문을 통해 이미지에서 구조적 표현과 예측을 만드는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2304.02643",
+        "arxiv:2304.12306"
+      ]
+    },
+    {
+      "roadmapId": "gen-vae",
+      "title": "변분 오토인코더",
+      "aliases": [],
+      "domains": [
+        "생성모델",
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "변분 오토인코더의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1312.6114",
+        "arxiv:1611.02731"
+      ]
+    },
+    {
+      "roadmapId": "gen-gan",
+      "title": "적대적 생성",
+      "aliases": [],
+      "domains": [
+        "생성모델",
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "적대적 생성의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "title:generative adversarial nets"
+      ]
+    },
+    {
+      "roadmapId": "gen-autoregressive",
+      "title": "자기회귀 생성",
+      "aliases": [],
+      "domains": [
+        "생성모델"
+      ],
+      "tier": "심화",
+      "summary": "자기회귀 생성의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1601.06759"
+      ]
+    },
+    {
+      "roadmapId": "gen-flow",
+      "title": "정규화 흐름과 Flow Matching",
+      "aliases": [],
+      "domains": [
+        "생성모델"
+      ],
+      "tier": "심화",
+      "summary": "정규화 흐름과 Flow Matching의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1605.08803",
+        "arxiv:2210.02747"
+      ]
+    },
+    {
+      "roadmapId": "gen-diffusion",
+      "title": "확산모형",
+      "aliases": [],
+      "domains": [
+        "생성모델",
+        "로봇공학"
+      ],
+      "tier": "핵심",
+      "summary": "확산모형의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1503.03585",
+        "arxiv:2006.11239"
+      ]
+    },
+    {
+      "roadmapId": "gen-scoreflow",
+      "title": "Score 기반 생성",
+      "aliases": [],
+      "domains": [
+        "생성모델"
+      ],
+      "tier": "심화",
+      "summary": "Score 기반 생성의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2011.13456"
+      ]
+    },
+    {
+      "roadmapId": "gen-conditioned",
+      "title": "조건부·잠재 확산",
+      "aliases": [],
+      "domains": [
+        "생성모델"
+      ],
+      "tier": "심화",
+      "summary": "조건부·잠재 확산의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2207.12598",
+        "arxiv:2112.10752"
+      ]
+    },
+    {
+      "roadmapId": "gen-language",
+      "title": "언어 확산",
+      "aliases": [],
+      "domains": [
+        "생성모델",
+        "LLM"
+      ],
+      "tier": "프런티어",
+      "summary": "언어 확산의 핵심 원리와 대표 논문을 통해 데이터 분포를 모델링하고 새로운 표본을 생성하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2205.14217",
+        "arxiv:2502.09992"
+      ]
+    },
+    {
+      "roadmapId": "nlp-word",
+      "title": "분산 단어표현",
+      "aliases": [],
+      "domains": [
+        "NLP"
+      ],
+      "tier": "핵심",
+      "summary": "분산 단어표현의 핵심 원리와 대표 논문을 통해 언어를 벡터와 시퀀스로 표현하고 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1301.3781"
+      ]
+    },
+    {
+      "roadmapId": "nlp-seq2seq",
+      "title": "Seq2Seq와 정렬",
+      "aliases": [],
+      "domains": [
+        "NLP",
+        "딥러닝"
+      ],
+      "tier": "핵심",
+      "summary": "Seq2Seq와 정렬의 핵심 원리와 대표 논문을 통해 언어를 벡터와 시퀀스로 표현하고 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1409.3215",
+        "arxiv:1409.0473"
+      ]
+    },
+    {
+      "roadmapId": "llm-encoder",
+      "title": "Encoder 사전학습",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "NLP"
+      ],
+      "tier": "핵심",
+      "summary": "Encoder 사전학습의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:1810.04805",
+        "arxiv:1907.11692",
+        "arxiv:2003.10555"
+      ]
+    },
+    {
+      "roadmapId": "llm-encdec",
+      "title": "Encoder-Decoder 사전학습",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "NLP"
+      ],
+      "tier": "핵심",
+      "summary": "Encoder-Decoder 사전학습의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:1910.13461",
+        "arxiv:1910.10683"
+      ]
+    },
+    {
+      "roadmapId": "llm-decoder",
+      "title": "Decoder LLM",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "NLP"
+      ],
+      "tier": "핵심",
+      "summary": "Decoder LLM의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "title:improving language understanding by generative pre training",
+        "arxiv:2005.14165",
+        "arxiv:2302.13971"
+      ]
+    },
+    {
+      "roadmapId": "llm-scaling",
+      "title": "스케일링 법칙과 Compute-optimal 학습",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "최적화"
+      ],
+      "tier": "핵심",
+      "summary": "스케일링 법칙과 Compute-optimal 학습의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2001.08361",
+        "arxiv:2203.15556"
+      ]
+    },
+    {
+      "roadmapId": "llm-instruction",
+      "title": "Instruction Tuning",
+      "aliases": [],
+      "domains": [
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "Instruction Tuning의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2109.01652",
+        "arxiv:2210.11416"
+      ]
+    },
+    {
+      "roadmapId": "llm-peft",
+      "title": "Parameter-Efficient Fine-Tuning",
+      "aliases": [],
+      "domains": [
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "Parameter-Efficient Fine-Tuning의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:1902.00751",
+        "arxiv:2101.00190",
+        "arxiv:2104.08691",
+        "arxiv:2106.09685",
+        "arxiv:2305.14314"
+      ]
+    },
+    {
+      "roadmapId": "llm-retrieval",
+      "title": "검색·임베딩 표현",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "NLP"
+      ],
+      "tier": "심화",
+      "summary": "검색·임베딩 표현의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2004.04906",
+        "arxiv:2004.12832",
+        "arxiv:2401.00368",
+        "arxiv:2405.17428"
+      ]
+    },
+    {
+      "roadmapId": "llm-rag",
+      "title": "Retrieval-Augmented Generation",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "NLP"
+      ],
+      "tier": "핵심",
+      "summary": "Retrieval-Augmented Generation의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2002.08909",
+        "arxiv:2005.11401",
+        "arxiv:2112.04426",
+        "arxiv:2310.11511"
+      ]
+    },
+    {
+      "roadmapId": "llm-reasoning",
+      "title": "추론 프롬프팅",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "에이전트"
+      ],
+      "tier": "핵심",
+      "summary": "추론 프롬프팅의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2201.11903",
+        "arxiv:2203.11171",
+        "arxiv:2305.10601"
+      ]
+    },
+    {
+      "roadmapId": "rl-preference",
+      "title": "선호 기반 RL과 RLHF",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "선호 기반 RL과 RLHF의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1706.03741",
+        "arxiv:2203.02155"
+      ]
+    },
+    {
+      "roadmapId": "llm-dpo",
+      "title": "직접 선호최적화",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "강화학습"
+      ],
+      "tier": "심화",
+      "summary": "직접 선호최적화의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2305.18290"
+      ]
+    },
+    {
+      "roadmapId": "llm-reasoning-rl",
+      "title": "추론 RL",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "강화학습"
+      ],
+      "tier": "심화",
+      "summary": "추론 RL의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2402.03300",
+        "arxiv:2503.14476"
+      ]
+    },
+    {
+      "roadmapId": "llm-attn-efficiency",
+      "title": "Attention 효율화",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "딥러닝"
+      ],
+      "tier": "심화",
+      "summary": "Attention 효율화의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2104.09864",
+        "arxiv:2205.14135",
+        "arxiv:2309.17453",
+        "arxiv:2502.07864"
+      ]
+    },
+    {
+      "roadmapId": "llm-moe",
+      "title": "Sparse Mixture of Experts",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "딥러닝"
+      ],
+      "tier": "심화",
+      "summary": "Sparse Mixture of Experts의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:1701.06538",
+        "arxiv:2101.03961",
+        "arxiv:2405.04434"
+      ]
+    },
+    {
+      "roadmapId": "llm-alt-sequence",
+      "title": "대안 시퀀스 모델",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "딥러닝"
+      ],
+      "tier": "심화",
+      "summary": "대안 시퀀스 모델의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2111.00396",
+        "arxiv:2102.11174",
+        "arxiv:2312.00752",
+        "arxiv:2406.06484"
+      ]
+    },
+    {
+      "roadmapId": "llm-editing",
+      "title": "모델 편집",
+      "aliases": [],
+      "domains": [
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "모델 편집의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2110.11309",
+        "arxiv:2202.05262",
+        "arxiv:2210.07229"
+      ]
+    },
+    {
+      "roadmapId": "llm-interpretability",
+      "title": "기계적 해석과 안전",
+      "aliases": [],
+      "domains": [
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "기계적 해석과 안전의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2406.04093",
+        "title:sparse crosscoders for cross layer features and model diffing",
+        "arxiv:2502.17424"
+      ]
+    },
+    {
+      "roadmapId": "llm-test-time",
+      "title": "테스트타임 스케일링",
+      "aliases": [],
+      "domains": [
+        "LLM",
+        "에이전트"
+      ],
+      "tier": "프런티어",
+      "summary": "테스트타임 스케일링의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2408.03314",
+        "arxiv:2601.16175"
+      ]
+    },
+    {
+      "roadmapId": "llm-frontier",
+      "title": "2026 LLM 구조·평가",
+      "aliases": [],
+      "domains": [
+        "LLM"
+      ],
+      "tier": "프런티어",
+      "summary": "2026 LLM 구조·평가의 핵심 원리와 대표 논문을 통해 대규모 언어모델의 구조, 학습, 추론, 활용 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2512.02556",
+        "arxiv:2411.04330",
+        "arxiv:2510.22954"
+      ]
+    },
+    {
+      "roadmapId": "rl-mdp",
+      "title": "MDP와 Bellman 방정식",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "로봇공학",
+        "월드모델"
+      ],
+      "tier": "핵심",
+      "summary": "MDP와 Bellman 방정식의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2412.05265"
+      ]
+    },
+    {
+      "roadmapId": "rl-value",
+      "title": "가치 기반 딥 RL",
+      "aliases": [],
+      "domains": [
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "가치 기반 딥 RL의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "title:human level control through deep reinforcement learning",
+        "arxiv:1509.06461",
+        "arxiv:1511.06581",
+        "arxiv:1511.05952",
+        "arxiv:1710.02298"
+      ]
+    },
+    {
+      "roadmapId": "rl-actorcritic",
+      "title": "정책경사와 Actor-Critic",
+      "aliases": [],
+      "domains": [
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "정책경사와 Actor-Critic의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1602.01783",
+        "arxiv:1506.02438"
+      ]
+    },
+    {
+      "roadmapId": "rl-ppo",
+      "title": "Trust Region과 PPO",
+      "aliases": [],
+      "domains": [
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "Trust Region과 PPO의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1502.05477",
+        "arxiv:1707.06347"
+      ]
+    },
+    {
+      "roadmapId": "rl-continuous",
+      "title": "결정론적 연속제어",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "로봇공학"
+      ],
+      "tier": "핵심",
+      "summary": "결정론적 연속제어의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "title:deterministic policy gradient algorithms",
+        "arxiv:1509.02971",
+        "arxiv:1802.09477"
+      ]
+    },
+    {
+      "roadmapId": "rl-sac",
+      "title": "최대엔트로피 RL",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "로봇공학"
+      ],
+      "tier": "핵심",
+      "summary": "최대엔트로피 RL의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1801.01290"
+      ]
+    },
+    {
+      "roadmapId": "rl-exploration",
+      "title": "탐색과 내재적 동기",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "자기지도학습"
+      ],
+      "tier": "심화",
+      "summary": "탐색과 내재적 동기의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1705.05363",
+        "arxiv:1810.12894",
+        "arxiv:1707.01495"
+      ]
+    },
+    {
+      "roadmapId": "rl-offline",
+      "title": "Offline RL",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "로봇공학"
+      ],
+      "tier": "심화",
+      "summary": "Offline RL의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:1812.02900",
+        "arxiv:2006.04779",
+        "arxiv:2110.06169"
+      ]
+    },
+    {
+      "roadmapId": "rl-sequence",
+      "title": "RL을 시퀀스 모델링으로",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "LLM",
+        "로봇공학"
+      ],
+      "tier": "심화",
+      "summary": "RL을 시퀀스 모델링으로의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2106.01345"
+      ]
+    },
+    {
+      "roadmapId": "rl-selfplay",
+      "title": "Self-Play Reasoning RL",
+      "aliases": [],
+      "domains": [
+        "강화학습",
+        "LLM",
+        "에이전트"
+      ],
+      "tier": "프런티어",
+      "summary": "Self-Play Reasoning RL의 핵심 원리와 대표 논문을 통해 보상과 상호작용으로 의사결정 정책을 학습하는 원리를 이해한다.",
+      "paperKeys": [
+        "arxiv:2505.03335",
+        "arxiv:2510.24684"
+      ]
+    },
+    {
+      "roadmapId": "wm-latent",
+      "title": "잠재 동역학과 PlaNet",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "잠재 동역학과 PlaNet의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1803.10122",
+        "arxiv:1811.04551"
+      ]
+    },
+    {
+      "roadmapId": "wm-dreamer",
+      "title": "Dreamer 계열",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "Dreamer 계열의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1912.01603",
+        "arxiv:2010.02193",
+        "title:mastering diverse control tasks through world models"
+      ]
+    },
+    {
+      "roadmapId": "wm-muzero",
+      "title": "학습된 모델로 계획",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "학습된 모델로 계획의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1911.08265"
+      ]
+    },
+    {
+      "roadmapId": "wm-iris",
+      "title": "Transformer 월드모델",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "강화학습"
+      ],
+      "tier": "심화",
+      "summary": "Transformer 월드모델의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2209.00588"
+      ]
+    },
+    {
+      "roadmapId": "wm-tdmpc",
+      "title": "잠재 MPC",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "강화학습",
+        "로봇공학"
+      ],
+      "tier": "심화",
+      "summary": "잠재 MPC의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2203.04955",
+        "arxiv:2310.16828"
+      ]
+    },
+    {
+      "roadmapId": "wm-video",
+      "title": "비디오 월드모델",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "생성모델"
+      ],
+      "tier": "프런티어",
+      "summary": "비디오 월드모델의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2607.26037"
+      ]
+    },
+    {
+      "roadmapId": "wm-qlearning",
+      "title": "Q-Learning과 월드모델",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "강화학습"
+      ],
+      "tier": "프런티어",
+      "summary": "Q-Learning과 월드모델의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2608.17163"
+      ]
+    },
+    {
+      "roadmapId": "wm-action",
+      "title": "World Action Model",
+      "aliases": [],
+      "domains": [
+        "월드모델",
+        "로봇공학"
+      ],
+      "tier": "프런티어",
+      "summary": "World Action Model의 핵심 원리와 대표 논문을 통해 환경의 동역학을 학습해 예측, 상상, 계획에 사용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2602.15922",
+        "arxiv:2606.01027",
+        "arxiv:2608.16885"
+      ]
+    },
+    {
+      "roadmapId": "rob-imitation",
+      "title": "모방학습과 분포 이동",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "강화학습"
+      ],
+      "tier": "핵심",
+      "summary": "모방학습과 분포 이동의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:1011.0686",
+        "arxiv:1905.11979"
+      ]
+    },
+    {
+      "roadmapId": "rob-visuomotor",
+      "title": "시각 운동정책",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "컴퓨터비전"
+      ],
+      "tier": "핵심",
+      "summary": "시각 운동정책의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:1504.00702",
+        "arxiv:2112.01511"
+      ]
+    },
+    {
+      "roadmapId": "rob-transporter",
+      "title": "공간 조작 표현",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "컴퓨터비전"
+      ],
+      "tier": "핵심",
+      "summary": "공간 조작 표현의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2010.14406"
+      ]
+    },
+    {
+      "roadmapId": "rob-generative",
+      "title": "생성형 로봇 정책",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "생성모델"
+      ],
+      "tier": "핵심",
+      "summary": "생성형 로봇 정책의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2109.00137",
+        "arxiv:2303.04137"
+      ]
+    },
+    {
+      "roadmapId": "rob-act",
+      "title": "Action Chunking과 양팔조작",
+      "aliases": [],
+      "domains": [
+        "로봇공학"
+      ],
+      "tier": "핵심",
+      "summary": "Action Chunking과 양팔조작의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2304.13705"
+      ]
+    },
+    {
+      "roadmapId": "rob-language",
+      "title": "언어 조건 로봇 정책",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "언어 조건 로봇 정책의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2005.07648",
+        "arxiv:2205.06175"
+      ]
+    },
+    {
+      "roadmapId": "rob-rt",
+      "title": "Robotics Transformer",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "Robotics Transformer의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2212.06817",
+        "arxiv:2307.15818"
+      ]
+    },
+    {
+      "roadmapId": "rob-vla",
+      "title": "Open VLA",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "LLM",
+        "컴퓨터비전"
+      ],
+      "tier": "심화",
+      "summary": "Open VLA의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2406.09246",
+        "arxiv:2410.24164",
+        "title:π0 5 a vision language action model with open world generalization"
+      ]
+    },
+    {
+      "roadmapId": "rob-frontier",
+      "title": "경험·테스트타임 VLA",
+      "aliases": [],
+      "domains": [
+        "로봇공학",
+        "월드모델"
+      ],
+      "tier": "프런티어",
+      "summary": "경험·테스트타임 VLA의 핵심 원리와 대표 논문을 통해 지각에서 실제 행동까지 연결하는 로봇 학습 계보를 이해한다.",
+      "paperKeys": [
+        "arxiv:2511.14759",
+        "arxiv:2608.16885"
+      ]
+    },
+    {
+      "roadmapId": "gml-spectral",
+      "title": "스펙트럴 그래프 신경망",
+      "aliases": [],
+      "domains": [
+        "그래프 ML"
+      ],
+      "tier": "핵심",
+      "summary": "스펙트럴 그래프 신경망의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1606.09375",
+        "arxiv:1609.02907"
+      ]
+    },
+    {
+      "roadmapId": "gml-message",
+      "title": "메시지 패싱",
+      "aliases": [],
+      "domains": [
+        "그래프 ML"
+      ],
+      "tier": "핵심",
+      "summary": "메시지 패싱의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1704.01212"
+      ]
+    },
+    {
+      "roadmapId": "gml-inductive",
+      "title": "귀납·주의집중 GNN",
+      "aliases": [],
+      "domains": [
+        "그래프 ML"
+      ],
+      "tier": "핵심",
+      "summary": "귀납·주의집중 GNN의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1706.02216",
+        "arxiv:1710.10903"
+      ]
+    },
+    {
+      "roadmapId": "gml-expressive",
+      "title": "GNN 표현력",
+      "aliases": [],
+      "domains": [
+        "그래프 ML"
+      ],
+      "tier": "심화",
+      "summary": "GNN 표현력의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1810.00826"
+      ]
+    },
+    {
+      "roadmapId": "gml-hetero",
+      "title": "이종 그래프",
+      "aliases": [],
+      "domains": [
+        "그래프 ML"
+      ],
+      "tier": "심화",
+      "summary": "이종 그래프의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1703.06103",
+        "arxiv:2003.01332"
+      ]
+    },
+    {
+      "roadmapId": "gml-transformer",
+      "title": "Graph Transformer",
+      "aliases": [],
+      "domains": [
+        "그래프 ML"
+      ],
+      "tier": "심화",
+      "summary": "Graph Transformer의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2106.05234",
+        "arxiv:2106.05234"
+      ]
+    },
+    {
+      "roadmapId": "gml-graphrag",
+      "title": "GraphRAG",
+      "aliases": [],
+      "domains": [
+        "그래프 ML",
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "GraphRAG의 핵심 원리와 대표 논문을 통해 관계 구조를 메시지 패싱과 주의집중으로 학습하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2404.16130"
+      ]
+    },
+    {
+      "roadmapId": "agent-react",
+      "title": "추론과 행동",
+      "aliases": [],
+      "domains": [
+        "에이전트",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "추론과 행동의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2210.03629"
+      ]
+    },
+    {
+      "roadmapId": "agent-tools",
+      "title": "도구사용",
+      "aliases": [],
+      "domains": [
+        "에이전트",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "도구사용의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2302.04761"
+      ]
+    },
+    {
+      "roadmapId": "agent-reflection",
+      "title": "반성·장기기억",
+      "aliases": [],
+      "domains": [
+        "에이전트",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "반성·장기기억의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2303.11366",
+        "arxiv:2304.03442",
+        "arxiv:2409.07429"
+      ]
+    },
+    {
+      "roadmapId": "agent-embodied",
+      "title": "체화·평생학습 에이전트",
+      "aliases": [],
+      "domains": [
+        "에이전트",
+        "로봇공학"
+      ],
+      "tier": "심화",
+      "summary": "체화·평생학습 에이전트의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2305.16291"
+      ]
+    },
+    {
+      "roadmapId": "agent-software",
+      "title": "소프트웨어 에이전트",
+      "aliases": [],
+      "domains": [
+        "에이전트"
+      ],
+      "tier": "심화",
+      "summary": "소프트웨어 에이전트의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2310.06770",
+        "arxiv:2405.15793",
+        "arxiv:2407.16741"
+      ]
+    },
+    {
+      "roadmapId": "agent-harness",
+      "title": "재현 가능한 Agent Harness",
+      "aliases": [],
+      "domains": [
+        "에이전트"
+      ],
+      "tier": "심화",
+      "summary": "재현 가능한 Agent Harness의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2511.03690",
+        "arxiv:2409.07429"
+      ]
+    },
+    {
+      "roadmapId": "agent-rl",
+      "title": "에이전트 RL",
+      "aliases": [],
+      "domains": [
+        "에이전트",
+        "강화학습"
+      ],
+      "tier": "프런티어",
+      "summary": "에이전트 RL의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2608.17528",
+        "arxiv:2608.17393"
+      ]
+    },
+    {
+      "roadmapId": "agent-selfplay",
+      "title": "Self-play와 환경 생성",
+      "aliases": [],
+      "domains": [
+        "에이전트",
+        "강화학습",
+        "월드모델"
+      ],
+      "tier": "프런티어",
+      "summary": "Self-play와 환경 생성의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2608.19197",
+        "arxiv:2512.18552",
+        "arxiv:2608.19880",
+        "arxiv:2608.10450"
+      ]
+    },
+    {
+      "roadmapId": "agent-reliability",
+      "title": "에이전트 실행 신뢰성",
+      "aliases": [],
+      "domains": [
+        "에이전트"
+      ],
+      "tier": "프런티어",
+      "summary": "에이전트 실행 신뢰성의 핵심 원리와 대표 논문을 통해 언어모델이 도구, 기억, 환경과 상호작용하는 구조를 이해한다.",
+      "paperKeys": [
+        "arxiv:2608.14380",
+        "arxiv:2608.12307",
+        "arxiv:2502.04485"
+      ]
+    },
+    {
+      "roadmapId": "med-eval",
+      "title": "임상 AI 평가·보고",
+      "aliases": [],
+      "domains": [
+        "의료 AI"
+      ],
+      "tier": "핵심",
+      "summary": "임상 AI 평가·보고의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "doi:10.1038/s41591-020-1034-x",
+        "doi:10.1016/s2589-7500(20)30219-3"
+      ]
+    },
+    {
+      "roadmapId": "med-xray",
+      "title": "흉부 X-ray AI",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "컴퓨터비전"
+      ],
+      "tier": "핵심",
+      "summary": "흉부 X-ray AI의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1711.05225",
+        "arxiv:1901.07031"
+      ]
+    },
+    {
+      "roadmapId": "med-nlp",
+      "title": "생의학·임상 NLP",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "NLP",
+        "LLM"
+      ],
+      "tier": "핵심",
+      "summary": "생의학·임상 NLP의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:1901.08746",
+        "arxiv:1904.03323",
+        "arxiv:1904.05342"
+      ]
+    },
+    {
+      "roadmapId": "med-vlm",
+      "title": "의료 영상-언어 모델",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "컴퓨터비전",
+        "LLM"
+      ],
+      "tier": "심화",
+      "summary": "의료 영상-언어 모델의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "title:clinical bert vision language pre training for radiograph diagnosis and reports generation",
+        "arxiv:2307.14334",
+        "arxiv:2305.17100"
+      ]
+    },
+    {
+      "roadmapId": "med-agents",
+      "title": "의료 에이전트",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "에이전트"
+      ],
+      "tier": "심화",
+      "summary": "의료 에이전트의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "title:agentclinic",
+        "arxiv:2404.15155",
+        "arxiv:2501.14654"
+      ]
+    },
+    {
+      "roadmapId": "med-causal",
+      "title": "인과·그래프 의료 AI",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "그래프 ML"
+      ],
+      "tier": "심화",
+      "summary": "인과·그래프 의료 AI의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2511.02531"
+      ]
+    },
+    {
+      "roadmapId": "med-pathology",
+      "title": "계산병리 Stromal-Immune Signature",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "컴퓨터비전"
+      ],
+      "tier": "프런티어",
+      "summary": "계산병리 Stromal-Immune Signature의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "title:a stromal immune computational pathology signature for prognosis and immune checkpoint inhibitor response in localized locally advanced and metastatic urothelial carcinoma a multicenter retrospective study"
+      ]
+    },
+    {
+      "roadmapId": "med-rl",
+      "title": "임상 시뮬레이션 RL",
+      "aliases": [],
+      "domains": [
+        "의료 AI",
+        "강화학습"
+      ],
+      "tier": "프런티어",
+      "summary": "임상 시뮬레이션 RL의 핵심 원리와 대표 논문을 통해 임상 근거와 안전성을 지키며 의료 데이터에 AI를 적용하는 방법을 이해한다.",
+      "paperKeys": [
+        "arxiv:2608.07418"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "roadmapRelationId": "expert-e1",
+      "sourceRoadmapId": "opt-sgd",
+      "targetRoadmapId": "opt-adaptive",
+      "type": "extends",
+      "summary": "SGD와 Momentum에서 적응형 학습률(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:adaptive subgradient methods for online learning and stochastic optimization"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e2",
+      "sourceRoadmapId": "opt-adaptive",
+      "targetRoadmapId": "opt-adam",
+      "type": "extends",
+      "summary": "적응형 학습률에서 Adam(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1412.6980"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e3",
+      "sourceRoadmapId": "opt-adam",
+      "targetRoadmapId": "opt-adamw",
+      "type": "extends",
+      "summary": "Adam에서 AdamW(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1711.05101"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e4",
+      "sourceRoadmapId": "opt-sgd",
+      "targetRoadmapId": "opt-curvature",
+      "type": "extends",
+      "summary": "SGD와 Momentum에서 곡률 기반 최적화(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1503.05671"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e5",
+      "sourceRoadmapId": "opt-adamw",
+      "targetRoadmapId": "opt-scale",
+      "type": "enables",
+      "summary": "AdamW에서 대규모 사전학습 최적화(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1706.02677"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e6",
+      "sourceRoadmapId": "opt-curvature",
+      "targetRoadmapId": "opt-scale",
+      "type": "enables",
+      "summary": "곡률 기반 최적화에서 대규모 사전학습 최적화(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1706.02677"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e7",
+      "sourceRoadmapId": "opt-scale",
+      "targetRoadmapId": "opt-frontier",
+      "type": "extends",
+      "summary": "대규모 사전학습 최적화에서 Muon과 Hyperball(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:muon an optimizer for hidden layers in neural networks"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e8",
+      "sourceRoadmapId": "dl-backprop",
+      "targetRoadmapId": "opt-sgd",
+      "type": "enables",
+      "summary": "역전파에서 SGD와 Momentum(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:on the importance of initialization and momentum in deep learning"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e9",
+      "sourceRoadmapId": "dl-backprop",
+      "targetRoadmapId": "dl-generalization",
+      "type": "prerequisite",
+      "summary": "역전파에서 일반화와 정규화(으)로 이어지는 prerequisite 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:dropout a simple way to prevent neural networks from overfitting"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e10",
+      "sourceRoadmapId": "opt-sgd",
+      "targetRoadmapId": "dl-normalization",
+      "type": "enables",
+      "summary": "SGD와 Momentum에서 정규화 층(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1502.03167"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e11",
+      "sourceRoadmapId": "dl-generalization",
+      "targetRoadmapId": "dl-normalization",
+      "type": "extends",
+      "summary": "일반화와 정규화에서 정규화 층(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1502.03167"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e12",
+      "sourceRoadmapId": "dl-normalization",
+      "targetRoadmapId": "dl-cnn",
+      "type": "enables",
+      "summary": "정규화 층에서 CNN 표현학습(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:imagenet classification with deep convolutional neural networks"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e13",
+      "sourceRoadmapId": "dl-cnn",
+      "targetRoadmapId": "dl-resnet",
+      "type": "extends",
+      "summary": "CNN 표현학습에서 잔차학습(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1512.03385"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e14",
+      "sourceRoadmapId": "dl-backprop",
+      "targetRoadmapId": "dl-rnn",
+      "type": "enables",
+      "summary": "역전파에서 순환 시퀀스 모델(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "doi:10.1162/neco.1997.9.8.1735"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e15",
+      "sourceRoadmapId": "dl-rnn",
+      "targetRoadmapId": "nlp-seq2seq",
+      "type": "enables",
+      "summary": "순환 시퀀스 모델에서 Seq2Seq와 정렬(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1409.3215"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e16",
+      "sourceRoadmapId": "nlp-seq2seq",
+      "targetRoadmapId": "dl-transformer",
+      "type": "prerequisite",
+      "summary": "Seq2Seq와 정렬에서 Attention과 Transformer(으)로 이어지는 prerequisite 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1409.0473"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e17",
+      "sourceRoadmapId": "dl-resnet",
+      "targetRoadmapId": "ssl-contrastive",
+      "type": "enables",
+      "summary": "잔차학습에서 대조 표현학습(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1807.03748"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e18",
+      "sourceRoadmapId": "ssl-contrastive",
+      "targetRoadmapId": "ssl-noncontrastive",
+      "type": "extends",
+      "summary": "대조 표현학습에서 비대조 자기지도학습(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2006.07733"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e19",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "ssl-masked",
+      "type": "enables",
+      "summary": "Attention과 Transformer에서 마스킹 기반 표현학습(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2111.06377"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e20",
+      "sourceRoadmapId": "ssl-masked",
+      "targetRoadmapId": "ssl-foundation",
+      "type": "extends",
+      "summary": "마스킹 기반 표현학습에서 범용 비전 표현(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2304.07193"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e21",
+      "sourceRoadmapId": "dl-resnet",
+      "targetRoadmapId": "cv-detection",
+      "type": "enables",
+      "summary": "잔차학습에서 객체 검출(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1506.01497"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e22",
+      "sourceRoadmapId": "dl-resnet",
+      "targetRoadmapId": "cv-segmentation",
+      "type": "enables",
+      "summary": "잔차학습에서 의미론적·의료영상 분할(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1605.06211"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e23",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "cv-vit",
+      "type": "applies_to",
+      "summary": "Attention과 Transformer에서 Vision Transformer(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2010.11929"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e24",
+      "sourceRoadmapId": "cv-vit",
+      "targetRoadmapId": "cv-transformer",
+      "type": "extends",
+      "summary": "Vision Transformer에서 Transformer 기반 인식(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2005.12872"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e25",
+      "sourceRoadmapId": "ssl-masked",
+      "targetRoadmapId": "cv-foundation",
+      "type": "enables",
+      "summary": "마스킹 기반 표현학습에서 범용 분할 모델(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2304.02643"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e26",
+      "sourceRoadmapId": "cv-segmentation",
+      "targetRoadmapId": "cv-foundation",
+      "type": "extends",
+      "summary": "의미론적·의료영상 분할에서 범용 분할 모델(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2304.02643"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e27",
+      "sourceRoadmapId": "dl-backprop",
+      "targetRoadmapId": "gen-vae",
+      "type": "enables",
+      "summary": "역전파에서 변분 오토인코더(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1312.6114"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e28",
+      "sourceRoadmapId": "dl-backprop",
+      "targetRoadmapId": "gen-gan",
+      "type": "enables",
+      "summary": "역전파에서 적대적 생성(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:generative adversarial nets"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e29",
+      "sourceRoadmapId": "gen-autoregressive",
+      "targetRoadmapId": "gen-flow",
+      "type": "extends",
+      "summary": "자기회귀 생성에서 정규화 흐름과 Flow Matching(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1605.08803"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e30",
+      "sourceRoadmapId": "gen-diffusion",
+      "targetRoadmapId": "gen-scoreflow",
+      "type": "extends",
+      "summary": "확산모형에서 Score 기반 생성(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2011.13456"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e31",
+      "sourceRoadmapId": "gen-scoreflow",
+      "targetRoadmapId": "gen-conditioned",
+      "type": "extends",
+      "summary": "Score 기반 생성에서 조건부·잠재 확산(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2207.12598"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e32",
+      "sourceRoadmapId": "gen-diffusion",
+      "targetRoadmapId": "gen-language",
+      "type": "applies_to",
+      "summary": "확산모형에서 언어 확산(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2205.14217"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e33",
+      "sourceRoadmapId": "nlp-word",
+      "targetRoadmapId": "nlp-seq2seq",
+      "type": "prerequisite",
+      "summary": "분산 단어표현에서 Seq2Seq와 정렬(으)로 이어지는 prerequisite 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1409.3215"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e34",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "llm-encoder",
+      "type": "enables",
+      "summary": "Attention과 Transformer에서 Encoder 사전학습(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1810.04805"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e35",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "llm-encdec",
+      "type": "enables",
+      "summary": "Attention과 Transformer에서 Encoder-Decoder 사전학습(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1910.13461"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e36",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "llm-decoder",
+      "type": "enables",
+      "summary": "Attention과 Transformer에서 Decoder LLM(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:improving language understanding by generative pre training"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e37",
+      "sourceRoadmapId": "llm-decoder",
+      "targetRoadmapId": "llm-scaling",
+      "type": "extends",
+      "summary": "Decoder LLM에서 스케일링 법칙과 Compute-optimal 학습(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2001.08361"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e38",
+      "sourceRoadmapId": "llm-scaling",
+      "targetRoadmapId": "llm-instruction",
+      "type": "enables",
+      "summary": "스케일링 법칙과 Compute-optimal 학습에서 Instruction Tuning(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2109.01652"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e39",
+      "sourceRoadmapId": "llm-instruction",
+      "targetRoadmapId": "rl-preference",
+      "type": "enables",
+      "summary": "Instruction Tuning에서 선호 기반 RL과 RLHF(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1706.03741"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e40",
+      "sourceRoadmapId": "rl-preference",
+      "targetRoadmapId": "llm-dpo",
+      "type": "extends",
+      "summary": "선호 기반 RL과 RLHF에서 직접 선호최적화(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2305.18290"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e41",
+      "sourceRoadmapId": "rl-preference",
+      "targetRoadmapId": "llm-reasoning-rl",
+      "type": "extends",
+      "summary": "선호 기반 RL과 RLHF에서 추론 RL(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2402.03300"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e42",
+      "sourceRoadmapId": "llm-instruction",
+      "targetRoadmapId": "llm-peft",
+      "type": "extends",
+      "summary": "Instruction Tuning에서 Parameter-Efficient Fine-Tuning(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1902.00751"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e43",
+      "sourceRoadmapId": "llm-encoder",
+      "targetRoadmapId": "llm-retrieval",
+      "type": "enables",
+      "summary": "Encoder 사전학습에서 검색·임베딩 표현(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2004.04906"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e44",
+      "sourceRoadmapId": "llm-retrieval",
+      "targetRoadmapId": "llm-rag",
+      "type": "enables",
+      "summary": "검색·임베딩 표현에서 Retrieval-Augmented Generation(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2002.08909"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e45",
+      "sourceRoadmapId": "llm-decoder",
+      "targetRoadmapId": "llm-reasoning",
+      "type": "enables",
+      "summary": "Decoder LLM에서 추론 프롬프팅(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2201.11903"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e46",
+      "sourceRoadmapId": "llm-reasoning",
+      "targetRoadmapId": "llm-test-time",
+      "type": "extends",
+      "summary": "추론 프롬프팅에서 테스트타임 스케일링(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2408.03314"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e47",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "llm-attn-efficiency",
+      "type": "extends",
+      "summary": "Attention과 Transformer에서 Attention 효율화(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2104.09864"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e48",
+      "sourceRoadmapId": "llm-scaling",
+      "targetRoadmapId": "llm-moe",
+      "type": "enables",
+      "summary": "스케일링 법칙과 Compute-optimal 학습에서 Sparse Mixture of Experts(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1701.06538"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e49",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "llm-alt-sequence",
+      "type": "contrasts_with",
+      "summary": "Attention과 Transformer에서 대안 시퀀스 모델(으)로 이어지는 contrasts_with 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2111.00396"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e50",
+      "sourceRoadmapId": "llm-decoder",
+      "targetRoadmapId": "llm-editing",
+      "type": "enables",
+      "summary": "Decoder LLM에서 모델 편집(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2110.11309"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e51",
+      "sourceRoadmapId": "llm-decoder",
+      "targetRoadmapId": "llm-interpretability",
+      "type": "enables",
+      "summary": "Decoder LLM에서 기계적 해석과 안전(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2406.04093"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e52",
+      "sourceRoadmapId": "llm-attn-efficiency",
+      "targetRoadmapId": "llm-frontier",
+      "type": "extends",
+      "summary": "Attention 효율화에서 2026 LLM 구조·평가(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2512.02556"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e53",
+      "sourceRoadmapId": "llm-moe",
+      "targetRoadmapId": "llm-frontier",
+      "type": "extends",
+      "summary": "Sparse Mixture of Experts에서 2026 LLM 구조·평가(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2512.02556"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e54",
+      "sourceRoadmapId": "rl-mdp",
+      "targetRoadmapId": "rl-value",
+      "type": "prerequisite",
+      "summary": "MDP와 Bellman 방정식에서 가치 기반 딥 RL(으)로 이어지는 prerequisite 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:human level control through deep reinforcement learning"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e55",
+      "sourceRoadmapId": "rl-mdp",
+      "targetRoadmapId": "rl-actorcritic",
+      "type": "prerequisite",
+      "summary": "MDP와 Bellman 방정식에서 정책경사와 Actor-Critic(으)로 이어지는 prerequisite 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1602.01783"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e56",
+      "sourceRoadmapId": "rl-actorcritic",
+      "targetRoadmapId": "rl-ppo",
+      "type": "extends",
+      "summary": "정책경사와 Actor-Critic에서 Trust Region과 PPO(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1502.05477"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e57",
+      "sourceRoadmapId": "rl-actorcritic",
+      "targetRoadmapId": "rl-continuous",
+      "type": "extends",
+      "summary": "정책경사와 Actor-Critic에서 결정론적 연속제어(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:deterministic policy gradient algorithms"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e58",
+      "sourceRoadmapId": "rl-actorcritic",
+      "targetRoadmapId": "rl-sac",
+      "type": "extends",
+      "summary": "정책경사와 Actor-Critic에서 최대엔트로피 RL(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1801.01290"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e59",
+      "sourceRoadmapId": "rl-value",
+      "targetRoadmapId": "rl-exploration",
+      "type": "extends",
+      "summary": "가치 기반 딥 RL에서 탐색과 내재적 동기(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1705.05363"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e60",
+      "sourceRoadmapId": "rl-value",
+      "targetRoadmapId": "rl-offline",
+      "type": "enables",
+      "summary": "가치 기반 딥 RL에서 Offline RL(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1812.02900"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e61",
+      "sourceRoadmapId": "rl-offline",
+      "targetRoadmapId": "rl-sequence",
+      "type": "extends",
+      "summary": "Offline RL에서 RL을 시퀀스 모델링으로(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2106.01345"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e62",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "rl-sequence",
+      "type": "enables",
+      "summary": "Attention과 Transformer에서 RL을 시퀀스 모델링으로(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2106.01345"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e63",
+      "sourceRoadmapId": "rl-preference",
+      "targetRoadmapId": "rl-selfplay",
+      "type": "extends",
+      "summary": "선호 기반 RL과 RLHF에서 Self-Play Reasoning RL(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2505.03335"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e64",
+      "sourceRoadmapId": "rl-mdp",
+      "targetRoadmapId": "wm-latent",
+      "type": "enables",
+      "summary": "MDP와 Bellman 방정식에서 잠재 동역학과 PlaNet(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1803.10122"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e65",
+      "sourceRoadmapId": "wm-latent",
+      "targetRoadmapId": "wm-dreamer",
+      "type": "extends",
+      "summary": "잠재 동역학과 PlaNet에서 Dreamer 계열(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1912.01603"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e66",
+      "sourceRoadmapId": "rl-mdp",
+      "targetRoadmapId": "wm-muzero",
+      "type": "enables",
+      "summary": "MDP와 Bellman 방정식에서 학습된 모델로 계획(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1911.08265"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e67",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "wm-iris",
+      "type": "applies_to",
+      "summary": "Attention과 Transformer에서 Transformer 월드모델(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2209.00588"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e68",
+      "sourceRoadmapId": "wm-latent",
+      "targetRoadmapId": "wm-tdmpc",
+      "type": "extends",
+      "summary": "잠재 동역학과 PlaNet에서 잠재 MPC(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2203.04955"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e69",
+      "sourceRoadmapId": "gen-diffusion",
+      "targetRoadmapId": "wm-video",
+      "type": "enables",
+      "summary": "확산모형에서 비디오 월드모델(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2607.26037"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e70",
+      "sourceRoadmapId": "rl-value",
+      "targetRoadmapId": "wm-qlearning",
+      "type": "enables",
+      "summary": "가치 기반 딥 RL에서 Q-Learning과 월드모델(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2608.17163"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e71",
+      "sourceRoadmapId": "wm-video",
+      "targetRoadmapId": "wm-action",
+      "type": "extends",
+      "summary": "비디오 월드모델에서 World Action Model(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2602.15922"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e72",
+      "sourceRoadmapId": "rl-mdp",
+      "targetRoadmapId": "rob-imitation",
+      "type": "enables",
+      "summary": "MDP와 Bellman 방정식에서 모방학습과 분포 이동(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1011.0686"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e73",
+      "sourceRoadmapId": "dl-cnn",
+      "targetRoadmapId": "rob-visuomotor",
+      "type": "applies_to",
+      "summary": "CNN 표현학습에서 시각 운동정책(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1504.00702"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e74",
+      "sourceRoadmapId": "rob-imitation",
+      "targetRoadmapId": "rob-visuomotor",
+      "type": "extends",
+      "summary": "모방학습과 분포 이동에서 시각 운동정책(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1504.00702"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e75",
+      "sourceRoadmapId": "rob-visuomotor",
+      "targetRoadmapId": "rob-transporter",
+      "type": "extends",
+      "summary": "시각 운동정책에서 공간 조작 표현(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2010.14406"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e76",
+      "sourceRoadmapId": "rob-imitation",
+      "targetRoadmapId": "rob-generative",
+      "type": "extends",
+      "summary": "모방학습과 분포 이동에서 생성형 로봇 정책(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2109.00137"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e77",
+      "sourceRoadmapId": "gen-diffusion",
+      "targetRoadmapId": "rob-generative",
+      "type": "applies_to",
+      "summary": "확산모형에서 생성형 로봇 정책(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2109.00137"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e78",
+      "sourceRoadmapId": "rob-imitation",
+      "targetRoadmapId": "rob-act",
+      "type": "extends",
+      "summary": "모방학습과 분포 이동에서 Action Chunking과 양팔조작(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2304.13705"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e79",
+      "sourceRoadmapId": "dl-transformer",
+      "targetRoadmapId": "rob-language",
+      "type": "applies_to",
+      "summary": "Attention과 Transformer에서 언어 조건 로봇 정책(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2005.07648"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e80",
+      "sourceRoadmapId": "rob-language",
+      "targetRoadmapId": "rob-rt",
+      "type": "extends",
+      "summary": "언어 조건 로봇 정책에서 Robotics Transformer(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2212.06817"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e81",
+      "sourceRoadmapId": "rob-rt",
+      "targetRoadmapId": "rob-vla",
+      "type": "extends",
+      "summary": "Robotics Transformer에서 Open VLA(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2406.09246"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e82",
+      "sourceRoadmapId": "wm-action",
+      "targetRoadmapId": "rob-frontier",
+      "type": "enables",
+      "summary": "World Action Model에서 경험·테스트타임 VLA(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2511.14759"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e83",
+      "sourceRoadmapId": "gml-spectral",
+      "targetRoadmapId": "gml-message",
+      "type": "extends",
+      "summary": "스펙트럴 그래프 신경망에서 메시지 패싱(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1704.01212"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e84",
+      "sourceRoadmapId": "gml-message",
+      "targetRoadmapId": "gml-inductive",
+      "type": "extends",
+      "summary": "메시지 패싱에서 귀납·주의집중 GNN(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1706.02216"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e85",
+      "sourceRoadmapId": "gml-message",
+      "targetRoadmapId": "gml-expressive",
+      "type": "extends",
+      "summary": "메시지 패싱에서 GNN 표현력(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1810.00826"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e86",
+      "sourceRoadmapId": "gml-message",
+      "targetRoadmapId": "gml-hetero",
+      "type": "extends",
+      "summary": "메시지 패싱에서 이종 그래프(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1703.06103"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e87",
+      "sourceRoadmapId": "gml-hetero",
+      "targetRoadmapId": "gml-transformer",
+      "type": "extends",
+      "summary": "이종 그래프에서 Graph Transformer(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2106.05234"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e88",
+      "sourceRoadmapId": "llm-rag",
+      "targetRoadmapId": "gml-graphrag",
+      "type": "extends",
+      "summary": "Retrieval-Augmented Generation에서 GraphRAG(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2404.16130"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e89",
+      "sourceRoadmapId": "llm-reasoning",
+      "targetRoadmapId": "agent-react",
+      "type": "enables",
+      "summary": "추론 프롬프팅에서 추론과 행동(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2210.03629"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e90",
+      "sourceRoadmapId": "agent-react",
+      "targetRoadmapId": "agent-tools",
+      "type": "extends",
+      "summary": "추론과 행동에서 도구사용(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2302.04761"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e91",
+      "sourceRoadmapId": "agent-react",
+      "targetRoadmapId": "agent-reflection",
+      "type": "extends",
+      "summary": "추론과 행동에서 반성·장기기억(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2303.11366"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e92",
+      "sourceRoadmapId": "agent-react",
+      "targetRoadmapId": "agent-embodied",
+      "type": "applies_to",
+      "summary": "추론과 행동에서 체화·평생학습 에이전트(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2305.16291"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e93",
+      "sourceRoadmapId": "agent-tools",
+      "targetRoadmapId": "agent-software",
+      "type": "applies_to",
+      "summary": "도구사용에서 소프트웨어 에이전트(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2310.06770"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e94",
+      "sourceRoadmapId": "agent-reflection",
+      "targetRoadmapId": "agent-harness",
+      "type": "enables",
+      "summary": "반성·장기기억에서 재현 가능한 Agent Harness(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2511.03690"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e95",
+      "sourceRoadmapId": "agent-software",
+      "targetRoadmapId": "agent-harness",
+      "type": "enables",
+      "summary": "소프트웨어 에이전트에서 재현 가능한 Agent Harness(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2511.03690"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e96",
+      "sourceRoadmapId": "agent-harness",
+      "targetRoadmapId": "agent-rl",
+      "type": "enables",
+      "summary": "재현 가능한 Agent Harness에서 에이전트 RL(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2608.17528"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e97",
+      "sourceRoadmapId": "rl-selfplay",
+      "targetRoadmapId": "agent-selfplay",
+      "type": "applies_to",
+      "summary": "Self-Play Reasoning RL에서 Self-play와 환경 생성(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2608.19197"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e98",
+      "sourceRoadmapId": "agent-harness",
+      "targetRoadmapId": "agent-reliability",
+      "type": "extends",
+      "summary": "재현 가능한 Agent Harness에서 에이전트 실행 신뢰성(으)로 이어지는 extends 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2608.14380"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e99",
+      "sourceRoadmapId": "med-eval",
+      "targetRoadmapId": "cv-segmentation",
+      "type": "enables",
+      "summary": "임상 AI 평가·보고에서 의미론적·의료영상 분할(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1605.06211"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e100",
+      "sourceRoadmapId": "med-eval",
+      "targetRoadmapId": "med-xray",
+      "type": "enables",
+      "summary": "임상 AI 평가·보고에서 흉부 X-ray AI(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1711.05225"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e101",
+      "sourceRoadmapId": "dl-resnet",
+      "targetRoadmapId": "med-xray",
+      "type": "applies_to",
+      "summary": "잔차학습에서 흉부 X-ray AI(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1711.05225"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e102",
+      "sourceRoadmapId": "llm-encoder",
+      "targetRoadmapId": "med-nlp",
+      "type": "applies_to",
+      "summary": "Encoder 사전학습에서 생의학·임상 NLP(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:1901.08746"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e103",
+      "sourceRoadmapId": "med-xray",
+      "targetRoadmapId": "med-vlm",
+      "type": "enables",
+      "summary": "흉부 X-ray AI에서 의료 영상-언어 모델(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:clinical bert vision language pre training for radiograph diagnosis and reports generation"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e104",
+      "sourceRoadmapId": "med-nlp",
+      "targetRoadmapId": "med-vlm",
+      "type": "enables",
+      "summary": "생의학·임상 NLP에서 의료 영상-언어 모델(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:clinical bert vision language pre training for radiograph diagnosis and reports generation"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e105",
+      "sourceRoadmapId": "agent-react",
+      "targetRoadmapId": "med-agents",
+      "type": "applies_to",
+      "summary": "추론과 행동에서 의료 에이전트(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:agentclinic"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e106",
+      "sourceRoadmapId": "med-vlm",
+      "targetRoadmapId": "med-agents",
+      "type": "enables",
+      "summary": "의료 영상-언어 모델에서 의료 에이전트(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:agentclinic"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e107",
+      "sourceRoadmapId": "gml-message",
+      "targetRoadmapId": "med-causal",
+      "type": "applies_to",
+      "summary": "메시지 패싱에서 인과·그래프 의료 AI(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2511.02531"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e108",
+      "sourceRoadmapId": "med-eval",
+      "targetRoadmapId": "med-causal",
+      "type": "enables",
+      "summary": "임상 AI 평가·보고에서 인과·그래프 의료 AI(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2511.02531"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e109",
+      "sourceRoadmapId": "med-eval",
+      "targetRoadmapId": "med-pathology",
+      "type": "enables",
+      "summary": "임상 AI 평가·보고에서 계산병리 Stromal-Immune Signature(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:a stromal immune computational pathology signature for prognosis and immune checkpoint inhibitor response in localized locally advanced and metastatic urothelial carcinoma a multicenter retrospective study"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e110",
+      "sourceRoadmapId": "cv-segmentation",
+      "targetRoadmapId": "med-pathology",
+      "type": "applies_to",
+      "summary": "의미론적·의료영상 분할에서 계산병리 Stromal-Immune Signature(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "title:a stromal immune computational pathology signature for prognosis and immune checkpoint inhibitor response in localized locally advanced and metastatic urothelial carcinoma a multicenter retrospective study"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e111",
+      "sourceRoadmapId": "rl-mdp",
+      "targetRoadmapId": "med-rl",
+      "type": "applies_to",
+      "summary": "MDP와 Bellman 방정식에서 임상 시뮬레이션 RL(으)로 이어지는 applies_to 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2608.07418"
+      ]
+    },
+    {
+      "roadmapRelationId": "expert-e112",
+      "sourceRoadmapId": "med-eval",
+      "targetRoadmapId": "med-rl",
+      "type": "enables",
+      "summary": "임상 AI 평가·보고에서 임상 시뮬레이션 RL(으)로 이어지는 enables 관계.",
+      "evidenceType": "로드맵 편집 판단",
+      "evidenceStatus": "미검토",
+      "evidenceUrl": "",
+      "suggestedEvidencePaperKeys": [
+        "arxiv:2608.07418"
+      ]
+    }
+  ]
+}
